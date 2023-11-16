@@ -11,6 +11,9 @@
         <h1>Header</h1>
     </x-header-component>
     <p>teste</p>
+    <x-footer-component>
+        <h1>footer</h1>
+    </x-footer-component>
 
 </body>
 </html>
