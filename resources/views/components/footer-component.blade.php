@@ -6,7 +6,8 @@
 .footer-container{
     background: #8FB3FF;
     padding: 20px 80px;
-    color: #FFFF
+    color: #FFFF;
+    margin-bottom: 0%;
 }
 .linha{
 
@@ -57,9 +58,9 @@ button {
 }
 
 </style>
-<footer class="footer-container">
+<section class="footer-container">
     <div class="linha"></div>
-    <section class="main-container">
+    <div class="main-container">
         <div class="coluna" id="coluna1">
             <h4>Coluna um</h4>
             <p>Twenty One</p>
@@ -89,9 +90,9 @@ button {
                 <button><img src="{{ asset('images/youtube.svg') }}" alt=""></button>
             </div>
         </div>
-    </section>
+    </div>
     <div class="linha"></div>
-    <section class="secondary-container">
+    <div class="secondary-container">
         <p>Neuromasters @ 2023. Todos os direitos reservados</p>
         <div>
             <h4>Teste1</h4>
@@ -99,6 +100,6 @@ button {
             <h4>Teste3</h4>
         </div>
 
-    </section>
+    </div>
 
-</footer>
+</section>

@@ -1,0 +1,46 @@
+
+body {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%), url(../images/bg-welcome.jpg), lightgray 0px -0.073px / 100% 100.023% no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.content{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 80px 30px 30px;
+    border-radius: 8px;
+    background: rgba(75, 133, 255, 0.60);
+    backdrop-filter: blur(10px);
+    width: 45vw;
+    height: 35vh;
+    margin: 160px auto 300px 35px;
+}
+.content h1{
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 700;
+}
+.content h2{
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+}
+.content h3{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+}
+.content-buttons{
+    display: flex;
+    flex-direction:row;
+    gap: 25px;
+}
+footer{
+    margin: 0;
+}

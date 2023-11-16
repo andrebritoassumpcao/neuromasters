@@ -86,26 +86,7 @@
         font-weight:500;
 
       }
-     .cadastro {
-        display: inline-block;
-        padding: 8px 12px;
-        border-radius: 4px;
-        background: #1E67FF;
-        color: #fff;
-        text-decoration: none;
-        transition: background 0.3s ease;
 
-}
-
-.cadastro:hover {
-    background: #1452c6 ;
-    cursor: pointer;
-
-}
-
-      .cadastro a{
-        color: #ffffff;
-      }
     </style>
 <header>
 <nav>
@@ -129,7 +110,9 @@
             <a class="nav-link" href="#">Entrar</a>
         </li>
         <li class="cadastro">
-            <a href="#">Cadastre-se</a>
+            <x-sign-button url="">
+                Cadastre-se
+              </x-sign-button>
         </li>
     </div>
 </ul>
