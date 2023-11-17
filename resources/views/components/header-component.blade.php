@@ -107,7 +107,7 @@
     </div>
     <div class="sing-in">
         <li class="login">
-            <a class="nav-link" href="#">Entrar</a>
+            <a class="nav-link" href="/entrar">Entrar</a>
         </li>
         <li class="cadastro">
             <x-sign-button url="">

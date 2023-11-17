@@ -19,7 +19,7 @@ body {
     backdrop-filter: blur(10px);
     width: 45vw;
     height: 35vh;
-    margin: 160px auto 300px 35px;
+    margin: 160px auto 160px 35px;
 }
 .content h1{
     font-size: 34px;
@@ -44,3 +44,4 @@ body {
 footer{
     margin: 0;
 }
+

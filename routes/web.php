@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('/servicos', function () {
     return view('servicos');
 });
+Route::get('/entrar', function () {
+    return view('entrar');
+});
 
 
 
