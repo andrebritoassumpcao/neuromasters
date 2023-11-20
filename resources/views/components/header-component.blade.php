@@ -110,7 +110,7 @@
             <a class="nav-link" href="/entrar">Entrar</a>
         </li>
         <li class="cadastro">
-            <x-sign-button url="">
+            <x-sign-button url="" style="">
                 Cadastre-se
               </x-sign-button>
         </li>

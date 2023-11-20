@@ -22,8 +22,8 @@ cursor: pointer;
 }
 </style>
 
-@props(['url'])
+@props(['url','style'])
 
-<a href="{{ $url }}" class="sign-button">
+<a href="{{ $url }}" class="sign-button" style="{{ $style }}">
     {{ $slot }}
 </a>

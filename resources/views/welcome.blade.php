@@ -15,10 +15,10 @@
         <h1>Uma Revolução no tratamento de transtorno de espectro autista</h1>
         <h2>Um método inovador e eficiente para o tratamento do autismo</h2>
         <div class="content-buttons">
-            <x-sign-button url="">
+            <x-sign-button url="" style="">
                 Assine Já
             </x-sign-button>
-            <x-sign-button url="">
+            <x-sign-button url="" style="">
                 Assine Já
             </x-sign-button>
         </div>

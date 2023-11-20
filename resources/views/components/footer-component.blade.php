@@ -11,7 +11,7 @@
 }
 .linha{
 
-     width: 100%%;
+     width: 100%;
      height: 1px;
      background: #C1C7CD;
      margin: 0 auto;

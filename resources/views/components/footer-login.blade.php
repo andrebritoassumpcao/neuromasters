@@ -9,14 +9,6 @@
     color: #FFFF;
     margin-bottom: 0%;
 }
-.linha{
-
-     width: 100%%;
-     height: 1px;
-     background: #C1C7CD;
-     margin: 0 auto;
-
-}
 .main-container{
     display: flex;
     width: 100%;
