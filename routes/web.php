@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,9 @@ Route::get('/servicos', function () {
 Route::get('/entrar', function () {
     return view('entrar');
 });
+
+Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
+Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
 
 

@@ -37,10 +37,10 @@
         </x-slot>
     </x-campo-component>
     <a id="esqueceu" href="">Esqueceu a senha?</a>
-    <x-sign-button url="" style="width: 323px; height: 38px; margin-top:20px;">
+    <x-sign-button url="" style="width: 323px; height: 38px; margin: 20px 0;">
         Login
     </x-sign-button>
-
+    <p href="">Ainda não tem uma conta? <a id="esqueceu" href="/cadastro">Cadastre-se</a></p>
         </div>
         <div class="right-container">
             <img src="" alt="">

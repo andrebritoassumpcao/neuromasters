@@ -1,0 +1,18 @@
+body{
+    background: #AAA;
+}
+.left-container{
+    background-color: #EBF1FF;
+    border-radius: 14px 0 0 14px;
+
+}
+.registro-container{
+    display: flex;
+    margin: 50px auto;
+    flex-direction: row;
+    justify-content:space-between;
+    border-radius: 14px;
+    background: #FFF;
+    width: 90vw;
+    height: 90vh;
+}

@@ -19,7 +19,7 @@
                 Assine Já
             </x-sign-button>
             <x-sign-button url="" style="">
-                Assine Já
+                Saiba Mais
             </x-sign-button>
         </div>
     </div>
