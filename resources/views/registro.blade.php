@@ -18,8 +18,8 @@
             <x-cadastro-menu>
             </x-cadastro-menu>
         </div>
-        <form method="POST" action="{{ route('register') }}">
-
+        <form method="POST" action="{{ route('register') }}" id="form">
+            @csrf
             <div class="right-container">
                 @if ($activeMenu === 0)
                     <x-detalhes-component />
@@ -29,9 +29,6 @@
                     <x-confirma-component />
                 @endif
             </div>
-            <x-submit-button style="width: 323px; height: 38px; margin: 20px 0;">
-                Continuar
-            </x-submit-button>
         </form>
     </section>
 

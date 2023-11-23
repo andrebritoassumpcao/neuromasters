@@ -23,8 +23,9 @@
     }
 </style>
 
-@props(['url', 'style'])
 
-<a href="{{ $url }}" class="sign-button" style="{{ $style }}">
+@props(['url', 'style', 'onclick'])
+
+<a href="{{ $url }}" class="sign-button" style="{{ $style }}" onclick="{{ $onclick }}">
     {{ $slot }}
 </a>

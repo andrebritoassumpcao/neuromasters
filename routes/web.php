@@ -26,7 +26,7 @@ Route::get('/entrar', function () {
 });
 
 Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
-Route::post('/register', [AuthController::class, 'authenticate'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
 Route::get('/home', function () {
