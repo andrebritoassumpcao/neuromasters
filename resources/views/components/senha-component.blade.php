@@ -36,7 +36,8 @@
             Confirmar Senha*:
         </x-slot>
     </x-campo-component>
-    <x-sign-button url="" style="width: 323px; height: 38px; margin: 20px 0;">
+    <x-submit-button nextStep="location.href='{{ route('set_menu_option', ['option' => 2]) }}'"
+        style="width: 323px; height: 38px; margin: 20px 0;">
         Continuar
-    </x-sign-button>
+    </x-submit-button>
 </div>
