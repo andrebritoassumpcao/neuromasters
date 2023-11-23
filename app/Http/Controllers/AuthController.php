@@ -26,4 +26,15 @@ class AuthController extends Controller
         return redirect()->route('registro');
     }
 
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('nome','email', 'password', 'telefone');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('home');
+        } else {
+            return back()->withErrors(['message' => 'Credenciais inválidas']);
+        }
+    }
+
 }

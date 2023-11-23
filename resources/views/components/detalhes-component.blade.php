@@ -48,23 +48,24 @@
         <h2>OU</h2>
         <div class="linha"></div>
     </div>
-    <x-campo-component inputType="text" inputName="nome" :placeholder="'Digite seu nome completo'">
+    <x-campo-component inputType="text" inputName="nome" id="nome" :placeholder="'Digite seu nome completo'">
         <x-slot name="labelSlot">
             Nome Completo*:
         </x-slot>
     </x-campo-component>
 
-    <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
+    <x-campo-component inputType="text" inputName="email" id="email" :placeholder="'Digite seu email'">
         <x-slot name="labelSlot">
             Email*:
         </x-slot>
     </x-campo-component>
-    <x-campo-component inputType="text" inputName="telefone" :placeholder="'Digite seu número de telefone'">
+    <x-campo-component inputType="text" inputName="telefone" id="telefone" :placeholder="'Digite seu número de telefone'">
         <x-slot name="labelSlot">
             Telefone*:
         </x-slot>
     </x-campo-component>
-    <x-sign-button url="" style="width: 323px; height: 38px; margin: 20px 0;">
+    <x-sign-button url="{{ route('set_menu_option', ['option' => 1]) }}"
+        style="width: 323px; height: 38px; margin: 20px 0;">
         Continuar
     </x-sign-button>
 </div>

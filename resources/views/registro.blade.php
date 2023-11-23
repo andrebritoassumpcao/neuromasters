@@ -18,15 +18,21 @@
             <x-cadastro-menu>
             </x-cadastro-menu>
         </div>
-        <div class="right-container">
-            @if ($activeMenu === 0)
-                <x-detalhes-component />
-            @elseif($activeMenu === 1)
-                <x-senha-component />
-            @elseif($activeMenu === 2)
-                <x-confirma-component />
-            @endif
-        </div>
+        <form method="POST" action="{{ route('register') }}">
+
+            <div class="right-container">
+                @if ($activeMenu === 0)
+                    <x-detalhes-component />
+                @elseif($activeMenu === 1)
+                    <x-senha-component />
+                @elseif($activeMenu === 2)
+                    <x-confirma-component />
+                @endif
+            </div>
+            <x-submit-button style="width: 323px; height: 38px; margin: 20px 0;">
+                Continuar
+            </x-submit-button>
+        </form>
     </section>
 
 </body>

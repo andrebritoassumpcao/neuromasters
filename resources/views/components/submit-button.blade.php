@@ -1,5 +1,5 @@
 <style>
-    .sign-button {
+    .submit-button {
         display: flex;
         padding: 12px 28px;
         justify-content: center;
@@ -16,7 +16,7 @@
         cursor: pointer;
     }
 
-    .sign-button:hover {
+    .submit-button:hover {
         transform: translateY(-2px);
         background: #1452c6;
 
@@ -25,6 +25,6 @@
 
 @props(['url', 'style'])
 
-<a href="{{ $url }}" class="sign-button" style="{{ $style }}">
+<button type="submit" class="submit-button" style="{{ $style }}">
     {{ $slot }}
-</a>
+</button>

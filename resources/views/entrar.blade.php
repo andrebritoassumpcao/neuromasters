@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
 
     <title>Login</title>
 </head>
+
 <body>
     <x-header-login>
         <h1>Header</h1>
@@ -17,7 +19,7 @@
         <div class="left-container">
             <span>Fazer Login</span>
             <x-google-button url="">
-           Entrar com Google
+                Entrar com Google
             </x-google-button>
             <div class="ou">
                 <div class="linha"></div>
@@ -26,25 +28,26 @@
             </div>
             <!-- Sua view -->
 
-    <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
-        <x-slot name="labelSlot">
-            Email*:
-        </x-slot>
-    </x-campo-component>
-    <x-campo-component inputType="password" inputName="senha" :placeholder="'Digite sua senha'">
-        <x-slot name="labelSlot">
-            Senha*:
-        </x-slot>
-    </x-campo-component>
-    <a id="esqueceu" href="">Esqueceu a senha?</a>
-    <x-sign-button url="" style="width: 323px; height: 38px; margin: 20px 0;">
-        Login
-    </x-sign-button>
-    <p href="">Ainda não tem uma conta? <a id="esqueceu" href="/cadastro">Cadastre-se</a></p>
+            <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
+                <x-slot name="labelSlot">
+                    Email*:
+                </x-slot>
+            </x-campo-component>
+            <x-campo-component inputType="password" inputName="senha" :placeholder="'Digite sua senha'">
+                <x-slot name="labelSlot">
+                    Senha*:
+                </x-slot>
+            </x-campo-component>
+            <a id="esqueceu" href="">Esqueceu a senha?</a>
+            <x-sign-button url="" style="width: 323px; height: 38px; margin: 20px 0;">
+                Login
+            </x-sign-button>
+            <p href="">Ainda não tem uma conta? <a id="esqueceu" href="/cadastro">Cadastre-se</a></p>
         </div>
         <div class="right-container">
             <img src="" alt="">
-            <h2>Junte-se a nós para promover a saúde mental, acesse nossa plataforma hoje e embarque em uma jornada de apoio e transformação.</h2>
+            <h2>Junte-se a nós para promover a saúde mental, acesse nossa plataforma hoje e embarque em uma jornada de
+                apoio e transformação.</h2>
 
         </div>
 
@@ -52,8 +55,9 @@
     </section>
 </body>
 <footer>
-<x-footer-login>
-</x-footer-login>
+    <x-footer-login>
+    </x-footer-login>
 
 </footer>
+
 </html>
