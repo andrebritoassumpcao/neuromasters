@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,12 @@ Route::get('/entrar', function () {
 });
 
 Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
+
+Route::get('/home', function () {
+    return view('home');
+});
 
 
 

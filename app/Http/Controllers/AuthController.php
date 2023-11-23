@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -26,4 +28,20 @@ class AuthController extends Controller
         return redirect()->route('registro');
     }
 
+    public function register(Request $request)
+    {
+        // Criação do novo usuário
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'senha' => $request->input('senha'),
+            'telefone' => $request->input('telefone'),
+        ]);
+
+        // Autenticação do novo usuário
+        Auth::login($user);
+
+        // Redirecionamento
+        return redirect()->intended('home');
+    }
 }
