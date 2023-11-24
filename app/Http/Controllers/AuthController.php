@@ -10,6 +10,7 @@ use App\Mail\ConfirmationEmail;
 use Illuminate\Support\Facades\Mail;
 
 
+
 class AuthController extends Controller
 {
     public function showRegisterForm()
