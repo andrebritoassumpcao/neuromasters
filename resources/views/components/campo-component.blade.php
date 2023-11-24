@@ -44,5 +44,5 @@
     <label for="{{ $inputName }}">
         {{ $labelSlot }}
     </label>
-    <input type="text" name="{{ $inputName }}" placeholder="{{ $placeholder }}">
+    <input type="{{ $inputType }}" name="{{ $inputName }}" placeholder="{{ $placeholder }}">
 </div>
