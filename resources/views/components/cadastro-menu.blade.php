@@ -39,7 +39,7 @@
         /* Cor do SVG ativo */
     }
 
-    .inactive .container-text a {
+    .inactive .container-text button {
         color: #AAAAAA;
         /* Cor do texto inativo */
     }
@@ -53,9 +53,15 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+        align-items: flex-start;
+    }
+
+    .container-text button {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
     }
 </style>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Obtém a opção ativa da sessão e converte para número
@@ -77,9 +83,24 @@
                 container.classList.add('inactive');
             }
         });
+
+        // Adicione aqui a lógica para exibir ou ocultar os componentes dos formulários
+        // com base no índice ativo
+        if (index === 0) {
+            document.querySelector('.container-detalhes').style.display = 'flex';
+            document.querySelector('.container-senha').style.display = 'none';
+            document.querySelector('.container-confirma').style.display = 'none';
+        } else if (index === 1) {
+            document.querySelector('.container-detalhes').style.display = 'none';
+            document.querySelector('.container-senha').style.display = 'flex';
+            document.querySelector('.container-confirma').style.display = 'none';
+        } else if (index === 2) {
+            document.querySelector('.container-detalhes').style.display = 'none';
+            document.querySelector('.container-senha').style.display = 'none';
+            document.querySelector('.container-confirma').style.display = 'flex';
+        }
     }
 </script>
-
 
 <div class="container active" onclick="setActive(0)">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
@@ -91,13 +112,12 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <a href="{{ route('set_menu_option', ['option' => 0]) }}">
+        <button onclick="setActive(0)">
             <h1>Seus Detalhes</h1>
             <p>Por favor, insira aqui seu nome e email</p>
-        </a>
+        </button>
     </div>
 </div>
-
 
 <div class="container inactive" onclick="setActive(1)">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
@@ -109,10 +129,10 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <a href="{{ route('set_menu_option', ['option' => 1]) }}">
+        <button onclick="setActive(1)">
             <h1>Definir Senha</h1>
             <p>A senha deve ter no mínimo 8 caracteres.</p>
-        </a>
+        </button>
     </div>
 </div>
 
@@ -126,9 +146,9 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <a href="{{ route('set_menu_option', ['option' => 2]) }}">
+        <button onclick="setActive(2)">
             <h1>Confirmar Cadastro</h1>
             <p>Insira o código que enviamos por email.</p>
-        </a>
+        </button>
     </div>
 </div>

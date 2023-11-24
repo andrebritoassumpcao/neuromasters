@@ -64,13 +64,9 @@
             Telefone*:
         </x-slot>
     </x-campo-component>
-    <x-campo-component inputType="password" inputName="senha" :placeholder="'Digite sua senha'">
-        <x-slot name="labelSlot">
-            Senha*:
-        </x-slot>
-    </x-campo-component>
-    <x-submit-button nextStep="location.href='{{ route('set_menu_option', ['option' => 1]) }}'"
-        style="width: 323px; height: 38px; margin: 20px 0;">
+
+    <x-continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(1)">
         Continuar
-    </x-submit-button>
+    </x-continue-register-button>
+
 </div>

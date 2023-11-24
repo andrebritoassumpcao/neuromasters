@@ -1,9 +1,7 @@
-<!-- x-submit-button.blade.php -->
-
-@props(['nextStep', 'style'])
+@props(['previousStep', 'style'])
 
 <style>
-    .submit-button {
+    .back-button {
         display: flex;
         padding: 12px 28px;
         justify-content: center;
@@ -22,12 +20,12 @@
         text-decoration: none;
     }
 
-    .submit-button:hover {
+    .back-button:hover {
         transform: translateY(-2px);
         background: #1452c6;
     }
 </style>
 
-<button type="submit" class="submit-button" style="{{ $style }}">
+<button type="button" class="back-button" style="{{ $style }}" onclick="{{ $previousStep }}">
     {{ $slot }}
 </button>

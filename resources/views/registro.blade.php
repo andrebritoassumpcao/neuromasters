@@ -21,13 +21,13 @@
         <form method="POST" action="{{ route('register') }}" id="form">
             @csrf
             <div class="right-container">
-                @if ($activeMenu === 0)
-                    <x-detalhes-component />
-                @elseif($activeMenu === 1)
-                    <x-senha-component />
-                @elseif($activeMenu === 2)
-                    <x-confirma-component />
-                @endif
+
+                <x-detalhes-component />
+
+                <x-senha-component />
+
+                <x-confirma-component />
+
             </div>
         </form>
     </section>

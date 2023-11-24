@@ -130,7 +130,13 @@
     </div>
     <p>Caso não tenha recebido o email de verificação, verifique sua pasta de spam ou lixo eletrônico. Se ainda assim
         não encontrar, <a id="reenvio" href="">Clique aqui</a> para reenviar o email de verificação.</p>
-    <x-submit-button nextStep="" style="width: 323px; height: 38px; margin: 20px 0;">
-        Finalizar Cadastro
-    </x-submit-button>
+
+    <div class="container-buttons">
+        <x-back-register-button style="width: 180px; height: 48px; margin: 20px 0;" previousStep="setActive(1)">
+            Voltar
+        </x-back-register-button>
+        <x-submit-button nextStep="" style="width: 180px; height: 48px; margin: 20px 0;">
+            Finalizar Cadastro
+        </x-submit-button>
+    </div>
 </div>
