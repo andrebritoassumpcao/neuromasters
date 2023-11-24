@@ -25,10 +25,6 @@
         gap: 20px;
 
     }
-
-    .senha-match {
-        border-color: chartreuse;
-    }
 </style>
 <div class="container-senha">
     <img src="{{ asset('images/senha.svg') }}" alt="detalhes-icone" style="width: 46px;">
@@ -63,13 +59,13 @@
         var senha = document.getElementsByName('senha')[0].value;
         var confirmaSenha = document.getElementsByName('confirmaSenha')[0].value;
 
-        // Verifique se as senhas coincidem
+
         if (senha !== confirmaSenha) {
             alert('As senhas não coincidem. Por favor, digite novamente.');
-            return; // Não avança para a próxima etapa se as senhas não coincidirem
+            return;
         }
 
-        // Avance para a próxima etapa
-        setActive(2); // Ou utilize a lógica desejada para avançar para a próxima etapa
+
+        setActive(2);
     }
 </script>

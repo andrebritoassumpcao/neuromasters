@@ -30,6 +30,8 @@ Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
 Route::get('/home', function () {
     return view('home');
 });

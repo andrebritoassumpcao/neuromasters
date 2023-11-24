@@ -1,12 +1,13 @@
-@props(['inputType','inputName','placeholder'])
+@props(['inputType', 'inputName', 'placeholder'])
 
 <style>
-    .campo-container{
+    .campo-container {
         display: flex;
         flex-direction: column;
         margin-top: 20px;
     }
-    input{
+
+    input {
         width: 373px;
         height: 48px;
         flex-shrink: 0;
@@ -20,7 +21,8 @@
         padding: 8px;
 
     }
-    input::placeholder{
+
+    input::placeholder {
         color: #737576;
         font-size: 18px;
         font-style: normal;
@@ -28,7 +30,8 @@
         line-height: normal;
 
     }
-    label{
+
+    label {
         color: #000;
         font-size: 18px;
         font-style: normal;
@@ -36,11 +39,10 @@
         line-height: normal;
         margin-bottom: 8px;
     }
-
 </style>
 <div class="campo-container">
     <label for="{{ $inputName }}">
         {{ $labelSlot }}
     </label>
-    <input type="text" name="{{ $inputName }}" placeholder="{{ $placeholder }}" >
+    <input type="text" name="{{ $inputName }}" placeholder="{{ $placeholder }}">
 </div>

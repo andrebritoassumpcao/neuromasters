@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -43,5 +44,24 @@ class AuthController extends Controller
 
         // Redirecionamento
         return redirect()->intended('home');
+    }
+
+    public function login(Request $request)
+    {
+        // Validação dos dados do formulário
+        $request->validate([
+            'email' => 'required|email',
+            'senha' => 'required|min:8',
+        ]);
+
+        // Autenticação
+        $credentials = $request->only('email', 'senha');
+        if (Auth::attempt($credentials)) {
+            // Se a autenticação for bem-sucedida, redirecione para a página desejada
+            return redirect()->intended('home');
+        }
+
+        // Se a autenticação falhar, redirecione de volta com uma mensagem de erro
+        return redirect()->back()->withErrors(['login' => 'Credenciais inválidas.']);
     }
 }
