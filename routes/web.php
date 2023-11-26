@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
 
 
 
@@ -16,21 +17,23 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('welcome');
 });
 Route::get('/servicos', function () {
     return view('servicos');
 });
-Route::get('/entrar', function () {
-    return view('entrar');
-});
+
 
 Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login','index')->name('login.index');
+    Route::post('/login','store')->name('login.store');
+    Route::get('/logout','destroy')->name('login.destroy');
+});
 
 Route::get('/home', function () {
     return view('home');

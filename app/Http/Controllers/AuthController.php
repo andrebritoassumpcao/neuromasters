@@ -39,7 +39,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'senha' => $request->input('senha'),
+            'password' => bcrypt($request->input('password')),
             'telefone' => $request->input('telefone'),
         ]);
 
@@ -53,22 +53,4 @@ class AuthController extends Controller
         return redirect()->intended('home');
     }
 
-    public function login(Request $request)
-    {
-        // Validação dos dados do formulário
-        $request->validate([
-            'email' => 'required|email',
-            'senha' => 'required|min:8',
-        ]);
-
-        // Autenticação
-        $credentials = $request->only('email', 'senha');
-        if (Auth::attempt($credentials)) {
-            // Se a autenticação for bem-sucedida, redirecione para a página desejada
-            return redirect()->intended('home');
-        }
-
-        // Se a autenticação falhar, redirecione de volta com uma mensagem de erro
-        return redirect()->back()->withErrors(['login' => 'Credenciais inválidas.']);
-    }
 }

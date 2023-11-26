@@ -14,12 +14,20 @@
     <x-header-login>
         <h1>Header</h1>
     </x-header-login>
-    <form method="POST" action="{{ route('login') }}">
+    @if (session()->has('success'))
+        {{ session()->get('success') }}
+    @endif
 
+    @error('error')
+        <span>{{ $message }}</span>
+    @enderror
+    <form method="POST" action="{{ route('login.store') }}">
+        @csrf
 
         <section class="login-container">
             <div class="left-container">
                 <span>Fazer Login</span>
+
                 <x-google-button url="">
                     Entrar com Google
                 </x-google-button>
@@ -34,11 +42,17 @@
                         Email*:
                     </x-slot>
                 </x-campo-component>
-                <x-campo-component inputType="password" inputName="senha" :placeholder="'Digite sua senha'">
+                @error('email')
+                    <span>${{ $message }}</span>
+                @enderror
+                <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'">
                     <x-slot name="labelSlot">
                         Senha*:
                     </x-slot>
                 </x-campo-component>
+                @error('password')
+                    <span>${{ $message }}</span>
+                @enderror
                 <a id="esqueceu" href="">Esqueceu a senha?</a>
                 <x-submit-button url="" style="width: 323px; height: 48px; margin: 20px 0;">
                     Login

@@ -32,7 +32,7 @@
         <h1>Definir Senha</h1>
         <p>A senha deve ter no mnínimo 8 caracteres</p>
     </div>
-    <x-campo-component inputType="password" inputName="senha" :placeholder="'Digite sua senha'">
+    <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'">
         <x-slot name="labelSlot">
             Senha*:
         </x-slot>
@@ -56,7 +56,7 @@
 <script>
     function validarSenha() {
 
-        var senha = document.getElementsByName('senha')[0].value;
+        var senha = document.getElementsByName('password')[0].value;
         var confirmaSenha = document.getElementsByName('confirmaSenha')[0].value;
 
 
