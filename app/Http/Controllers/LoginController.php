@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -25,6 +26,7 @@ class LoginController extends Controller
         ]);
 
         $user = User::where('email', $request->input('email'))->first();
+
     if (!$user) {
         return redirect()->route('login.index')->withErrors(['error' => 'Email or password invalid']);
       }
@@ -36,11 +38,12 @@ class LoginController extends Controller
 
       return redirect()->intended('home');
 
-
     }
     public function destroy()
-    {
-        var_dump('loout');
+  {
+    Auth::logout();
 
-    }
+    return redirect()->route('login.index');
+  }
+
 }

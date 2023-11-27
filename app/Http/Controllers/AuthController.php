@@ -50,7 +50,7 @@ class AuthController extends Controller
         // Mail::to($user->email)->send(new ConfirmationEmail());
 
         // Redirecionamento
-        return redirect()->intended('home');
+        return redirect()->intended('login.index');
     }
 
 }
