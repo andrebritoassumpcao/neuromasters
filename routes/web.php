@@ -23,6 +23,9 @@ Route::get('/', function() {
 Route::get('/servicos', function () {
     return view('servicos');
 });
+Route::get('/tea-app', function () {
+    return view('tea-app');
+});
 
 
 Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');

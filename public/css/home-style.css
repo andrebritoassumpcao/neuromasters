@@ -1,0 +1,36 @@
+body{
+background-color: #F2F6FF;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.banner-1{
+    background: url(../images/banner-home-1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 1188px;
+    height: 373px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 60px auto 30px auto ;
+    border-radius: 12px;
+
+
+
+}
+h2{
+    color: #000;
+    font-family: Inter;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+}
