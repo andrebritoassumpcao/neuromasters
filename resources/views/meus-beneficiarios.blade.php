@@ -9,7 +9,20 @@
     <title>Neuromasters TEA</title>
 </head>
 
+
+
 <body>
+    <style>
+        #beneficiarios span {
+            color: #4B85FF;
+        }
+
+        #beneficiarios svg circle,
+        #beneficiarios svg path {
+            stroke: #4B85FF;
+            /* ou qualquer outra cor desejada */
+        }
+    </style>
     <x-header-app></x-header-app>
     <x-menu-lateral>
     </x-menu-lateral>
