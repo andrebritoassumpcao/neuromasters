@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <style>
+        #profissionais span {
+            color: #6D25B9;
+        }
+
+        #profissionais svg circle,
+        #profissionais svg path {
+            stroke: #6D25B9;
+        }
+    </style>
     <x-header-app></x-header-app>
     <x-menu-lateral>
     </x-menu-lateral>

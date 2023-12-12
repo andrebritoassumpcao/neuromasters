@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <style>
+        #atendimentos span {
+            color: #6D25B9;
+        }
+
+        #atendimentos svg circle,
+        #atendimentos svg path {
+            stroke: #6D25B9;
+        }
+    </style>
     <x-header-app></x-header-app>
     <x-menu-lateral>
     </x-menu-lateral>

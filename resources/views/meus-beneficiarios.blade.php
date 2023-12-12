@@ -14,13 +14,12 @@
 <body>
     <style>
         #beneficiarios span {
-            color: #4B85FF;
+            color: #6D25B9;
         }
 
         #beneficiarios svg circle,
         #beneficiarios svg path {
-            stroke: #4B85FF;
-            /* ou qualquer outra cor desejada */
+            stroke: #6D25B9;
         }
     </style>
     <x-header-app></x-header-app>
