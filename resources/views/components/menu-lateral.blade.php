@@ -1,6 +1,10 @@
 <style>
     .sidebar-container {
-        position: fixed;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        min-width: 312.375px;
+
         background-color: #ffffff;
         transition: width 600ms ease;
         background: #FFF;

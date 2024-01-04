@@ -30,6 +30,9 @@ Route::prefix('/tea-app')->group(function () {
     Route::get('/meus-beneficiarios', function () {
         return view('meus-beneficiarios');
     })->name('beneficiarios');
+    Route::get('/cadastrar-beneficiario', function () {
+        return view('cadastrar-beneficiario');
+    })->name('cadastrar-beneficiario');
 
     Route::get('/meus-atendimentos', function () {
         return view('meus-atendimentos');

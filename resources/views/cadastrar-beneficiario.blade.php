@@ -27,9 +27,8 @@
         <x-menu-lateral>
         </x-menu-lateral>
         <section class="container">
-            <h2>Meus Beneficiários</h2>
-            <div class="beneficiarios-content">
-                <x-card-create-beneficiario />
+            <a href="{{ route('beneficiarios') }}">voltar</a>
+
             </div>
 
         </section>
