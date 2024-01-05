@@ -23,6 +23,6 @@ class SenhaComponent extends Component
      */
     public function render()
     {
-        return view('components.senha-component');
+        return view('components.register.senha-component');
     }
 }

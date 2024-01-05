@@ -20,7 +20,7 @@
             stroke: #6D25B9;
         }
     </style>
-    <x-header-app></x-header-app>
+    <x-main.header-app></x-main.header-app>
     <x-menu-lateral>
     </x-menu-lateral>
 

@@ -132,9 +132,10 @@
         não encontrar, <a id="reenvio" href="">Clique aqui</a> para reenviar o email de verificação.</p>
 
     <div class="container-buttons">
-        <x-back-register-button style="width: 180px; height: 48px; margin: 20px 0;" previousStep="setActive(1)">
+        <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+            previousStep="setActive(1)">
             Voltar
-        </x-back-register-button>
+        </x-register.back-register-button>
         <x-submit-button nextStep="" style="width: 180px; height: 48px; margin: 20px 0;">
             Finalizar Cadastro
         </x-submit-button>

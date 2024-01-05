@@ -23,6 +23,6 @@ class ContinueRegisterButton extends Component
      */
     public function render()
     {
-        return view('components.continue-register-button');
+        return view('components.register.continue-register-button');
     }
 }

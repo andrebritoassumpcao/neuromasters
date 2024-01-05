@@ -15,18 +15,18 @@
     </x-header-login>
     <section class="registro-container">
         <div class="left-container">
-            <x-cadastro-menu>
-            </x-cadastro-menu>
+            <x-register.cadastro-menu>
+            </x-register.cadastro-menu>
         </div>
         <form method="POST" action="{{ route('register') }}" id="form">
             @csrf
             <div class="right-container">
 
-                <x-detalhes-component />
+                <x-register.detalhes-component />
 
-                <x-senha-component />
+                <x-register.senha-component />
 
-                <x-confirma-component />
+                <x-register.confirma-component />
 
             </div>
         </form>

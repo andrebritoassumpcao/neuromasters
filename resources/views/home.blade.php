@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <x-header-app></x-header-app>
+    <x-main.header-app></x-main.header-app>
     <section class="main-container">
         <div class="banner-1">
             <x-sign-button url="tea-app" style="width: 180px;  margin: 20px 20px;">

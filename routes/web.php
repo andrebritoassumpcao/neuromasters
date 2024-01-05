@@ -24,32 +24,32 @@ Route::get('/servicos', function () {
     return view('servicos');
 });
 Route::get('/tea-app', function () {
-    return view('tea-app');
+    return view('tea.tea-app');
 });
 Route::prefix('/tea-app')->group(function () {
     Route::get('/meus-beneficiarios', function () {
-        return view('meus-beneficiarios');
+        return view('tea.meus-beneficiarios');
     })->name('beneficiarios');
     Route::get('/cadastrar-beneficiario', function () {
-        return view('cadastrar-beneficiario');
+        return view('tea.cadastrar-beneficiario');
     })->name('cadastrar-beneficiario');
 
     Route::get('/meus-atendimentos', function () {
-        return view('meus-atendimentos');
+        return view('tea.meus-atendimentos');
     })->name('atendimentos');
 
     Route::get('/meus-profissionais', function () {
-        return view('meus-profissionais');
+        return view('tea.meus-profissionais');
     })->name('profissionais');
 
     Route::get('/minhas-avaliacoes', function () {
-        return view('minhas-avaliacoes');
+        return view('tea.minhas-avaliacoes');
     })->name('avaliacoes');
     Route::get('/minhas-indicacoes', function () {
-        return view('minhas-indicacoes');
+        return view('tea.minhas-indicacoes');
     })->name('indicacoes');
     Route::get('/estrategias-de-intervencao', function () {
-        return view('estrategias-intervencao');
+        return view('tea.estrategias-intervencao');
     })->name('intervencao');
 });
 

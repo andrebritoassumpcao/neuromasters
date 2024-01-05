@@ -44,12 +44,14 @@
     </x-campo-component>
     <div class="container-buttons">
 
-        <x-back-register-button style="width: 180px; height: 48px; margin: 20px 0;" previousStep="setActive(0)">
+        <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+            previousStep="setActive(0)">
             Voltar
-        </x-back-register-button>
-        <x-continue-register-button style="width: 180px; height: 48px; margin: 20px 0;" nextStep="validarSenha()">
+        </x-register.back-register-button>
+        <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+            nextStep="validarSenha()">
             Continuar
-        </x-continue-register-button>
+        </x-register.continue-register-button>
     </div>
 </div>
 

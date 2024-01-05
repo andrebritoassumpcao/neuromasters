@@ -23,6 +23,6 @@ class BackRegisterButton extends Component
      */
     public function render()
     {
-        return view('components.back-register-button');
+        return view('components.register.back-register-button');
     }
 }

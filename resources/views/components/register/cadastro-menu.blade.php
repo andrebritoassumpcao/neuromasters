@@ -84,8 +84,7 @@
             }
         });
 
-        // Adicione aqui a lógica para exibir ou ocultar os componentes dos formulários
-        // com base no índice ativo
+
         if (index === 0) {
             document.querySelector('.container-detalhes').style.display = 'flex';
             document.querySelector('.container-senha').style.display = 'none';

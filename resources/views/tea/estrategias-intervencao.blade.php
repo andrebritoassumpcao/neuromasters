@@ -9,31 +9,20 @@
     <title>Neuromasters TEA</title>
 </head>
 
-
-
 <body>
     <style>
-        #beneficiarios span {
+        #intervencao span {
             color: #6D25B9;
         }
 
-        #beneficiarios svg circle,
-        #beneficiarios svg path {
+        #intervencao svg circle,
+        #intervencao svg path {
             stroke: #6D25B9;
         }
     </style>
-    <x-header-app></x-header-app>
-    <main>
-        <x-menu-lateral>
-        </x-menu-lateral>
-        <section class="container">
-            <h2>Meus Beneficiários</h2>
-            <div class="beneficiarios-content">
-                <x-card-create-beneficiario />
-            </div>
-
-        </section>
-    </main>
+    <x-main.header-app></x-main.header-app>
+    <x-menu-lateral>
+    </x-menu-lateral>
 
 </body>
 

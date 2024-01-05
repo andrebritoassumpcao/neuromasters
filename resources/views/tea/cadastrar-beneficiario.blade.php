@@ -9,20 +9,30 @@
     <title>Neuromasters TEA</title>
 </head>
 
+
+
 <body>
     <style>
-        #avaliacoes span {
+        #beneficiarios span {
             color: #6D25B9;
         }
 
-        #avaliacoes svg circle,
-        #avaliacoes svg path {
+        #beneficiarios svg circle,
+        #beneficiarios svg path {
             stroke: #6D25B9;
         }
     </style>
-    <x-header-app></x-header-app>
-    <x-menu-lateral>
-    </x-menu-lateral>
+    <x-main.header-app></x-main.header-app>
+    <main>
+        <x-menu-lateral>
+        </x-menu-lateral>
+        <section class="tea-container">
+            <a href="{{ route('beneficiarios') }}">voltar</a>
+
+            </div>
+
+        </section>
+    </main>
 
 </body>
 
