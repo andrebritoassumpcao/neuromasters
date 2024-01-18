@@ -89,6 +89,7 @@
         justify-content: flex-end;
         gap: 8%;
         margin-right: 40px;
+        z-index: 1;
     }
 
     .user-container a {

@@ -10,7 +10,7 @@
         padding-top: 30px;
         border-radius: 20px;
         background: #D9E5FF;
-        margin-top: 20px;
+        margin: 20px;
         transition: transform 0.3s ease-in-out;
         cursor: pointer;
     }
