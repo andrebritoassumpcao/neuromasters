@@ -9,11 +9,15 @@ main{
 }
 
 
+.beneficiarios-content{
 
+    padding-bottom: 40px;
+
+}
 .tea-container{
 position: relative;
  max-width: 60vw;
- height: 76vh;
+ height: auto;
  margin-top: 40px;
  margin-left: 40px;
  padding: 0;

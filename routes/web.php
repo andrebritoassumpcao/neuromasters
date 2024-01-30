@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BuscarCepController;
 
 
 
@@ -52,6 +53,8 @@ Route::prefix('/tea-app')->group(function () {
         return view('tea.estrategias-intervencao');
     })->name('intervencao');
 });
+
+
 
 
 Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');

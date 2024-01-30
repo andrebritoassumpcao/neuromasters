@@ -25,7 +25,7 @@
         .left-container {
             background-color: #EBF1FF;
             border-radius: 8px 0 0 8px;
-            height: 76svh;
+            height: auto;
             padding-top: 20px;
             min-width: 260px;
         }
@@ -37,6 +37,7 @@
             justify-content: flex-start;
             border-radius: 14px;
             background: #FFF;
+            height: 100%;
 
         }
 
@@ -109,10 +110,15 @@
                     <x-teaComponents.menubenef-component />
                 </div>
                 <div class="right-container">
+                    <form action="" method="POST">
 
-                    <x-teaComponents.dadospessoais-component />
+                        <x-teaComponents.dadospessoais-component />
+                        <x-teaComponents.detalhes-benef-component />
+                        <x-teaComponents.responsaveis-benef-component />
+                        <x-teaComponents.endereco-benef-component />
 
 
+                    </form>
                 </div>
 
             </div>
@@ -122,5 +128,6 @@
     </main>
 
 </body>
+<script src="{{ asset('js/cep.js') }}"></script>
 
 </html>

@@ -97,16 +97,27 @@
 
         if (index === 0) {
             document.querySelector('.container-dadospessoais').style.display = 'flex';
-            document.querySelector('.container-senha').style.display = 'none';
-            document.querySelector('.container-confirma').style.display = 'none';
+            document.querySelector('.container-detalhes').style.display = 'none';
+            document.querySelector('.container-responsaveis').style.display = 'none';
+            document.querySelector('.container-endereco').style.display = 'none';
         } else if (index === 1) {
             document.querySelector('.container-dadospessoais').style.display = 'none';
-            document.querySelector('.container-senha').style.display = 'flex';
-            document.querySelector('.container-confirma').style.display = 'none';
+            document.querySelector('.container-detalhes').style.display = 'flex';
+            document.querySelector('.container-responsaveis').style.display = 'none';
+            document.querySelector('.container-endereco').style.display = 'none';
+
         } else if (index === 2) {
             document.querySelector('.container-dadospessoais').style.display = 'none';
-            document.querySelector('.container-senha').style.display = 'none';
-            document.querySelector('.container-confirma').style.display = 'flex';
+            document.querySelector('.container-detalhes').style.display = 'none';
+            document.querySelector('.container-responsaveis').style.display = 'flex';
+            document.querySelector('.container-endereco').style.display = 'none';
+
+        } else if (index === 3) {
+            document.querySelector('.container-dadospessoais').style.display = 'none';
+            document.querySelector('.container-detalhes').style.display = 'none';
+            document.querySelector('.container-responsaveis').style.display = 'none';
+            document.querySelector('.container-endereco').style.display = 'flex';
+
         }
     }
 </script>

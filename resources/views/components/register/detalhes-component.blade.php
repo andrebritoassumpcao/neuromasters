@@ -65,7 +65,7 @@
         </x-slot>
     </x-campo-component>
 
-    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(1)">
+    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(2)">
         Continuar
     </x-register.continue-register-button>
 

@@ -42,7 +42,8 @@
 <div class="container-dadospessoais">
 
     <div class="uma-col">
-        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="name" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="name" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Nome Completo*:
             </x-slot>
@@ -50,43 +51,64 @@
     </div>
     <div class="duas-col">
 
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="email" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="email" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 CPF*:
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item3" inputType="text" inputName="telefone" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="telefone" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Telefone*:
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>
     <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item4" inputType="date" inputName="nascimento" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="date" inputName="nascimento" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Data de nascimento*:
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item5" inputType="text" inputName="sexo" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="sexo" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Sexo*:
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>
     <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item4" inputType="text" inputName="identidade" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="nascimento" :placeholder="''"
+            inputId="">
+            <x-slot name="labelSlot">
+                Peso
+            </x-slot>
+        </x-teaComponents.campo-formulario>
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="sexo" :placeholder="''"
+            inputId="">
+            <x-slot name="labelSlot">
+                Altura
+            </x-slot>
+        </x-teaComponents.campo-formulario>
+    </div>
+    <div class="duas-col">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="identidade" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Identidade*:
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item5" inputType="date" inputName="emissao" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="date" inputName="emissao" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Data de emissão*:
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>
     <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item4" inputType="text" inputName="orgao" :placeholder="''">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="orgao" :placeholder="''"
+            inputId="">
             <x-slot name="labelSlot">
                 Orgão emissor*:
             </x-slot>
