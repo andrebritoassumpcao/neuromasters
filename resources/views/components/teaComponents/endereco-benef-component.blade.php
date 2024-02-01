@@ -73,7 +73,7 @@
         </x-teaComponents.campo-formulario>
 
     </div>
-    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(3)">
-        Cadastrar
-    </x-register.continue-register-button>
+    <x-submit-button nextStep="" style="width: 240px; height: 48px; margin: 20px 0;">
+        Finalizar Cadastro
+    </x-submit-button>
 </div>

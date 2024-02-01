@@ -51,7 +51,7 @@
     </div>
     <div class="duas-col">
 
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="email" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 CPF*:
@@ -79,13 +79,13 @@
         </x-teaComponents.campo-formulario>
     </div>
     <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="nascimento" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="peso" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 Peso
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="sexo" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="altura" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 Altura

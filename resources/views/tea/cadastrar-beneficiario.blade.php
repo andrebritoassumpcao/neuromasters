@@ -110,7 +110,9 @@
                     <x-teaComponents.menubenef-component />
                 </div>
                 <div class="right-container">
-                    <form action="" method="POST">
+                    <form action="{{ route('registroBeneficiario') }}" method="POST">
+                        @csrf
+
 
                         <x-teaComponents.dadospessoais-component />
                         <x-teaComponents.detalhes-benef-component />

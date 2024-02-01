@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BuscarCepController;
+use App\Http\Controllers\CadastrarBenefController;
 
 
 
@@ -70,3 +71,5 @@ Route::controller(LoginController::class)->group(function(){
 Route::get('/home', function () {
     return view('home');
 });
+
+Route::post('/cadastrar-beneficiario', [CadastrarBenefController::class, 'registerBeneficiario'])->name('registroBeneficiario');

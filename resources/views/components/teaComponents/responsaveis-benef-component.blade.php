@@ -13,7 +13,7 @@
 <div class="container-responsaveis">
 
     <div class="uma-col">
-        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="nome" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="nome_mae" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 Nome da Mãe
@@ -23,21 +23,21 @@
 
     </div>
     <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf_mae" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 CPF
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="profissao" :placeholder="''"
-            inputId="">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="profissao_mae"
+            :placeholder="''" inputId="">
             <x-slot name="labelSlot">
                 Profissão
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>
     <div class="uma-col">
-        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="nome" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="nome_pai" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 Nome do Pai
@@ -47,14 +47,14 @@
 
     </div>
     <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf_pai" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
                 CPF
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="profissao" :placeholder="''"
-            inputId="">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="profissao_pai"
+            :placeholder="''" inputId="">
             <x-slot name="labelSlot">
                 Profissão
             </x-slot>
@@ -62,8 +62,8 @@
     </div>
     <div class="duas-col">
 
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="estado" :placeholder="''"
-            inputId="">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="estado_civil_pais"
+            :placeholder="''" inputId="">
             <x-slot name="labelSlot">
                 Estado civil dos pais
             </x-slot>

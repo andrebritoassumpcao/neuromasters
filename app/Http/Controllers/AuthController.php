@@ -18,7 +18,6 @@ class AuthController extends Controller
         // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
         $activeMenu = session('active_menu', 0);
 
-        // Outras lógicas necessárias...
 
         return view('registro', compact('activeMenu'));
     }

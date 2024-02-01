@@ -62,7 +62,7 @@
 
 
     <div class="uma-col">
-        <x-teaComponents.campo-formulario inputClass="item3" inputType="text" inputName="orgao" :placeholder="'Ex: Espectro Autista'"
+        <x-teaComponents.campo-formulario inputClass="item3" inputType="text" inputName="diagnostico" :placeholder="'Ex: Espectro Autista'"
             inputId="">
             <x-slot name="labelSlot">
                 Diagnóstico Principal
@@ -73,7 +73,7 @@
     </div>
     <div class="uma-col">
         <label for="detalhes">Detalhes do Diagnóstico</label>
-        <textarea class="item6" name="detalhes" placeholder="Digite os detalhes do diagnóstico..."></textarea>
+        <textarea class="item6" name="diagnostico_detalhes" placeholder="Digite os detalhes do diagnóstico..."></textarea>
 
     </div>
 
