@@ -39,6 +39,9 @@
         width: 500px;
     }
 </style>
+@php
+    $optionsSexo = [['value' => '', 'text' => 'Selecione'], ['value' => 'masculino', 'text' => 'Masculino'], ['value' => 'feminino', 'text' => 'Feminino'], ['value' => 'outros', 'text' => 'Outros']];
+@endphp
 <div class="container-dadospessoais">
 
     <div class="uma-col">
@@ -64,6 +67,7 @@
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>
+
     <div class="duas-col">
         <x-teaComponents.campo-formulario inputClass="item2" inputType="date" inputName="nascimento" :placeholder="''"
             inputId="">
@@ -71,13 +75,16 @@
                 Data de nascimento*:
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="sexo" :placeholder="''"
-            inputId="">
+        <x-teaComponents.select-component inputClass="item2" inputName="sexo" :placeholder="'Selecione'" inputId="sexo"
+            :options="$optionsSexo">
             <x-slot name="labelSlot">
                 Sexo*:
             </x-slot>
-        </x-teaComponents.campo-formulario>
+
+        </x-teaComponents.select-component>
     </div>
+
+
     <div class="duas-col">
         <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="peso" :placeholder="''"
             inputId="">

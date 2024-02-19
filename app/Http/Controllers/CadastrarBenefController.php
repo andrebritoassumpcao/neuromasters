@@ -8,6 +8,11 @@ use App\Models\Beneficiarios;
 
 class CadastrarBenefController extends Controller
 {
+    public function index()
+    {
+        $beneficiarios = Beneficiarios::all();
+        return view('tea.meus-beneficiarios', compact('beneficiarios'));
+    }
     public function registerBeneficiario(Request $request){
 
         $beneficiarios = Beneficiarios::create([
@@ -39,8 +44,18 @@ class CadastrarBenefController extends Controller
             'complemento' =>$request->input('complemento'),
         ]);
 
-        return redirect()->route('beneficiarios');
+        return redirect()->intended('beneficiarios.index');
 
 
     }
+
+    public function mostrarBeneficiario($id_beneficiario){
+          // Buscar o Beneficiário pelo ID
+    $beneficiario = Beneficiarios::findorFail($id_beneficiario);
+
+
+
+    return view('tea.meu-beneficiario', compact('beneficiario'));
+    }
+
 }

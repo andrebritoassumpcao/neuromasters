@@ -29,7 +29,10 @@
         <section class="tea-container">
             <h2>Meus Beneficiários</h2>
             <div class="beneficiarios-content">
-                <x-card-create-beneficiario />
+                <x-teaComponents.card-create-beneficiario />
+                @foreach ($beneficiarios as $beneficiario)
+                    <x-teaComponents.card-beneficiario :beneficiario="$beneficiario" />
+                @endforeach
             </div>
 
         </section>

@@ -90,7 +90,7 @@
             </a>
         </li>
         <li class="sidebar-item" id="beneficiarios">
-            <a href="{{ route('beneficiarios') }}" class="sidebar-link">
+            <a href="{{ route('beneficiarios.index') }}" class="sidebar-link">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

@@ -1,5 +1,7 @@
 body{
     background-color: #F2F6FF;
+    color: #000;
+    font-family: Inter;
 }
 main{
    width: 100%;
@@ -9,10 +11,30 @@ main{
 }
 
 
-.beneficiarios-content{
-
+.beneficiarios-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* Cria 4 colunas iguais */
+    gap: 20px;  /* Espaço entre as colunas */
     padding-bottom: 40px;
+}
+@media screen and (max-width: 1450px) {
+    .beneficiarios-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
+/* Quando a tela tiver uma largura máxima de 1024px, altere para 2 colunas */
+@media screen and (max-width: 1024px) {
+    .beneficiarios-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Quando a tela tiver uma largura máxima de 768px, altere para 1 coluna */
+@media screen and (max-width: 768px) {
+    .beneficiarios-content {
+        grid-template-columns: 1fr;
+    }
 }
 .tea-container{
 position: relative;

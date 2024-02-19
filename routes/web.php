@@ -29,9 +29,11 @@ Route::get('/tea-app', function () {
     return view('tea.tea-app');
 });
 Route::prefix('/tea-app')->group(function () {
-    Route::get('/meus-beneficiarios', function () {
-        return view('tea.meus-beneficiarios');
-    })->name('beneficiarios');
+    Route::controller(CadastrarBenefController::class)->group(function(){
+        Route::get('/meus-meneficiarios','index')->name('beneficiarios.index');
+        Route::post('/cadastrar-beneficiario','registerBeneficiario')->name('beneficiarios.register');
+        Route::get('/meu-beneficiario/{id_beneficiario}','mostrarBeneficiario')->name('beneficiarios.mostrar');
+    });
     Route::get('/cadastrar-beneficiario', function () {
         return view('tea.cadastrar-beneficiario');
     })->name('cadastrar-beneficiario');
@@ -72,4 +74,5 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::post('/cadastrar-beneficiario', [CadastrarBenefController::class, 'registerBeneficiario'])->name('registroBeneficiario');
+
+
