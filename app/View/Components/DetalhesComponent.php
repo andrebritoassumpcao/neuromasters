@@ -23,6 +23,6 @@ class DetalhesComponent extends Component
      */
     public function render()
     {
-        return view('components.detalhes-component');
+        return view('components.register.detalhes-component');
     }
 }

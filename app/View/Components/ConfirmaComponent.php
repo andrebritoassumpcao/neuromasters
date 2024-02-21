@@ -23,6 +23,6 @@ class ConfirmaComponent extends Component
      */
     public function render()
     {
-        return view('components.confirma-component');
+        return view('components.register.confirma-component');
     }
 }

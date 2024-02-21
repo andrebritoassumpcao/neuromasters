@@ -48,7 +48,7 @@
         <h2>OU</h2>
         <div class="linha"></div>
     </div>
-    <x-campo-component inputType="text" inputName="nome" :placeholder="'Digite seu nome completo'">
+    <x-campo-component inputType="text" inputName="name" :placeholder="'Digite seu nome completo'">
         <x-slot name="labelSlot">
             Nome Completo*:
         </x-slot>
@@ -64,7 +64,9 @@
             Telefone*:
         </x-slot>
     </x-campo-component>
-    <x-sign-button url="" style="width: 323px; height: 38px; margin: 20px 0;">
+
+    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(2)">
         Continuar
-    </x-sign-button>
+    </x-register.continue-register-button>
+
 </div>

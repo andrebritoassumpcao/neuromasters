@@ -15,18 +15,21 @@
     </x-header-login>
     <section class="registro-container">
         <div class="left-container">
-            <x-cadastro-menu>
-            </x-cadastro-menu>
+            <x-register.cadastro-menu>
+            </x-register.cadastro-menu>
         </div>
-        <div class="right-container">
-            @if ($activeMenu === 0)
-                <x-detalhes-component />
-            @elseif($activeMenu === 1)
-                <x-senha-component />
-            @elseif($activeMenu === 2)
-                <x-confirma-component />
-            @endif
-        </div>
+        <form method="POST" action="{{ route('register') }}" id="form">
+            @csrf
+            <div class="right-container">
+
+                <x-register.detalhes-component />
+
+                <x-register.senha-component />
+
+                <x-register.confirma-component />
+
+            </div>
+        </form>
     </section>
 
 </body>
