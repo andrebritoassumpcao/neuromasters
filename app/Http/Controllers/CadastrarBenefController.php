@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beneficiarios;
+use Illuminate\Support\Facades\Storage;
 
 
 class CadastrarBenefController extends Controller
@@ -42,7 +43,9 @@ class CadastrarBenefController extends Controller
             'cidade' =>$request->input('localidade'),
             'numero' =>$request->input('numero'),
             'complemento' =>$request->input('complemento'),
+
         ]);
+
 
         return redirect()->intended('beneficiarios.index');
 
@@ -58,4 +61,27 @@ class CadastrarBenefController extends Controller
     return view('tea.meu-beneficiario', compact('beneficiario'));
     }
 
+    public function uploadFoto(Request $request, $id_beneficiario)
+    {
+        $request->validate([
+            'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $beneficiario = Beneficiarios::find($id_beneficiario);
+
+        if ($request->hasFile('foto')) {
+            // Remova a imagem antiga se ela existir
+            if ($beneficiario->foto) {
+                Storage::delete($beneficiario->foto);
+            }
+
+            // Armazene a nova imagem
+            $path = $request->file('foto')->storeAs('images/fotos', $beneficiario->id . '.png', 'public');
+
+            // Atualize o caminho da imagem no banco de dados
+            $beneficiario->update(['foto' => $path]);
+        }
+
+        return redirect()->back()->with('success', 'Foto enviada!');
+    }
 }

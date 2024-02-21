@@ -1,0 +1,72 @@
+.beneficiario-content {
+    position: relative;
+    max-width: 65vw;
+    height: auto;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #EDF0F7;
+    left: 25%;
+    filter: drop-shadow(0px 4px 20px rgba(91, 71, 188, 0.30));
+    border-radius: 8px;
+}
+
+.perfil-beneficiario {
+    position: relative;
+    margin: 20px;
+}
+
+.label-foto {
+    display: block;
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+
+
+
+/* Sobreposição escura */
+.label-foto::before {
+    content: "";
+    position: absolute;
+    top: 0; /* Aumente o ponto de contato superior */
+    left: 0; /* Aumente o ponto de contato esquerdo */
+    width: 100%; /* Aumente a largura total */
+    height: 100%; /* Aumente a altura total */
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 50%;
+}
+
+/* Quando o rótulo estiver em foco (hover), torne a sobreposição visível */
+.label-foto:hover::before {
+    opacity: 1;
+}
+
+/* Estilize o ícone SVG */
+.label-foto svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    fill: #f2f2f2;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Quando o rótulo estiver em foco (hover), torne o ícone visível */
+.label-foto:hover svg {
+    opacity: 1;
+}
+#input-foto {
+    display: none;
+}

@@ -33,6 +33,7 @@ Route::prefix('/tea-app')->group(function () {
         Route::get('/meus-meneficiarios','index')->name('beneficiarios.index');
         Route::post('/cadastrar-beneficiario','registerBeneficiario')->name('beneficiarios.register');
         Route::get('/meu-beneficiario/{id_beneficiario}','mostrarBeneficiario')->name('beneficiarios.mostrar');
+        Route::post('/meu-beneficiario/{id_beneficiario}', 'uploadFoto')->name('beneficiarios.upload');
     });
     Route::get('/cadastrar-beneficiario', function () {
         return view('tea.cadastrar-beneficiario');
@@ -63,6 +64,7 @@ Route::prefix('/tea-app')->group(function () {
 Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
+
 
 Route::controller(LoginController::class)->group(function(){
     Route::get('/login','index')->name('login.index');

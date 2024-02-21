@@ -36,5 +36,6 @@ class Beneficiarios extends Model
         'cidade',
         'numero',
         'complemento',
+        'foto',
     ];
 }
