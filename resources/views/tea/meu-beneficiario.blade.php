@@ -40,12 +40,45 @@
                         </svg>
 
                     </label>
-
                 </form>
+                <div class="info-beneficiario">
+                    <h2>
+                        <h2>{{ $beneficiario->nome_beneficiario }}</h2>
+                    </h2>
+                    <h3>{{ $idade }} Anos</h3>
+                    <h3>{{ $beneficiario->cidade }}, {{ $beneficiario->estado }}</h3>
+                </div>
             </div>
 
+            <article class="titulo-container">
+                <h2>Informações gerais</h2>
+                <span>Diagnóstico Principal: {{ $beneficiario->diagnostico_principal }}</span>
+            </article>
+            <div class="diagnostico-container">
+                <div class="questionario-action">
+                    <svg width="153" height="166" viewBox="0 0 153 166" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M82.471 20.75H52.0202C44.9144 20.75 41.3614 20.75 38.6474 22.2578C36.26 23.584 34.319 25.7002 33.1026 28.3031C31.7197 31.2622 31.7197 35.136 31.7197 42.8833V123.117C31.7197 130.864 31.7197 134.738 33.1026 137.697C34.319 140.3 36.26 142.416 38.6474 143.742C41.3614 145.25 44.9144 145.25 52.0202 145.25H63.4392M82.471 20.75L120.534 62.25M82.471 20.75V51.1833C82.471 55.057 82.471 56.9939 83.1624 58.4734C83.7708 59.7749 84.7408 60.833 85.9347 61.4962C87.2917 62.25 89.068 62.25 92.6212 62.25H120.534M120.534 62.25V69.1667M57.0953 117.583H72.9551M57.0953 89.9167H88.8149M57.0953 62.25H63.4392M88.8149 145.25L101.661 142.449C102.781 142.205 103.341 142.082 103.863 141.859C104.327 141.661 104.768 141.404 105.176 141.093C105.636 140.743 106.04 140.303 106.848 139.422L133.222 110.667C136.726 106.847 136.726 100.653 133.222 96.8333C129.718 93.0133 124.038 93.0133 120.534 96.8333L94.1602 125.589C93.352 126.47 92.9485 126.91 92.6275 127.412C92.3427 127.857 92.1067 128.337 91.9253 128.843C91.7204 129.412 91.6081 130.023 91.3841 131.244L88.8149 145.25Z"
+                            stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <x-sign-button url="" style="width:190px; font-size:16px;">
+                        Preencher Questionário
+                    </x-sign-button>
+                </div>
+                <div class="info-questionario">
+                    <h3>Questionário de Apresentação do Paciente</h3>
+                    <p>Complete o questionário de apresentação do paciente para garantir que todas as informações
+                        essenciais
+                        estejam sempre disponíveis para os profissionais de saúde. Isso permitirá um acompanhamento mais
+                        eficaz do progresso do tratamento. </p>
+                    <span>Juntos, vamos construir um caminho de desenvolvimento e evolução de forma personalizada para o
+                        futuro do seu filho.</span>
+                </div>
 
+            </div>
         </section>
+
     </main>
 
 </body>

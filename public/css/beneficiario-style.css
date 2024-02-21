@@ -10,7 +10,18 @@
     border-radius: 8px;
 }
 
+.info-beneficiario{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .perfil-beneficiario {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 80px;
     position: relative;
     margin: 20px;
 }
@@ -29,6 +40,13 @@
 
 }
 
+.titulo-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 20px;
+}
 
 
 /* Sobreposição escura */
@@ -69,4 +87,22 @@
 }
 #input-foto {
     display: none;
+}
+.diagnostico-container{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    margin: 20px;
+}
+.questionario-action{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-questionario{
+    display: flex;
+    flex-direction: column;
+    max-width: 60ch;
+    gap: 8px;
 }

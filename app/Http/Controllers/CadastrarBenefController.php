@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beneficiarios;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -11,10 +13,13 @@ class CadastrarBenefController extends Controller
 {
     public function index()
     {
-        $beneficiarios = Beneficiarios::all();
+        $user = auth()->user();
+        $beneficiarios = $user->beneficiarios;
         return view('tea.meus-beneficiarios', compact('beneficiarios'));
     }
     public function registerBeneficiario(Request $request){
+
+        $user = auth()->user();
 
         $beneficiarios = Beneficiarios::create([
             'nome_beneficiario' =>$request->input('name'),
@@ -52,13 +57,22 @@ class CadastrarBenefController extends Controller
 
     }
 
+    public function calcularIdade($dataNascimento)
+    {
+        $dataNascimento = Carbon::parse($dataNascimento);
+        $idade = $dataNascimento->age;
+
+        return $idade;
+    }
+
     public function mostrarBeneficiario($id_beneficiario){
           // Buscar o Beneficiário pelo ID
     $beneficiario = Beneficiarios::findorFail($id_beneficiario);
 
+    $idade = $this->calcularIdade($beneficiario->data_nascimento);
 
 
-    return view('tea.meu-beneficiario', compact('beneficiario'));
+    return view('tea.meu-beneficiario', compact('beneficiario','idade'));
     }
 
     public function uploadFoto(Request $request, $id_beneficiario)
