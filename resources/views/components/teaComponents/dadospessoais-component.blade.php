@@ -43,6 +43,9 @@
     $optionsSexo = [['value' => '', 'text' => 'Selecione'], ['value' => 'masculino', 'text' => 'Masculino'], ['value' => 'feminino', 'text' => 'Feminino'], ['value' => 'outros', 'text' => 'Outros']];
 @endphp
 <div class="container-dadospessoais">
+    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
+
 
     <div class="uma-col">
         <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="name" :placeholder="''"

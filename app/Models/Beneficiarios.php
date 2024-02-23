@@ -38,6 +38,7 @@ class Beneficiarios extends Model
         'cidade',
         'numero',
         'complemento',
+        'user_id',
         'foto',
     ];
 

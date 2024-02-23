@@ -18,7 +18,6 @@ class CadastrarBenefController extends Controller
         return view('tea.meus-beneficiarios', compact('beneficiarios'));
     }
     public function registerBeneficiario(Request $request){
-
         $user = auth()->user();
 
         $beneficiarios = Beneficiarios::create([
@@ -48,11 +47,12 @@ class CadastrarBenefController extends Controller
             'cidade' =>$request->input('localidade'),
             'numero' =>$request->input('numero'),
             'complemento' =>$request->input('complemento'),
+            'user_id' => $request->user_id ?: auth()->id(),
 
         ]);
 
 
-        return redirect()->intended('beneficiarios.index');
+        return redirect()->route('beneficiarios.index');
 
 
     }
