@@ -16,7 +16,9 @@ class CadastrarBenefController extends Controller
         $user = auth()->user();
         $beneficiarios = $user->beneficiarios;
 
-
+        foreach ($beneficiarios as $beneficiario) {
+            $beneficiario->nameInitials = $this->getNameInitials($beneficiario->nome_beneficiario);
+        }
 
         return view('tea.meus-beneficiarios', compact('beneficiarios'));
     }
