@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/login-style.css') }}">
+    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
+
 
     <title>Login</title>
 </head>
@@ -14,6 +16,8 @@
     <x-header-login>
         <h1>Header</h1>
     </x-header-login>
+    @include('sweetalert::alert')
+
     @if (session()->has('success'))
         {{ session()->get('success') }}
     @endif
@@ -21,6 +25,8 @@
     @error('error')
         <span>{{ $message }}</span>
     @enderror
+
+
     <form method="POST" action="{{ route('login.store') }}">
         @csrf
 

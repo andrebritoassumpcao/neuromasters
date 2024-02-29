@@ -15,6 +15,9 @@ class CadastrarBenefController extends Controller
     {
         $user = auth()->user();
         $beneficiarios = $user->beneficiarios;
+
+
+
         return view('tea.meus-beneficiarios', compact('beneficiarios'));
     }
     public function registerBeneficiario(Request $request){
@@ -68,8 +71,9 @@ class CadastrarBenefController extends Controller
     public function mostrarBeneficiario($id_beneficiario){
           // Buscar o Beneficiário pelo ID
     $beneficiario = Beneficiarios::findorFail($id_beneficiario);
-
+    $beneficiario->nameInitials = $this->getNameInitials($beneficiario->nome_beneficiario);
     $idade = $this->calcularIdade($beneficiario->data_nascimento);
+
 
 
     return view('tea.meu-beneficiario', compact('beneficiario','idade'));
@@ -98,4 +102,24 @@ class CadastrarBenefController extends Controller
 
         return redirect()->back()->with('success', 'Foto enviada!');
     }
+
+    public function getNameInitials($name)
+    {
+        $initials = '';
+        $words = explode(' ', $name);
+
+        // Pegar as duas primeiras letras do primeiro nome
+        if (isset($words[0])) {
+            $initials .= strtoupper(substr($words[0], 0, 1));
+        }
+
+        // Pegar as duas primeiras letras do último nome
+        if (count($words) > 1 && isset($words[count($words) - 1])) {
+            $initials .= strtoupper(substr($words[count($words) - 1], 0, 1));
+        }
+
+        return $initials;
+    }
+
+
 }

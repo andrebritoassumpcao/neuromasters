@@ -21,10 +21,11 @@
         color: #FFF;
         font-size: 16px;
         font-style: normal;
+        width: 190px;
         font-weight: 500;
         line-height: normal;
         background: linear-gradient(180deg, rgba(48, 156, 255, 0.00) 0%, rgba(12, 134, 246, 0.80) 70.01%);
-        padding: 10px;
+        padding: 15px 0;
         backdrop-filter: blur(20px);
         border-radius: 0 0 20px 20px;
         transition: background 0.3s ease-in-out;

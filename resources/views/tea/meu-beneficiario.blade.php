@@ -12,7 +12,6 @@
 <body>
     <x-main.header-app></x-main.header-app>
 
-    <x-back-button backLink="{{ route('beneficiarios.index') }}" />
     <main>
         <x-menu-lateral>
         </x-menu-lateral>
@@ -25,6 +24,12 @@
                     <label for="input-foto" class="label-foto" title="Editar Imagem"
                         style="background-image:  url('{{ asset('storage/images/fotos/' . $beneficiario->id . '.png') }}?v={{ time() }}');">
                         <input type="file" name="foto" accept="image/*" id="input-foto">
+
+                        @if (!$beneficiario->foto || Storage::missing('public/' . $beneficiario->foto))
+                            <div class="profile-initials">
+                                {{ $beneficiario->nameInitials }}
+                            </div>
+                        @endif
 
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f2f2f2">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

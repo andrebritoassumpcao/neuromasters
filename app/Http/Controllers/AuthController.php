@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\ConfirmationEmail;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 
@@ -45,10 +47,7 @@ class AuthController extends Controller
         // Autenticação do novo usuário
         Auth::login($user);
 
-        // // Envio do e-mail de confirmação
-        // Mail::to($user->email)->send(new ConfirmationEmail());
-
-        // Redirecionamento
+        Alert::alert('Parabéns!', 'Seu registro foi concluído com sucesso. Faça o login para começar', 'Type');
         return redirect()->intended('login');
     }
 

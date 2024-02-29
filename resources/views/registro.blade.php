@@ -18,6 +18,7 @@
             <x-register.cadastro-menu>
             </x-register.cadastro-menu>
         </div>
+
         <form method="POST" action="{{ route('register') }}" id="form">
             @csrf
             <div class="right-container">
