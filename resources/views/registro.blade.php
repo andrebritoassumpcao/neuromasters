@@ -29,6 +29,10 @@
 
                 <x-register.confirma-component />
 
+                @if ($tipoUsuario === 'profissional')
+                    <h1>Teste do IF</h1>
+                @endif
+
             </div>
         </form>
     </section>

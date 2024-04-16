@@ -40,7 +40,12 @@
     }
 </style>
 @php
-    $optionsSexo = [['value' => '', 'text' => 'Selecione'], ['value' => 'masculino', 'text' => 'Masculino'], ['value' => 'feminino', 'text' => 'Feminino'], ['value' => 'outros', 'text' => 'Outros']];
+    $optionsSexo = [
+        ['value' => '', 'text' => 'Selecione'],
+        ['value' => 'masculino', 'text' => 'Masculino'],
+        ['value' => 'feminino', 'text' => 'Feminino'],
+        ['value' => 'outros', 'text' => 'Outros'],
+    ];
 @endphp
 <div class="container-dadospessoais">
     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -52,21 +57,6 @@
             inputId="">
             <x-slot name="labelSlot">
                 Nome Completo*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-    </div>
-    <div class="duas-col">
-
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                CPF*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="telefone" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Telefone*:
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>
@@ -99,6 +89,20 @@
             inputId="">
             <x-slot name="labelSlot">
                 Altura
+            </x-slot>
+        </x-teaComponents.campo-formulario>
+    </div>
+    <div class="duas-col">
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf" :placeholder="''"
+            inputId="">
+            <x-slot name="labelSlot">
+                CPF*:
+            </x-slot>
+        </x-teaComponents.campo-formulario>
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="telefone" :placeholder="''"
+            inputId="">
+            <x-slot name="labelSlot">
+                Telefone*:
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>

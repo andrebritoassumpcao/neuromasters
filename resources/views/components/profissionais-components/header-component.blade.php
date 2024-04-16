@@ -99,14 +99,14 @@
         <nav>
             <ul class="navbar-cointainer">
                 <li class="logo">
-                    <a href="/">Neuromasters</a>
+                    <a href="/sou-profissional">Neuromasters</a>
                 </li>
                 <div class="nav-items">
                     <li class="nav-item">
                         <a class="nav-link" href="/servicos">Buscar Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/sou-profissional">Sou um Especialista</a>
+                        <a class="nav-link" href="/">Sou Cliente</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre a Empresa</a>

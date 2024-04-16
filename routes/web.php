@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\BuscarCepController;
 use App\Http\Controllers\CadastrarBenefController;
 
@@ -28,6 +29,9 @@ Route::get('/servicos', function () {
 Route::get('/tea-app', function () {
     return view('tea.tea-app');
 });
+Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
+
+
 Route::prefix('/tea-app')->group(function () {
     Route::controller(CadastrarBenefController::class)->group(function(){
         Route::get('/meus-meneficiarios','index')->name('beneficiarios.index');

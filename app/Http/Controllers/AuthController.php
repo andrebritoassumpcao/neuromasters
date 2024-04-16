@@ -15,14 +15,28 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
-    public function showRegisterForm()
+
+    public function showWelcomeForProfessionals()
     {
-        // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
-        $activeMenu = session('active_menu', 0);
+    // Defina o tipo de usuário como profissional
+    $tipoUsuario = 'profissional';
 
-
-        return view('registro', compact('activeMenu'));
+    // Passa as variáveis para a view
+    return view('profissionais-views.welcome', compact('tipoUsuario'));
     }
+
+    public function showRegisterForm()
+{
+    // Defina o tipo de usuário com base na rota atual
+    $tipoUsuario = request()->is('sou-profissional') ? 'profissional' : 'cliente';
+    var_dump($tipoUsuario);
+    // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
+    $activeMenu = session('active_menu', 0);
+
+    // Passa as variáveis para a view
+    return view('registro', compact('activeMenu', 'tipoUsuario'));
+}
+
 
     public function setMenuOption($option)
     {
