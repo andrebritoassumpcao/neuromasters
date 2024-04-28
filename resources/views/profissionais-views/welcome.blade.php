@@ -6,20 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-</head>
 
 <body>
     <main class="profissional-main">
 
-        <x-profissionais-components.header-component>
+        <x-profissionais-components.header-component :tipoUsuario="$tipoUsuario">
             <h1>Header</h1>
         </x-profissionais-components.header-component>
+
         <div class="content">
             <h3>Portal Terapiame - Profissionais</h3>
             <h1>Profissionais dedicados como você estão transformando vidas.</h1>
             <h2>Entre agora para fazer parte dessa comunidade e oferecer seu apoio especializado a quem mais precisa.
             </h2>
             <div class="content-buttons">
+                @if ($tipoUsuario == 'profissional')
+                    <p>Você é um profissional</p>
+                @else
+                    <p>Você é um cliente</p>
+                @endif
                 <x-sign-button url="" style="">
                     Assine Já
                 </x-sign-button>

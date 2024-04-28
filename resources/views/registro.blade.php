@@ -10,12 +10,12 @@
 </head>
 
 <body>
-    <x-header-login>
+    <x-header-login :tipoUsuario="$tipoUsuario">
         <h1>Header</h1>
     </x-header-login>
     <section class="registro-container">
         <div class="left-container">
-            <x-register.cadastro-menu>
+            <x-register.cadastro-menu :tipoUsuario="$tipoUsuario">
             </x-register.cadastro-menu>
         </div>
 
@@ -25,12 +25,18 @@
 
                 <x-register.detalhes-component />
 
+                @if ($tipoUsuario == 'profissional')
+                    <x-register.dadosProfissionais-component />
+                @endif
+
                 <x-register.senha-component />
 
                 <x-register.confirma-component />
 
-                @if ($tipoUsuario === 'profissional')
-                    <h1>Teste do IF</h1>
+                @if ($tipoUsuario == 'profissional')
+                    <p>Você é um profissional</p>
+                @else
+                    <p>Você é um cliente</p>
                 @endif
 
             </div>
@@ -45,3 +51,13 @@
 </footer>
 
 </html>
+<script>
+    var tipoUsuario = "{{ $tipoUsuario }}";
+
+    window.onload = function() {
+        if (tipoUsuario === 'profissional') {
+            var leftContainer = document.querySelector('.left-container');
+            leftContainer.style.backgroundColor = '#DCD6FF';
+        }
+    };
+</script>

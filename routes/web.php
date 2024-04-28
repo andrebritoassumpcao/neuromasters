@@ -20,8 +20,11 @@ use App\Http\Controllers\CadastrarBenefController;
 |
 */
 
-Route::get('/', function() {
-    return view('welcome');
+
+Route::get('/', function () {
+    $tipoUsuario = 'cliente';
+    session(['tipoUsuario' => $tipoUsuario]);
+    return view('welcome', compact('tipoUsuario'));
 });
 Route::get('/servicos', function () {
     return view('servicos');
@@ -65,7 +68,7 @@ Route::prefix('/tea-app')->group(function () {
 
 
 
-Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
+Route::get('/cadastro/{tipoUsuario?}', [AuthController::class, 'showRegisterForm'])->name('registro');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
