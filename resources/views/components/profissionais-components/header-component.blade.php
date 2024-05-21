@@ -117,7 +117,7 @@
                         <a class="nav-link" href="{{ route('login.index') }}">Entrar</a>
                     </li>
                     <li class="cadastro">
-                        <x-sign-button url="/cadastro?tipoUsuario={{ $tipoUsuario }}" style="">
+                        <x-sign-button url="/cadastro" style="">
                             Cadastre-se
                         </x-sign-button>
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginProfController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\BuscarCepController;
 use App\Http\Controllers\CadastrarBenefController;
@@ -70,6 +71,7 @@ Route::prefix('/tea-app')->group(function () {
 
 Route::get('/cadastro/{tipoUsuario?}', [AuthController::class, 'showRegisterForm'])->name('registro');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/registerProfissional', [AuthController::class, 'registerProfissional'])->name('registerProfissional');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
 
@@ -79,9 +81,12 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/logout','destroy')->name('login.destroy');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+
+Route::get('/profissionais-views/loginProfissionais', [LoginProfController::class, 'index'])->name('loginProfissionais.index');
+Route::post('/profissionais-views/loginProfissionais', [LoginProfController::class, 'store'])->name('loginProfissionais.store');
+Route::get('/profissionais-views/logoutProfissionais', [LoginProfController::class, 'destroy'])->name('loginProfissionais.destroy');
+?>
+
 
 
 

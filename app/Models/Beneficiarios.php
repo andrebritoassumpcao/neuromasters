@@ -14,7 +14,7 @@ class Beneficiarios extends Model
     protected $fillable = [
         'nome_beneficiario',
         'cpf_beneficiario',
-        'telefone',
+        'celular',
         'data_nascimento',
         'sexo',
         'peso',

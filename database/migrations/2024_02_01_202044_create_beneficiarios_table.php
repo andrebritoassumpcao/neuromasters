@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome_beneficiario');
             $table->string('cpf_beneficiario')->unique();
-            $table->string('telefone');
+            $table->string('celular');
             $table->date('data_nascimento');
             $table->char('sexo', 20);
             $table->decimal('peso', 5, 2);
@@ -41,6 +41,9 @@ return new class extends Migration
             $table->string('cidade');
             $table->string('numero');
             $table->string('complemento')->nullable();
+            $table->string('foto')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
 
 

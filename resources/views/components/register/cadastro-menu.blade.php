@@ -67,10 +67,7 @@
         // Obtém a opção ativa da sessão e converte para número
         var activeMenuOption = parseInt("{{ session('active_menu', 0) }}");
 
-        var tipoUsuario = "{{ $tipoUsuario }}";
-        if (tipoUsuario === 'profissional') {
-            activeMenuOption += 1;
-        }
+
 
         setActive(activeMenuOption);
     });

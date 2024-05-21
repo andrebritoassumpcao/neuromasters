@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('password');
             $table->string('email');
-            $table->unsignedBigInteger('telefone')->length(11);
+            $table->string('celular');
             $table->timestamps();
         });
     }

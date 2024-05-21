@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ProfissionalUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -50,12 +51,13 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+
         // Criação do novo usuário
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'telefone' => $request->input('telefone'),
+            'celular' => $request->input('celular'),
         ]);
 
         // Autenticação do novo usuário
@@ -64,5 +66,33 @@ class AuthController extends Controller
         Alert::alert('Parabéns!', 'Seu registro foi concluído com sucesso. Faça o login para começar', 'Type');
         return redirect()->intended('login');
     }
+
+    public function registerProfissional(Request $request)
+    {
+        // Obter o número total de usuários profissionais já registrados
+        $totalUsers = ProfissionalUser::count();
+
+        // Gerar o codigo_profissional
+        $codigo_profissional = date('Y') . date('m') . str_pad($totalUsers + 1, 3, '0', STR_PAD_LEFT);
+
+        // Criação do novo usuário profissional
+        $user = ProfissionalUser::create([
+            'codigo_profissional' => $codigo_profissional,
+            'name' => $request->input('name'),
+            'password' => bcrypt($request->input('password')),
+            'email' => $request->input('email'),
+            'celular' => $request->input('celular'),
+            'conselho_regional' => $request->input('conselho_regional'),
+            'numero_conselho' => $request->input('numero_conselho'),
+            'especialidade' => $request->input('especialidade'),
+            'resumo_profissional' => $request->input('resumo_profissional'),
+        ]);
+
+
+        // Autenticação do novo usuário
+        Auth::login($user);
+
+        Alert::alert('Parabéns!', 'Seu registro foi concluído com sucesso. Faça o login para começar', 'Type');
+        return redirect()->intended('profissionais-views/loginProfissionais');    }
 
 }

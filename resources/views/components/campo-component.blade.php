@@ -1,4 +1,12 @@
-@props(['inputType', 'inputName', 'placeholder'])
+@props([
+    'inputType' => 'text',
+    'inputName',
+    'placeholder',
+    'class' => '',
+    'options' => [],
+    'value' => '',
+    'attributes' => [],
+])
 
 <style>
     .campo-container {
@@ -7,9 +15,9 @@
         margin-top: 20px;
     }
 
-    input {
-        width: 373px;
-        height: 48px;
+    input,
+    select {
+        height: 42px;
         flex-shrink: 0;
         border-radius: 8px;
         border: 1px solid #DBDCD6;
@@ -19,16 +27,31 @@
         font-weight: 400;
         line-height: normal;
         padding: 8px;
-
     }
 
-    input::placeholder {
+    input::placeholder,
+    select::placeholder {
         color: #737576;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+    }
 
+    .quatro-col {
+        width: 140px;
+    }
+
+    .seis-col {
+        width: 210px;
+    }
+
+    .oito-col {
+        width: 280px;
+    }
+
+    .dez-col {
+        width: 350px;
+    }
+
+    .doze-col {
+        width: 420px;
     }
 
     label {
@@ -38,11 +61,48 @@
         font-weight: 500;
         line-height: normal;
         margin-bottom: 8px;
+        white-space: nowrap;
+
+    }
+
+    textarea {
+        border-radius: 8px;
+        border: 1px solid #DBDCD6;
+        color: #1b1b1b;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding: 8px;
+        resize: none;
+        margin-top: 8px;
+        height: 140px;
     }
 </style>
-<div class="campo-container">
+
+
+@php
+    $class = $class ?? 'doze-col';
+    $componentClasses = 'campo-container ' . $class;
+@endphp
+
+<div class="{{ $componentClasses }}">
     <label for="{{ $inputName }}">
         {{ $labelSlot }}
     </label>
-    <input type="{{ $inputType }}" name="{{ $inputName }}" placeholder="{{ $placeholder }}">
+    @if ($inputType === 'select')
+        <select name="{{ $inputName }}" {{ $attributes }}>
+            @foreach ($options as $option)
+                <option value="{{ $option['value'] }}" {{ $option['value'] === $value ? 'selected' : '' }}>
+                    {{ $option['label'] }}
+                </option>
+            @endforeach
+        </select>
+    @elseif ($inputType === 'textarea')
+        <textarea name="{{ $inputName }}" placeholder="{{ $placeholder }}" {{ $attributes }}>{{ $value }}</textarea>
+    @else
+        <input type="{{ $inputType }}" name="{{ $inputName }}" placeholder="{{ $placeholder }}"
+            value="{{ $value }}" {{ $attributes }}>
+    @endif
+
 </div>

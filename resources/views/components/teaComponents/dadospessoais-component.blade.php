@@ -99,10 +99,10 @@
                 CPF*:
             </x-slot>
         </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="telefone" :placeholder="''"
+        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="celular" :placeholder="''"
             inputId="">
             <x-slot name="labelSlot">
-                Telefone*:
+                Celular*:
             </x-slot>
         </x-teaComponents.campo-formulario>
     </div>

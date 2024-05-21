@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <x-header-login>
+    <x-header-login :tipoUsuario="$tipoUsuario">
         <h1>Header</h1>
     </x-header-login>
     @include('sweetalert::alert')
@@ -42,6 +42,7 @@
                     <h2>OU</h2>
                     <div class="linha"></div>
                 </div>
+                {{ dd($tipoUsuario) }}
 
                 <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
                     <x-slot name="labelSlot">

@@ -19,7 +19,9 @@
             </x-register.cadastro-menu>
         </div>
 
-        <form method="POST" action="{{ route('register') }}" id="form">
+        <form method="POST"
+            action="{{ $tipoUsuario == 'profissional' ? route('registerProfissional') : route('register') }}"
+            id="form">
             @csrf
             <div class="right-container">
 

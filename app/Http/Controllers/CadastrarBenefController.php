@@ -28,7 +28,7 @@ class CadastrarBenefController extends Controller
         $beneficiarios = Beneficiarios::create([
             'nome_beneficiario' =>$request->input('name'),
             'cpf_beneficiario' =>$request->input('cpf'),
-            'telefone' =>$request->input('telefone'),
+            'celular' =>$request->input('celular'),
             'data_nascimento' =>$request->input('nascimento'),
             'sexo' =>$request->input('sexo'),
             'peso' => str_replace(',', '.', $request->input('peso')),
