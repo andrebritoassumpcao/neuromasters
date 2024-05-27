@@ -114,7 +114,7 @@
                 </div>
                 <div class="sing-in">
                     <li class="login">
-                        <a class="nav-link" href="{{ route('login.index') }}">Entrar</a>
+                        <a class="nav-link" href="{{ route('loginProfissionais.index') }}">Entrar</a>
                     </li>
                     <li class="cadastro">
                         <x-sign-button url="/cadastro" style="">

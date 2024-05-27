@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <x-header-login :tipoUsuario="$tipoUsuario">
-        <h1>Header</h1>
-    </x-header-login>
+
+    <x-header-login :link="'/'" />
+
     @include('sweetalert::alert')
 
     @if (session()->has('success'))
@@ -42,7 +42,6 @@
                     <h2>OU</h2>
                     <div class="linha"></div>
                 </div>
-                {{ dd($tipoUsuario) }}
 
                 <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
                     <x-slot name="labelSlot">

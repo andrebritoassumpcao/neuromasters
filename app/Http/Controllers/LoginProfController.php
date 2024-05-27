@@ -36,7 +36,7 @@ class LoginProfController extends Controller
       }
       Auth::loginUsingId($user->id);
 
-      return redirect()->intended('profissionais-views.loginProfissionais');
+      return redirect()->intended('/teaPro-app');
     }
     public function destroy()
   {

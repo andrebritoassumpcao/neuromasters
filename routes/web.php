@@ -33,6 +33,9 @@ Route::get('/servicos', function () {
 Route::get('/tea-app', function () {
     return view('tea.tea-app');
 });
+Route::get('/teaPro-app', function () {
+    return view('tea.teaPro-app');
+});
 Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
 
 

@@ -1,3 +1,5 @@
+@props(['link'])
+
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -52,7 +54,7 @@
     <nav>
         <ul class="navbar-cointainer">
             <li class="logo">
-                <a href="{{ $tipoUsuario === 'profissional' ? '/sou-profissional' : '/' }}">Neuromasters</a>
+                <a href="{{ $link }}">Neuromasters</a>
             </li>
 
             </li>

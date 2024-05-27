@@ -10,9 +10,11 @@
 </head>
 
 <body>
-    <x-header-login :tipoUsuario="$tipoUsuario">
-        <h1>Header</h1>
-    </x-header-login>
+    @if ($tipoUsuario == 'profissional')
+        <x-header-login :link="'/sou-profissional'" />
+    @else
+        <x-header-login :link="'/'" />
+    @endif
     <section class="registro-container">
         <div class="left-container">
             <x-register.cadastro-menu :tipoUsuario="$tipoUsuario">
