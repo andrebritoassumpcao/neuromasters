@@ -26,7 +26,7 @@ class LoginProfController extends Controller
         ]);
 
         $user = ProfissionalUser::where('email', $request->input('email'))->first();
-
+        // dd($user);
     if (!$user) {
         return redirect()->route('loginProfissionais.index')->withErrors(['error' => 'Email ou senha inválida']);
       }
@@ -34,10 +34,12 @@ class LoginProfController extends Controller
       if (!password_verify($request->input('password'), $user->password)) {
         return redirect()->route('loginProfissionais.index')->withErrors(['error' => ' Senha inválida']);
       }
-      Auth::loginUsingId($user->id);
+      Auth::login($user);
+    session(['user' => $user]);
 
-      return redirect()->intended('/teaPro-app');
+    return redirect()->intended('/teaPro-app');
     }
+
     public function destroy()
   {
     Auth::logout();

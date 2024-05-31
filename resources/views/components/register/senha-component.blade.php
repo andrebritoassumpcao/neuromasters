@@ -49,10 +49,17 @@
     </x-campo-component>
     <div class="container-buttons">
 
-        <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            previousStep="setActive(0)">
-            Voltar
-        </x-register.back-register-button>
+        @if ($tipoUsuario == 'profissional')
+            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+                previousStep="setActive(1)">
+                Voltar
+            </x-register.back-register-button>
+        @else
+            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+                previousStep="setActive(0)">
+                Voltar
+            </x-register.back-register-button>
+        @endif
         <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;"
             nextStep="validarSenha()">
             Continuar

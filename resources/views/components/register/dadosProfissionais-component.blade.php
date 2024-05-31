@@ -115,7 +115,7 @@
             Voltar
         </x-register.back-register-button>
         <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            nextStep="validarSenha()">
+            nextStep="setActive(2)">
             Continuar
         </x-register.continue-register-button>
     </div>

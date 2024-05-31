@@ -34,7 +34,7 @@
                 <span>Fazer Login</span>
 
 
-                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
+                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
                     <x-slot name="labelSlot">
                         Email*:
                     </x-slot>
@@ -42,7 +42,7 @@
                 @error('email')
                     <span>${{ $message }}</span>
                 @enderror
-                <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'">
+                <x-campo-component inputType="password" inputName="password" :placeholder="'Digite seu senha'" class="doze-col">
                     <x-slot name="labelSlot">
                         Senha*:
                     </x-slot>
@@ -56,7 +56,7 @@
                 </x-submit-button>
                 <p href="">Ainda não tem uma conta? <a id="esqueceu" href="/cadastro">Cadastre-se</a></p>
             </div>
-            <div class="right-container">
+            <div class="right-containerProf">
                 <img src="" alt="">
                 <h3>
                     Entre no Neuromasters e faça a diferença na vida dos seus pacientes:

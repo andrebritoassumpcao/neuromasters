@@ -33,9 +33,9 @@
                     <x-register.dadosProfissionais-component />
                 @endif
 
-                <x-register.senha-component />
+                <x-register.senha-component :tipoUsuario="$tipoUsuario" />
 
-                <x-register.confirma-component />
+                <x-register.confirma-component :tipoUsuario="$tipoUsuario" />
 
                 @if ($tipoUsuario == 'profissional')
                     <p>Você é um profissional</p>

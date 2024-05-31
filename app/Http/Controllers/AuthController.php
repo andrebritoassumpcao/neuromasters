@@ -89,6 +89,8 @@ class AuthController extends Controller
         ]);
 
 
+
+
         // Autenticação do novo usuário
         Auth::login($user);
 

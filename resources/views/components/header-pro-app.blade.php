@@ -150,7 +150,7 @@
     <nav>
         <ul class="navbar-cointainer">
             <li class="logo">
-                <a href="/home">Neuromasters</a>
+                <a href="/teaPro-app">Neuromasters</a>
             </li>
             <div class="nav-items">
                 <li class="nav-item">
@@ -182,9 +182,10 @@
                                     d="M19.9555 22.7764C18.2466 20.8677 15.7635 19.6667 13 19.6667C10.2365 19.6667 7.75323 20.8677 6.04427 22.7764M13 25C6.37258 25 1 19.6274 1 13C1 6.37258 6.37258 1 13 1C19.6274 1 25 6.37258 25 13C25 19.6274 19.6274 25 13 25ZM13 15.6667C10.7909 15.6667 9 13.8758 9 11.6667C9 9.45753 10.7909 7.66667 13 7.66667C15.2091 7.66667 17 9.45753 17 11.6667C17 13.8758 15.2091 15.6667 13 15.6667Z"
                                     stroke="#000B1C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <span>Olá, {{ auth()->user()->name }}!</span>
+                            <span>Olá, {{ session('user')->name }}!</span>
                         </div>
                         <ul class="submenu">
+                            <li><a href="">Meu Perfil</a></li>
                             <li><a href="">Minhas Assinaturas</a></li>
                             <li><a href="">Histórico de Compras</a></li>
                             <li><a href="">Notificações</a></li>

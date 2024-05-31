@@ -43,7 +43,7 @@
                     <div class="linha"></div>
                 </div>
 
-                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
+                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
                     <x-slot name="labelSlot">
                         Email*:
                     </x-slot>
@@ -51,7 +51,7 @@
                 @error('email')
                     <span>${{ $message }}</span>
                 @enderror
-                <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'">
+                <x-campo-component inputType="password" inputName="password" :placeholder="'Digite seu senha'" class="doze-col">
                     <x-slot name="labelSlot">
                         Senha*:
                     </x-slot>

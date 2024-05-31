@@ -36,6 +36,9 @@ Route::get('/tea-app', function () {
 Route::get('/teaPro-app', function () {
     return view('tea.teaPro-app');
 });
+Route::get('/home', function () {
+    return view('home');
+});
 Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
 
 
