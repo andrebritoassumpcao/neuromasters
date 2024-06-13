@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginProfController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\BuscarCepController;
 use App\Http\Controllers\CadastrarBenefController;
+use App\Http\Controllers\ProfissionalController;
 
 
 
@@ -39,8 +40,15 @@ Route::get('/teaPro-app', function () {
 Route::get('/home', function () {
     return view('home');
 });
+
 Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
 
+Route::controller(ProfissionalController::class)->group(function(){
+    Route::post('/Registro-profissional', 'registerProfissional')->name('registerProfissional');
+    Route::get('/Perfil-profissional/{id_profissional}', 'mostrarPerfil')->name('profissionalPerfil.index');
+     Route::post('/Perfil-profissional/{id_profissional}', 'uploadFotoPerfil')->name('profissionalPerfil.upload');
+
+});
 
 Route::prefix('/tea-app')->group(function () {
     Route::controller(CadastrarBenefController::class)->group(function(){
@@ -77,7 +85,6 @@ Route::prefix('/tea-app')->group(function () {
 
 Route::get('/cadastro/{tipoUsuario?}', [AuthController::class, 'showRegisterForm'])->name('registro');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/registerProfissional', [AuthController::class, 'registerProfissional'])->name('registerProfissional');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
 

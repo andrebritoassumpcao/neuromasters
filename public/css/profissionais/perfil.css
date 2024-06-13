@@ -1,0 +1,110 @@
+body{
+    background-color: #F2F6FF;
+    color: #000;
+    font-family: Inter;
+}
+.perfil-content {
+    max-width: 85vw;
+    height: auto;
+    margin: 25px auto;
+    padding: 12px;
+    background-color: #EDF0F7;
+    filter: drop-shadow(0px 4px 20px rgba(91, 71, 188, 0.30));
+    border-radius: 8px;
+}
+
+.label-foto {
+    display: block;
+    margin: 45px 0 0 45px;
+    position: relative;
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    cursor: pointer;
+
+}
+
+.titulo-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 20px;
+}
+
+
+.label-foto::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 50%;
+}
+
+.label-foto:hover::before {
+    opacity: 1;
+}
+
+
+.label-foto svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    fill: #f2f2f2;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.profile-initials {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F6F5F5;
+    font-size: 54px;
+    font-weight:400;
+    background-color: #0C359E;
+}
+
+.label-foto:hover svg {
+    opacity: 1;
+}
+#input-foto {
+    display: none;
+}
+.diagnostico-container{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    margin: 20px;
+}
+.profile-background{
+    background-color: #0C359E;
+    border-radius: 8px;
+    padding: 20px;
+    color: #F6F5F5;
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+    height: 10px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
