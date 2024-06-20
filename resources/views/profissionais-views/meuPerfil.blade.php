@@ -24,7 +24,7 @@
     <x-header-pro-app></x-header-pro-app>
     <main>
         <section class="perfil-content">
-            <div class="perfil-prof">
+            <section class="perfil-prof">
 
                 <div class="profile-background"></div>
                 <form action="{{ route('profissionalPerfil.upload', ['id_profissional' => $user->id]) }}" method="post"
@@ -55,12 +55,20 @@
 
                     </label>
                 </form>
-                <h3>Coisas a mais</h3>
-                <h3>Coisas a mais</h3>
-                <h3>Coisas a mais</h3>
-                <h3>Coisas a mais</h3>
-                <h3>Coisas a mais</h3>
-            </div>
+                <div class="perfil-info">
+                    <div class="detalhes-user">
+                        <h1 class="nome-user">{{ $user->name }}</h1>
+                        <h3>{{ $user->especialidade }}</h3>
+                    </div>
+                    <div class="outros-user">
+                        <button class="btn-atualizar-dados" onclick="openModal()">
+                            <img src="../images/icon-edit.svg" alt="">
+                        </button>
+                        </button>
+                    </div>
+                </div>
+
+            </section>
 
         </section>
     </main>
