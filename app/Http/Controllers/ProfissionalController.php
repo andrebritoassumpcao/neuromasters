@@ -54,7 +54,24 @@ class ProfissionalController extends Controller
 
         return view('profissionais-views.meuPerfil', compact('user'));
     }
+    public function updateProfissional(Request $request, $id)
+    {
+        // Buscar o usuário profissional pelo ID
+        $user = ProfissionalUser::findOrFail($id);
 
+        // Atualizar os dados do usuário profissional
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+
+        ]);
+
+        // Mensagem de sucesso
+        Alert::alert('Sucesso!', 'Seu perfil foi atualizado com sucesso.', 'success');
+
+        // Redirecionar para a página de perfil do profissional
+        return redirect()->route('profissionalPerfil.index', ['id_profissional' => $user->id]);
+    }
     public function uploadFotoPerfil(Request $request, $id_profissional)
     {
         $request->validate([

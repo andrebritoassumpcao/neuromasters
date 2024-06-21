@@ -61,10 +61,9 @@
                         <h3>{{ $user->especialidade }}</h3>
                     </div>
                     <div class="outros-user">
-                        <button class="btn-atualizar-dados" onclick="openModal()">
+                        <a class="btn-atualizar-dados" href="#updateModal">
                             <img src="../images/icon-edit.svg" alt="">
-                        </button>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -73,7 +72,7 @@
         </section>
     </main>
 
-
+    @include('../components/modals/update-component')
 </body>
 
 </html>
