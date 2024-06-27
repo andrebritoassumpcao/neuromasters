@@ -40,6 +40,7 @@ class ProfissionalUser extends Authenticatable
         'numero_conselho',
         'especialidade',
         'resumo_profissional',
+        'atendimento',
         'foto',
     ];
 

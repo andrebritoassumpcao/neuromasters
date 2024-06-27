@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('numero_conselho');
             $table->string('especialidade');
             $table->string('resumo_profissional');
+            $table->string('atendimento')->nullable();
             $table->string('foto')->nullable();
 
 

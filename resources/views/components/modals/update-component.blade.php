@@ -1,67 +1,4 @@
-<style>
-    .modal {
-        display: none;
-        /* Escondido por padrão */
-        position: fixed;
-        /* Fica fixo na tela */
-        z-index: 1;
-        /* Fica no topo */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Largura total */
-        height: 100%;
-        /* Altura total */
-        overflow: auto;
-        /* Habilita a rolagem se necessário */
-        background-color: rgb(0, 0, 0);
-        /* Cor de fundo */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Cor de fundo com opacidade */
-    }
-
-    .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        margin: 10% auto;
-        /* 15% do topo e centralizado horizontalmente */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        /* Pode ser mais ou menos, dependendo do design */
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        animation-name: animatetop;
-        animation-duration: 0.4s
-    }
-
-    /* Adiciona animação */
-    @keyframes animatetop {
-        from {
-            top: -300px;
-            opacity: 0
-        }
-
-        to {
-            top: 0;
-            opacity: 1
-        }
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-
+<link rel="stylesheet" href="{{ asset('css/modal/modal.css') }}">
 <div class="modal" id="updateModal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -70,41 +7,117 @@
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="name" name="name" value="{{ $user->name }}" required>
+
+
+            <x-campo-component inputType="text" inputName="name" value="{{ $user->name }}" :placeholder="'Digite seu email'"
+                class="max-col">
+                <x-slot name="labelSlot">
+                    Nome:
+                </x-slot>
+            </x-campo-component>
+            <x-campo-component inputType="select" inputName="atendimento" id="tipoAtendimento" required
+                :options="[
+                    !$user->atendimento
+                        ? ['value' => '', 'label' => 'Selecione']
+                        : ['value' => $user->atendimento, 'label' => $user->atendimento],
+                    ['value' => 'Online', 'label' => 'Online'],
+                    ['value' => 'Presencial', 'label' => 'Presencial'],
+                    ['value' => 'Online e Presencial', 'label' => 'Online e Presencial'],
+                ]" class="max-col">
+                <x-slot name="labelSlot">
+                    Tipo de Atendimento
+                </x-slot>
+            </x-campo-component>
+
+            @if (!is_null($user->atendimento) && ($user->atendimento == 'Presencial' || $user->atendimento == 'Online e Presencial'))
+                <div id="enderecoSection">
+                @else
+                    <div id="enderecoSection" style="display: none;">
+            @endif
+            <div class="separador">
+                <h3>Endereço</h3>
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ $user->email }}" required>
+            <div class="campo-container">
+                <label for="CEP">
+                    CEP
+                </label>
+                <input type="text" value="{{ $user->cep }}" class="item3" name="cep"
+                    placeholder="Digite o Cep" id="cep" onblur="pesquisacep(this.value);">
             </div>
 
-            <button type="submit" class="btn">Enviar</button>
+            <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputId="rua" inputName="logradouro"
+                :placeholder="''" value="{{ $user->rua }}">
+                <x-slot name="labelSlot">
+                    Rua
+                </x-slot>
+            </x-teaComponents.campo-formulario>
 
-            <script>
-                // Obtém o modal
-                var modal = document.getElementById('updateModal');
+            <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputId="bairro" inputName="bairro"
+                :placeholder="''" value="{{ $user->bairro }}">
+                <x-slot name="labelSlot">
+                    Bairro
+                </x-slot>
+            </x-teaComponents.campo-formulario>
 
-                // Obtém o botão que abre o modal
-                var btn = document.querySelector('.btn-atualizar-dados');
+            <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputId="uf" inputName="uf"
+                :placeholder="''" value="{{ $user->estado }}">
+                <x-slot name="labelSlot">
+                    Estado
+                </x-slot>
+            </x-teaComponents.campo-formulario>
 
-                // Obtém o elemento <span> que fecha o modal
-                var span = document.getElementsByClassName('close')[0];
+            <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputId="cidade"
+                inputName="localidade" :placeholder="''" value="{{ $user->cidade }}">
+                <x-slot name="labelSlot">
+                    Cidade
+                </x-slot>
+            </x-teaComponents.campo-formulario>
+            <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="numero" :placeholder="''"
+                inputId="" value="{{ $user->numero }}">
+                <x-slot name="labelSlot">
+                    Número
+                </x-slot>
+            </x-teaComponents.campo-formulario>
+            <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="complemento"
+                :placeholder="''" inputId="" value="{{ $user->complemento }}">
+                <x-slot name="labelSlot">
+                    Complemento
+                </x-slot>
+            </x-teaComponents.campo-formulario>
+        </form>
+    </div>
+    <x-submit-button url="" class="btn" style="width: 120px; height: 32px; margin: 20px 0;">
+        Salvar
+    </x-submit-button>
 
-                // Quando o usuário clica no botão, abre o modal
-                btn.onclick = function() {
-                    modal.style.display = 'block';
-                }
+    <script>
+        var modal = document.getElementById('updateModal');
 
-                // Quando o usuário clica em <span> (x), fecha o modal
-                span.onclick = function() {
-                    modal.style.display = 'none';
-                }
+        var btn = document.querySelector('.btn-atualizar-dados');
 
-                // Quando o usuário clica fora do modal, ele fecha
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = 'none';
-                    }
-                }
-            </script>
+        var span = document.getElementsByClassName('close')[0];
+
+        btn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        document.getElementById('tipoAtendimento').addEventListener('change', function() {
+            var atendimento = this.value;
+            var enderecoSection = document.getElementById('enderecoSection');
+            if (atendimento === 'Presencial' || atendimento === 'Online e Presencial') {
+                enderecoSection.style.display = '';
+            } else {
+                enderecoSection.style.display = 'none';
+            }
+        });
+    </script>
+    <script src="{{ asset('js/cep.js') }}"></script>

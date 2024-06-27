@@ -17,7 +17,6 @@
 
     input,
     select {
-        height: 42px;
         flex-shrink: 0;
         border-radius: 8px;
         border: 1px solid #DBDCD6;
@@ -32,6 +31,18 @@
     input::placeholder,
     select::placeholder {
         color: #737576;
+    }
+
+    .input-s {
+        height: 30px;
+    }
+
+    .input-m {
+        height: 40px;
+    }
+
+    .input-g {
+        height: 50px;
     }
 
     .quatro-col {
@@ -52,6 +63,10 @@
 
     .doze-col {
         width: 420px;
+    }
+
+    .max-col {
+        width: 100%;
     }
 
     label {

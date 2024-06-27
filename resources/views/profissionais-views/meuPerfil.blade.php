@@ -24,7 +24,7 @@
     <x-header-pro-app></x-header-pro-app>
     <main>
         <section class="perfil-content">
-            <section class="perfil-prof">
+            <section class="perfil-prof" id="detalhes">
 
                 <div class="profile-background"></div>
                 <form action="{{ route('profissionalPerfil.upload', ['id_profissional' => $user->id]) }}" method="post"
@@ -59,20 +59,34 @@
                     <div class="detalhes-user">
                         <h1 class="nome-user">{{ $user->name }}</h1>
                         <h3>{{ $user->especialidade }}</h3>
+                        @if ($user->estado)
+                            <h3>{{ $user->cidade }} - {{ $user->estado }}</h3>
+                        @endif
                     </div>
                     <div class="outros-user">
-                        <a class="btn-atualizar-dados" href="#updateModal">
+                        <a class="btn-atualizar-dados btn-detalhes" href="#updateModal">
                             <img src="../images/icon-edit.svg" alt="">
                         </a>
+                        <h3>Atendimento: {{ $user->atendimento }}</h3>
                     </div>
                 </div>
 
             </section>
 
         </section>
+        <section class="perfil-content" id="academico">
+            <div class="container-section">
+                <h1>Formação academica</h1>
+                <a class="btn-atualizar-dados" href="#academicModal">
+                    <img src="../images/icon-edit.svg" alt="">
+                </a>
+            </div>
+
+        </section>
     </main>
 
     @include('../components/modals/update-component')
+    @include('../components/modals/academic-modal')
 </body>
 
 </html>

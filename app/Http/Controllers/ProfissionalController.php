@@ -62,7 +62,16 @@ class ProfissionalController extends Controller
         // Atualizar os dados do usuário profissional
         $user->update([
             'name' => $request->input('name'),
-            'email' => $request->input('email'),
+            'telefone' => $request->input('telefone', $user->telefone),
+            'cpf' => $request->input('cpf', $user->cpf),
+            'cep' => $request->input('cep', $user->cep),
+            'rua' => $request->input('logradouro', $user->rua),
+            'bairro' => $request->input('bairro', $user->bairro),
+            'estado' => $request->input('uf', $user->estado),
+            'cidade' => $request->input('localidade', $user->cidade),
+            'numero' => $request->input('numero', $user->numero),
+            'complemento' => $request->input('complemento', $user->complemento),
+            'atendimento' => $request->input('atendimento', $user->atendimento),
 
         ]);
 

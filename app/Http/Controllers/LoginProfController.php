@@ -34,15 +34,15 @@ class LoginProfController extends Controller
       if (!password_verify($request->input('password'), $user->password)) {
         return redirect()->route('loginProfissionais.index')->withErrors(['error' => ' Senha inválida']);
       }
-      Auth::login($user);
-    session(['user' => $user]);
+       Auth::guard('profissional')->login($user);
+        session(['user' => $user]);
 
     return redirect()->intended('/teaPro-app');
     }
 
     public function destroy()
   {
-    Auth::logout();
+    Auth::guard('profissional')->logout();
 
     return redirect()->route('loginProfissionais.index');
   }
