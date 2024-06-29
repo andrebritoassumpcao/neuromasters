@@ -21,7 +21,7 @@
         border-radius: 8px;
         border: 1px solid #DBDCD6;
         color: #1b1b1b;
-        font-size: 18px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -91,7 +91,12 @@
         padding: 8px;
         resize: none;
         margin-top: 8px;
-        height: 140px;
+        height: auto;
+        min-height: 400px;
+    }
+
+    .txtarea textarea {
+        height: 200px;
     }
 </style>
 

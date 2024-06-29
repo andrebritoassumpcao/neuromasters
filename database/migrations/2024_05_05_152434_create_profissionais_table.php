@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('conselho_regional');
             $table->string('numero_conselho');
             $table->string('especialidade');
-            $table->string('resumo_profissional');
+            $table->string('resumo_profissional', 3000);
             $table->string('atendimento')->nullable();
             $table->string('foto')->nullable();
 

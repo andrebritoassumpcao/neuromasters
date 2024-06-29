@@ -48,6 +48,7 @@ Route::controller(ProfissionalController::class)->group(function(){
     Route::get('/Perfil-profissional/{id_profissional}', 'mostrarPerfil')->name('profissionalPerfil.index');
     Route::post('/Perfil-profissional/{id_profissional}', 'uploadFotoPerfil')->name('profissionalPerfil.upload');
     Route::put('/Editar-profissional/{id_profissional}', 'updateProfissional')->name('profissionalPerfil.update');
+    Route::put('/Editar-profissional/{id_profissional}/updateSobre', 'updateSobreProfissional')->name('profissionalPerfil.updateSobre');
 });
 
 Route::prefix('/tea-app')->group(function () {

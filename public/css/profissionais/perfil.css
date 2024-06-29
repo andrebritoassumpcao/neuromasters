@@ -3,12 +3,30 @@ body{
     color: #000;
     font-family: Inter;
 }
+
+.arrow {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    transition: transform 0.3s ease;
+}
+
+.arrow.down {
+    transform: rotate(0deg);
+}
+
+.arrow.up {
+    transform: rotate(180deg);
+}
 .perfil-content {
-    max-width: 65vw;
+    max-width: 55vw;
     height: auto;
     margin: 25px auto;
     background-color: #EDF0F7;
-    filter: drop-shadow(0px 4px 20px rgba(91, 71, 188, 0.30));
     border-radius: 8px;
     padding: 0 0 20px 0;
 }
@@ -30,15 +48,15 @@ body{
 .titulo-container{
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: space-between;
-    align-items: center;
-    margin: 40px 20px;
+    margin-bottom: 20px;
 }
 .container-section{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px 45px 20px 45px;
 }
 
@@ -93,7 +111,10 @@ body{
 #input-foto {
     display: none;
 }
+.perfil-prof{
+    filter: drop-shadow(0px 4px 20px rgba(91, 71, 188, 0.30));
 
+}
 .profile-background{
     position: absolute;
     background-color: #4769be;
@@ -108,18 +129,23 @@ body{
 
 }
 
+.outros-user{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+    color: #525456;
+}
 .perfil-info{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: top;
     margin: 0 45px 20px 45px;
 
 }
-.nome-user{
-font-size: 21px;
-color: #000;
-}
+
 .detalhes-user{
     display: flex;
     flex-direction: column;
@@ -133,20 +159,24 @@ color: #000;
 .btn-atualizar-dados {
     background: none;
     border: none;
-    padding: 0;
+    padding: 8px; /* Ajuste o padding conforme necessário para o conteúdo interno */
     margin: 0;
     font-family: inherit;
     color: inherit;
     cursor: pointer;
+    font-size: 18px; /* Tamanho da fonte */
+    display: inline-flex; /* Usa flex para centralizar o conteúdo */
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    width: auto; /* Ajusta automaticamente a largura baseado no conteúdo interno */
+    height: auto; /* Ajusta automaticamente a altura baseado no conteúdo interno */
+    min-width: 30px; /* Mínimo de largura para garantir a usabilidade */
+    min-height: 30px; /* Mínimo de altura para garantir a usabilidade */
 }
+
 .btn-atualizar-dados:hover {
     background-color: #cccccc;
     border-radius: 50%;
-    margin: -10px;
-    padding: 10px;
+    margin: 0;
 }
-.btn-detalhes{
-    position: absolute;
-    top: 210px;
-    right: 45px;
-}
+

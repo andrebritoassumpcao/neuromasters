@@ -72,6 +72,8 @@ class ProfissionalController extends Controller
             'numero' => $request->input('numero', $user->numero),
             'complemento' => $request->input('complemento', $user->complemento),
             'atendimento' => $request->input('atendimento', $user->atendimento),
+            'resumo_profissional' => $request->input('resumo_profissional', $user->resumo_profissional),
+
 
         ]);
 
@@ -81,6 +83,29 @@ class ProfissionalController extends Controller
         // Redirecionar para a página de perfil do profissional
         return redirect()->route('profissionalPerfil.index', ['id_profissional' => $user->id]);
     }
+
+    public function updateSobreProfissional(Request $request, $id)
+    {
+        // Validar o campo resumo_profissional na requisição
+        $request->validate([
+            'resumo_profissional' => 'required|string',
+        ]);
+
+        // Buscar o usuário profissional pelo ID
+        $user = ProfissionalUser::findOrFail($id);
+
+        // Atualizar o campo resumo_profissional com o novo valor
+        $user->update([
+            'resumo_profissional' => $request->input('resumo_profissional'),
+        ]);
+
+        // Mensagem de sucesso
+        Alert::alert('Sucesso!', 'Seu resumo profissional foi atualizado com sucesso.', 'success');
+
+        // Redirecionar para a página de perfil do profissional
+        return redirect()->route('profissionalPerfil.index', ['id_profissional' => $user->id]);
+    }
+
     public function uploadFotoPerfil(Request $request, $id_profissional)
     {
         $request->validate([

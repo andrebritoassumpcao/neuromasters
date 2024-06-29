@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/profissionais/perfil.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Neuromasters TEA</title>
 </head>
 <style>
@@ -24,9 +27,11 @@
     <x-header-pro-app></x-header-pro-app>
     <main>
         <section class="perfil-content">
-            <section class="perfil-prof" id="detalhes">
+            <section id="detalhes">
+                <div class="perfil-prof">
+                    <div class="profile-background"></div>
+                </div>
 
-                <div class="profile-background"></div>
                 <form action="{{ route('profissionalPerfil.upload', ['id_profissional' => $user->id]) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
@@ -57,36 +62,65 @@
                 </form>
                 <div class="perfil-info">
                     <div class="detalhes-user">
-                        <h1 class="nome-user">{{ $user->name }}</h1>
-                        <h3>{{ $user->especialidade }}</h3>
+                        <h4 class="text-dark fw-bold">{{ $user->name }}</h4>
+                        <h5>{{ $user->especialidade }}</h5>
                         @if ($user->estado)
-                            <h3>{{ $user->cidade }} - {{ $user->estado }}</h3>
+                            <h5>{{ $user->cidade }} - {{ $user->estado }}</h5>
                         @endif
                     </div>
                     <div class="outros-user">
-                        <a class="btn-atualizar-dados btn-detalhes" href="#updateModal">
+                        <a class="btn-atualizar-dados btn-detalhes" href="#" data-bs-toggle="modal"
+                            data-bs-target="#updateModal">
                             <img src="../images/icon-edit.svg" alt="">
                         </a>
-                        <h3>Atendimento: {{ $user->atendimento }}</h3>
+
+                        <h5>Atendimento: {{ $user->atendimento }}</h5>
                     </div>
                 </div>
 
             </section>
 
         </section>
+        <section class="perfil-content" id="sobre">
+            <div class="container-section">
+                <div class="titulo-container">
+                    <h4 class="fw-bold">Sobre</h4 class="fw-bold">
+                    <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal" data-bs-target="#sobreModal">
+                        <img src="../images/icon-edit.svg" alt="">
+                    </a>
+                    @include('../components/modals/sobre-modal')
+                </div>
+                @if (strlen($user->resumo_profissional) > 500)
+                    <!-- Texto resumido -->
+                    <div id="resumoCurto">
+                        <p>{{ substr($user->resumo_profissional, 0, 500) }}... </p>
+                        <a class="text-primary" href="#" onclick="verMais()">Ver mais...</a>
+                    </div>
+                    <div id="resumoCompleto" style="display:none;">
+                        <p>{{ $user->resumo_profissional }}</p>
+                        <a class="text-primary" href="#" onclick="verMenos()">Ver menos</a>
+                    </div>
+                @else
+                    <p>{{ $user->resumo_profissional }}</p>
+                @endif
+            </div>
+        </section>
         <section class="perfil-content" id="academico">
             <div class="container-section">
-                <h1>Formação academica</h1>
-                <a class="btn-atualizar-dados" href="#academicModal">
-                    <img src="../images/icon-edit.svg" alt="">
-                </a>
+                <div class="titulo-container">
+                    <h4 class="fw-bold">Formação academica</h4 class="fw-bold">
+                    <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
+                        data-bs-target="#academicModal">
+                        <img src="../images/icon-edit.svg" alt="">
+                    </a>
+                    @include('../components/modals/academic-modal')
+                </div>
             </div>
 
         </section>
     </main>
-
-    @include('../components/modals/update-component')
-    @include('../components/modals/academic-modal')
+    <x-footer-login>
+    </x-footer-login>
 </body>
 
 </html>
@@ -98,4 +132,18 @@
             document.querySelector("form").submit();
         });
     });
+
+    function verMais() {
+        document.getElementById('resumoCurto').style.display = 'none';
+        document.getElementById('resumoCompleto').style.display = 'block';
+        return false; // Evita que o link navegue para "#"
+    }
+
+    function verMenos() {
+        document.getElementById('resumoCompleto').style.display = 'none';
+        document.getElementById('resumoCurto').style.display = 'block';
+        return false; // Evita que o link navegue para "#"
+    }
 </script>
+
+@include('../components/modals/update-component')
