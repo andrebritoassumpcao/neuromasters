@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beneficiarios;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -11,15 +13,22 @@ class CadastrarBenefController extends Controller
 {
     public function index()
     {
-        $beneficiarios = Beneficiarios::all();
+        $user = auth()->user();
+        $beneficiarios = $user->beneficiarios;
+
+        foreach ($beneficiarios as $beneficiario) {
+            $beneficiario->nameInitials = $this->getNameInitials($beneficiario->nome_beneficiario);
+        }
+
         return view('tea.meus-beneficiarios', compact('beneficiarios'));
     }
     public function registerBeneficiario(Request $request){
+        $user = auth()->user();
 
         $beneficiarios = Beneficiarios::create([
             'nome_beneficiario' =>$request->input('name'),
             'cpf_beneficiario' =>$request->input('cpf'),
-            'telefone' =>$request->input('telefone'),
+            'celular' =>$request->input('celular'),
             'data_nascimento' =>$request->input('nascimento'),
             'sexo' =>$request->input('sexo'),
             'peso' => str_replace(',', '.', $request->input('peso')),
@@ -43,22 +52,33 @@ class CadastrarBenefController extends Controller
             'cidade' =>$request->input('localidade'),
             'numero' =>$request->input('numero'),
             'complemento' =>$request->input('complemento'),
+            'user_id' => $request->user_id ?: auth()->id(),
 
         ]);
 
 
-        return redirect()->intended('beneficiarios.index');
+        return redirect()->route('beneficiarios.index');
 
 
+    }
+
+    public function calcularIdade($dataNascimento)
+    {
+        $dataNascimento = Carbon::parse($dataNascimento);
+        $idade = $dataNascimento->age;
+
+        return $idade;
     }
 
     public function mostrarBeneficiario($id_beneficiario){
           // Buscar o Beneficiário pelo ID
     $beneficiario = Beneficiarios::findorFail($id_beneficiario);
+    $beneficiario->nameInitials = $this->getNameInitials($beneficiario->nome_beneficiario);
+    $idade = $this->calcularIdade($beneficiario->data_nascimento);
 
 
 
-    return view('tea.meu-beneficiario', compact('beneficiario'));
+    return view('tea.meu-beneficiario', compact('beneficiario','idade'));
     }
 
     public function uploadFoto(Request $request, $id_beneficiario)
@@ -84,4 +104,24 @@ class CadastrarBenefController extends Controller
 
         return redirect()->back()->with('success', 'Foto enviada!');
     }
+
+    public function getNameInitials($name)
+    {
+        $initials = '';
+        $words = explode(' ', $name);
+
+        // Pegar as duas primeiras letras do primeiro nome
+        if (isset($words[0])) {
+            $initials .= strtoupper(substr($words[0], 0, 1));
+        }
+
+        // Pegar as duas primeiras letras do último nome
+        if (count($words) > 1 && isset($words[count($words) - 1])) {
+            $initials .= strtoupper(substr($words[count($words) - 1], 0, 1));
+        }
+
+        return $initials;
+    }
+
+
 }

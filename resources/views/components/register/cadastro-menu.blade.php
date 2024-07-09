@@ -67,7 +67,8 @@
         // Obtém a opção ativa da sessão e converte para número
         var activeMenuOption = parseInt("{{ session('active_menu', 0) }}");
 
-        // Define a classe 'active' no item correspondente ao menu ativo
+
+
         setActive(activeMenuOption);
     });
 
@@ -86,15 +87,41 @@
 
 
         if (index === 0) {
-            document.querySelector('.container-detalhes').style.display = 'flex';
-            document.querySelector('.container-senha').style.display = 'none';
-            document.querySelector('.container-confirma').style.display = 'none';
+            if (tipoUsuario === 'profissional') {
+                document.querySelector('.container-detalhes').style.display = 'flex';
+                document.querySelector('.container-profissionais').style.display = 'none';
+                document.querySelector('.container-senha').style.display = 'none';
+                document.querySelector('.container-confirma').style.display = 'none';
+            } else {
+                document.querySelector('.container-detalhes').style.display = 'flex';
+                document.querySelector('.container-senha').style.display = 'none';
+                document.querySelector('.container-confirma').style.display = 'none';
+            }
         } else if (index === 1) {
-            document.querySelector('.container-detalhes').style.display = 'none';
-            document.querySelector('.container-senha').style.display = 'flex';
-            document.querySelector('.container-confirma').style.display = 'none';
+            if (tipoUsuario === 'profissional') {
+                document.querySelector('.container-detalhes').style.display = 'none';
+                document.querySelector('.container-profissionais').style.display = 'flex';
+                document.querySelector('.container-senha').style.display = 'none';
+                document.querySelector('.container-confirma').style.display = 'none';
+            } else {
+                document.querySelector('.container-detalhes').style.display = 'none';
+                document.querySelector('.container-senha').style.display = 'flex';
+                document.querySelector('.container-confirma').style.display = 'none';
+            }
         } else if (index === 2) {
+            if (tipoUsuario === 'profissional') {
+                document.querySelector('.container-detalhes').style.display = 'none';
+                document.querySelector('.container-profissionais').style.display = 'none';
+                document.querySelector('.container-senha').style.display = 'flex';
+                document.querySelector('.container-confirma').style.display = 'none';
+            } else {
+                document.querySelector('.container-detalhes').style.display = 'none';
+                document.querySelector('.container-senha').style.display = 'none';
+                document.querySelector('.container-confirma').style.display = 'flex';
+            }
+        } else if (index === 3 && tipoUsuario === 'profissional') {
             document.querySelector('.container-detalhes').style.display = 'none';
+            document.querySelector('.container-profissionais').style.display = 'none';
             document.querySelector('.container-senha').style.display = 'none';
             document.querySelector('.container-confirma').style.display = 'flex';
         }
@@ -118,7 +145,26 @@
     </div>
 </div>
 
-<div class="container inactive" onclick="setActive(1)">
+@if ($tipoUsuario == 'profissional')
+    <div class="container inactive" onclick="setActive(1)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
+            class="svg-inactive">
+            <path
+                d="M13 25.5C19.6274 25.5 25 20.1274 25 13.5C25 6.87258 19.6274 1.5 13 1.5C6.37258 1.5 1 6.87258 1 13.5C1 20.1274 6.37258 25.5 13 25.5Z"
+                stroke="#194AF1" stroke-width="1.5" />
+            <path d="M8.80005 14.1L11.2 16.5L17.2 10.5" stroke="#194AF1" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+        <div class="container-text">
+            <button onclick="setActive(1)">
+                <h1>Dados Profissionais</h1>
+                <p>Insira aqui seus dados profissionais</p>
+            </button>
+        </div>
+    </div>
+@endif
+
+<div class="container inactive" onclick="setActive({{ $tipoUsuario == 'profissional' ? 2 : 1 }})">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
         class="svg-inactive">
         <path
@@ -128,14 +174,14 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <button onclick="setActive(1)">
+        <button onclick="setActive({{ $tipoUsuario == 'profissional' ? 2 : 1 }})">
             <h1>Definir Senha</h1>
             <p>A senha deve ter no mínimo 8 caracteres.</p>
         </button>
     </div>
 </div>
 
-<div class="container inactive" onclick="setActive(2)">
+<div class="container inactive" onclick="setActive({{ $tipoUsuario == 'profissional' ? 3 : 2 }})">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
         class="svg-inactive">
         <path
@@ -145,7 +191,7 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <button onclick="setActive(2)">
+        <button onclick="setActive({{ $tipoUsuario == 'profissional' ? 3 : 2 }})">
             <h1>Confirmar Cadastro</h1>
             <p>Insira o código que enviamos por email.</p>
         </button>

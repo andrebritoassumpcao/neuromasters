@@ -106,7 +106,7 @@
                         <a class="nav-link" href="/servicos">Buscar Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sou um Especialista</a>
+                        <a class="nav-link" href="/sou-profissional">Sou um Especialista</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sobre a Empresa</a>

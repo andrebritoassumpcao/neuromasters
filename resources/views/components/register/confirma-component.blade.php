@@ -129,15 +129,21 @@
             onkeydown="if(event.keyCode == 8) handleBackspace('6')" onpaste="handlePaste(event, 6)">
     </div>
     <p>Caso não tenha recebido o email de verificação, verifique sua pasta de spam ou lixo eletrônico. Se ainda assim
-        não encontrar, <a id="reenvio" href="">Clique aqui</a> para reenviar o email de verificação.</p>
-
     <div class="container-buttons">
-        <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            previousStep="setActive(1)">
-            Voltar
-        </x-register.back-register-button>
+        @if ($tipoUsuario == 'profissional')
+            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+                previousStep="setActive(2)">
+                Voltar
+            </x-register.back-register-button>
+        @else
+            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+                previousStep="setActive(1)">
+                Voltar
+            </x-register.back-register-button>
+        @endif
         <x-submit-button nextStep="" style="width: 180px; height: 48px; margin: 20px 0;">
             Finalizar Cadastro
         </x-submit-button>
     </div>
+
 </div>

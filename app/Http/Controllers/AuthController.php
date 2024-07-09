@@ -8,19 +8,35 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\ConfirmationEmail;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 
 class AuthController extends Controller
 {
-    public function showRegisterForm()
+
+    public function showWelcomeForProfessionals()
     {
-        // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
-        $activeMenu = session('active_menu', 0);
+    // Defina o tipo de usuário como profissional
+    $tipoUsuario = 'profissional';
 
+    session(['tipoUsuario' => $tipoUsuario]);
 
-        return view('registro', compact('activeMenu'));
+    return view('profissionais-views.welcome', compact('tipoUsuario'));
     }
+
+    public function showRegisterForm($tipoUsuario = 'cliente'){
+   // Obtém o tipo de usuário da sessão, ou define um valor padrão (por exemplo, 'cliente').
+   $tipoUsuario = session('tipoUsuario', 'cliente');
+
+   // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
+   $activeMenu = session('active_menu', 0);
+
+   // Passa as variáveis para a view
+   return view('registro', compact('activeMenu', 'tipoUsuario'));
+}
+
 
     public function setMenuOption($option)
     {
@@ -34,22 +50,22 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+
         // Criação do novo usuário
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
-            'telefone' => $request->input('telefone'),
+            'celular' => $request->input('celular'),
         ]);
 
         // Autenticação do novo usuário
         Auth::login($user);
 
-        // // Envio do e-mail de confirmação
-        // Mail::to($user->email)->send(new ConfirmationEmail());
-
-        // Redirecionamento
+        Alert::alert('Parabéns!', 'Seu registro foi concluído com sucesso. Faça o login para começar', 'Type');
         return redirect()->intended('login');
     }
+
+
 
 }

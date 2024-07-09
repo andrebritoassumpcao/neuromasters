@@ -1,4 +1,11 @@
-@props(['inputType', 'inputName', 'placeholder', 'inputClass', 'inputId'])
+@props([
+    'inputType' => 'text',
+    'inputName',
+    'placeholder' => '',
+    'inputClass' => '',
+    'value' => '',
+    'inputId' => '',
+])
 
 <style>
     .campo-container {
@@ -42,6 +49,6 @@
     <label for="{{ $inputName }}">
         {{ $labelSlot }}
     </label>
-    <input type="{{ $inputType }}" class="{{ $inputClass }}" name="{{ $inputName }}"
+    <input type="{{ $inputType }}" class="{{ $inputClass }}" value="{{ $value }}" name="{{ $inputName }}"
         placeholder="{{ $placeholder }}" id="{{ $inputId }}">
 </div>

@@ -10,23 +10,38 @@
 </head>
 
 <body>
-    <x-header-login>
-        <h1>Header</h1>
-    </x-header-login>
+    @if ($tipoUsuario == 'profissional')
+        <x-header-login :link="'/sou-profissional'" />
+    @else
+        <x-header-login :link="'/'" />
+    @endif
     <section class="registro-container">
         <div class="left-container">
-            <x-register.cadastro-menu>
+            <x-register.cadastro-menu :tipoUsuario="$tipoUsuario">
             </x-register.cadastro-menu>
         </div>
-        <form method="POST" action="{{ route('register') }}" id="form">
+
+        <form method="POST"
+            action="{{ $tipoUsuario == 'profissional' ? route('registerProfissional') : route('register') }}"
+            id="form">
             @csrf
             <div class="right-container">
 
                 <x-register.detalhes-component />
 
-                <x-register.senha-component />
+                @if ($tipoUsuario == 'profissional')
+                    <x-register.dadosProfissionais-component />
+                @endif
 
-                <x-register.confirma-component />
+                <x-register.senha-component :tipoUsuario="$tipoUsuario" />
+
+                <x-register.confirma-component :tipoUsuario="$tipoUsuario" />
+
+                @if ($tipoUsuario == 'profissional')
+                    <p>Você é um profissional</p>
+                @else
+                    <p>Você é um cliente</p>
+                @endif
 
             </div>
         </form>
@@ -40,3 +55,13 @@
 </footer>
 
 </html>
+<script>
+    var tipoUsuario = "{{ $tipoUsuario }}";
+
+    window.onload = function() {
+        if (tipoUsuario === 'profissional') {
+            var leftContainer = document.querySelector('.left-container');
+            leftContainer.style.backgroundColor = '#DCD6FF';
+        }
+    };
+</script>

@@ -9,7 +9,9 @@
 
     }
 
-
+    .uma-coluna {
+        width: 500px;
+    }
 
     .senha-header {
         text-align: center;
@@ -32,27 +34,38 @@
         <h1>Definir Senha</h1>
         <p>A senha deve ter no mnínimo 8 caracteres</p>
     </div>
-    <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'">
+    <div class="uma-coluna">
+
+    </div>
+    <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'" class="doze-col">
         <x-slot name="labelSlot">
             Senha*:
         </x-slot>
     </x-campo-component>
-    <x-campo-component inputType="password" inputName="confirmaSenha" :placeholder="'Confirme sua senha'">
+    <x-campo-component inputType="password" inputName="confirmaSenha" :placeholder="'Confirme sua senha'" class="doze-col">
         <x-slot name="labelSlot">
             Confirmar Senha*:
         </x-slot>
     </x-campo-component>
     <div class="container-buttons">
 
-        <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            previousStep="setActive(0)">
-            Voltar
-        </x-register.back-register-button>
+        @if ($tipoUsuario == 'profissional')
+            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+                previousStep="setActive(1)">
+                Voltar
+            </x-register.back-register-button>
+        @else
+            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
+                previousStep="setActive(0)">
+                Voltar
+            </x-register.back-register-button>
+        @endif
         <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;"
             nextStep="validarSenha()">
             Continuar
         </x-register.continue-register-button>
     </div>
+</div>
 </div>
 
 <script>
@@ -68,6 +81,10 @@
         }
 
 
-        setActive(2);
+        if (tipoUsuario === 'profissional') {
+            setActive(3);
+        } else {
+            setActive(2);
+        }
     }
 </script>

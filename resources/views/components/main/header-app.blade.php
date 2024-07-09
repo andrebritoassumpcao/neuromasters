@@ -127,9 +127,9 @@
         padding: 20px;
         margin: 0 25px 0 0;
         background-color: #fff;
-        /* Cor de fundo do submenu */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        /* Sombra do submenu */
+        transform: translateY(0);
+        transition: transform 0.3s ease-in-out;
     }
 
     .submenu a:hover {
@@ -156,9 +156,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Profissionais</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sou um Especialista</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Minhas Assinaturas</a>
                 </li>

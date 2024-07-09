@@ -38,7 +38,7 @@
     <img src="{{ asset('images/detalhes.svg') }}" alt="detalhes-icone" style="width: 46px;">
     <div class="detalhe-header">
         <h1>Seus Detalhes</h1>
-        <p>Por favor, insira aqui seu nome, email e telefone</p>
+        <p>Por favor, insira aqui seu nome, email e celular</p>
     </div>
     <x-google-button url="">
         Entrar com o Google
@@ -48,24 +48,24 @@
         <h2>OU</h2>
         <div class="linha"></div>
     </div>
-    <x-campo-component inputType="text" inputName="name" :placeholder="'Digite seu nome completo'">
+    <x-campo-component inputType="text" inputName="name" :placeholder="'Digite seu nome completo'" class="doze-col">
         <x-slot name="labelSlot">
             Nome Completo*:
         </x-slot>
     </x-campo-component>
 
-    <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'">
+    <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
         <x-slot name="labelSlot">
             Email*:
         </x-slot>
     </x-campo-component>
-    <x-campo-component inputType="text" inputName="telefone" :placeholder="'Digite seu número de telefone'">
+    <x-campo-component inputType="text" inputName="celular" :placeholder="'Digite seu número de celular'" class="doze-col">
         <x-slot name="labelSlot">
-            Telefone*:
+            Celular*:
         </x-slot>
     </x-campo-component>
 
-    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(2)">
+    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(1)">
         Continuar
     </x-register.continue-register-button>
 

@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LoginProfController;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\BuscarCepController;
 use App\Http\Controllers\CadastrarBenefController;
+use App\Http\Controllers\ProfissionalController;
 
 
 
@@ -19,8 +22,11 @@ use App\Http\Controllers\CadastrarBenefController;
 |
 */
 
-Route::get('/', function() {
-    return view('welcome');
+
+Route::get('/', function () {
+    $tipoUsuario = 'cliente';
+    session(['tipoUsuario' => $tipoUsuario]);
+    return view('welcome', compact('tipoUsuario'));
 });
 Route::get('/servicos', function () {
     return view('servicos');
@@ -28,6 +34,29 @@ Route::get('/servicos', function () {
 Route::get('/tea-app', function () {
     return view('tea.tea-app');
 });
+Route::get('/teaPro-app', function () {
+    return view('tea.teaPro-app');
+});
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
+
+Route::controller(ProfissionalController::class)->group(function(){
+    Route::post('/Registro-profissional', 'registerProfissional')->name('registerProfissional');
+    Route::get('/Perfil-profissional/{id_profissional}', 'mostrarPerfil')->name('profissionalPerfil.index');
+    Route::post('/Perfil-profissional/{id_profissional}', 'uploadFotoPerfil')->name('profissionalPerfil.upload');
+    Route::put('/Editar-profissional/{id_profissional}', 'updateProfissional')->name('profissionalPerfil.update');
+    Route::put('/Editar-profissional/{id_profissional}/updateSobre', 'updateSobreProfissional')->name('profissionalPerfil.updateSobre');
+    Route::post('/Editar-profissional/{id_profissional}/createFormacao', 'createFormacao')->name('profissionalPerfil.createFormacao');
+    Route::put('/Editar-profissional/{formacao_id}/updateFormacao', 'updateFormacao')->name('profissionalPerfil.updateFormacao');
+    Route::get('/Editar-profissional/{id_profissional}/deleteFormacao', 'deleteFormacao')->name('profissionalPerfil.deleteFormacao');
+    Route::get('/Formacao-profissional/{id_profissional}', 'showFormacoes')->name('profissionalPerfil.showFormacoes');
+
+});
+
+
 Route::prefix('/tea-app')->group(function () {
     Route::controller(CadastrarBenefController::class)->group(function(){
         Route::get('/meus-meneficiarios','index')->name('beneficiarios.index');
@@ -61,7 +90,7 @@ Route::prefix('/tea-app')->group(function () {
 
 
 
-Route::get('/cadastro', [AuthController::class, 'showRegisterForm'])->name('registro');
+Route::get('/cadastro/{tipoUsuario?}', [AuthController::class, 'showRegisterForm'])->name('registro');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
@@ -72,9 +101,12 @@ Route::controller(LoginController::class)->group(function(){
     Route::get('/logout','destroy')->name('login.destroy');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
+
+Route::get('/profissionais-views/loginProfissionais', [LoginProfController::class, 'index'])->name('loginProfissionais.index');
+Route::post('/profissionais-views/loginProfissionais', [LoginProfController::class, 'store'])->name('loginProfissionais.store');
+Route::get('/profissionais-views/logoutProfissionais', [LoginProfController::class, 'destroy'])->name('loginProfissionais.destroy');
+?>
+
 
 
 

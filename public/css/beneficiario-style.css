@@ -10,7 +10,18 @@
     border-radius: 8px;
 }
 
+.info-beneficiario{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .perfil-beneficiario {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 80px;
     position: relative;
     margin: 20px;
 }
@@ -29,28 +40,33 @@
 
 }
 
+.titulo-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 20px;
+}
 
 
-/* Sobreposição escura */
 .label-foto::before {
     content: "";
     position: absolute;
-    top: 0; /* Aumente o ponto de contato superior */
-    left: 0; /* Aumente o ponto de contato esquerdo */
-    width: 100%; /* Aumente a largura total */
-    height: 100%; /* Aumente a altura total */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s;
     border-radius: 50%;
 }
 
-/* Quando o rótulo estiver em foco (hover), torne a sobreposição visível */
 .label-foto:hover::before {
     opacity: 1;
 }
 
-/* Estilize o ícone SVG */
+
 .label-foto svg {
     position: absolute;
     top: 50%;
@@ -63,10 +79,40 @@
     transition: opacity 0.3s;
 }
 
-/* Quando o rótulo estiver em foco (hover), torne o ícone visível */
+.profile-initials {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #F6F5F5;
+    font-size: 54px;
+    font-weight:400;
+    background-color: #0C359E;
+}
+
 .label-foto:hover svg {
     opacity: 1;
 }
 #input-foto {
     display: none;
+}
+.diagnostico-container{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    margin: 20px;
+}
+.questionario-action{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-questionario{
+    display: flex;
+    flex-direction: column;
+    max-width: 60ch;
+    gap: 8px;
 }
