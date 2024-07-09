@@ -9,6 +9,7 @@ use App\Mail\ConfirmationEmail;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\ProfissionalUser;
+use App\Models\FormacaoProfissional;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -54,6 +55,8 @@ class ProfissionalController extends Controller
 
         return view('profissionais-views.meuPerfil', compact('user'));
     }
+
+
     public function updateProfissional(Request $request, $id)
     {
         // Buscar o usuário profissional pelo ID
@@ -104,6 +107,67 @@ class ProfissionalController extends Controller
 
         // Redirecionar para a página de perfil do profissional
         return redirect()->route('profissionalPerfil.index', ['id_profissional' => $user->id]);
+    }
+
+    public function createFormacao(Request $request, $id)
+    {
+        $user = ProfissionalUser::findOrFail($id);
+        $id_profissional = $user->id;
+
+
+        FormacaoProfissional::create([
+            'profissional_id' => $id_profissional,
+            'instituicao_ensino' => $request->input('instituicao_ensino'),
+            'curso' => $request->input('curso'),
+            'formacao' => $request->input('formacao'),
+            'inicio_mes' => $request->input('inicio_mes'),
+            'inicio_ano' => $request->input('inicio_ano'),
+            'fim_mes' => $request->input('fim_mes'),
+            'fim_ano' => $request->input('fim_ano'),
+            'descricao_curso' => $request->input('descricao_curso'),
+            'especialidades' => $request->input('especialidades'),
+        ]);
+
+        return redirect()->route('profissionalPerfil.showFormacoes', ['id_profissional' => $id_profissional]);
+
+    }
+    public function updateFormacao(Request $request, $formacao_id)
+    {
+        $request->validate([
+            'instituicao_ensino' => 'required|string',
+            'curso' => 'required|string',
+            'formacao' => 'required|string',
+            'inicio_mes' => 'required|string',
+            'inicio_ano' => 'required|integer',
+            'fim_mes' => 'nullable|string',
+            'fim_ano' => 'nullable|integer',
+            'descricao_curso' => 'nullable|string',
+            'especialidades' => 'nullable|string',
+        ]);
+
+        $formacao = FormacaoProfissional::findOrFail($formacao_id);
+        $formacao->update($request->all());
+
+        return redirect()->back()->with('success', 'Formação profissional atualizada com sucesso.');
+    }
+
+    public function showFormacoes($id_profissional)
+    {
+        $user = ProfissionalUser::findOrFail($id_profissional);
+
+        $formacoes = FormacaoProfissional::where('profissional_id', $id_profissional)->get();
+
+        // Envia os dados das formações para a view 'formacao-profissional'
+        return view('profissionais-views.formacao-profissional', ['formacoes' => $formacoes, 'user' => $user]);
+    }
+
+    // Função para deletar uma formação profissional
+    public function deleteFormacao($formacao_id)
+    {
+        $formacao = FormacaoProfissional::findOrFail($formacao_id);
+        $formacao->delete();
+
+        return redirect()->back()->with('success', 'Formação profissional removida com sucesso.');
     }
 
     public function uploadFotoPerfil(Request $request, $id_profissional)

@@ -49,7 +49,13 @@ Route::controller(ProfissionalController::class)->group(function(){
     Route::post('/Perfil-profissional/{id_profissional}', 'uploadFotoPerfil')->name('profissionalPerfil.upload');
     Route::put('/Editar-profissional/{id_profissional}', 'updateProfissional')->name('profissionalPerfil.update');
     Route::put('/Editar-profissional/{id_profissional}/updateSobre', 'updateSobreProfissional')->name('profissionalPerfil.updateSobre');
+    Route::post('/Editar-profissional/{id_profissional}/createFormacao', 'createFormacao')->name('profissionalPerfil.createFormacao');
+    Route::put('/Editar-profissional/{formacao_id}/updateFormacao', 'updateFormacao')->name('profissionalPerfil.updateFormacao');
+    Route::get('/Editar-profissional/{id_profissional}/deleteFormacao', 'deleteFormacao')->name('profissionalPerfil.deleteFormacao');
+    Route::get('/Formacao-profissional/{id_profissional}', 'showFormacoes')->name('profissionalPerfil.showFormacoes');
+
 });
+
 
 Route::prefix('/tea-app')->group(function () {
     Route::controller(CadastrarBenefController::class)->group(function(){

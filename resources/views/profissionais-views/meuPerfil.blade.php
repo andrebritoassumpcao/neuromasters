@@ -94,11 +94,11 @@
                     <!-- Texto resumido -->
                     <div id="resumoCurto">
                         <p>{{ substr($user->resumo_profissional, 0, 500) }}... </p>
-                        <a class="text-primary" href="#" onclick="verMais()">Ver mais...</a>
+                        <a class="text-primary" href="#" id="verMaisBtn" onclick="verMais()">Ver mais...</a>
                     </div>
                     <div id="resumoCompleto" style="display:none;">
                         <p>{{ $user->resumo_profissional }}</p>
-                        <a class="text-primary" href="#" onclick="verMenos()">Ver menos</a>
+                        <a class="text-primary" href="#" id="verMenosBtn" onclick="verMenos()">Ver menos</a>
                     </div>
                 @else
                     <p>{{ $user->resumo_profissional }}</p>
@@ -109,12 +109,20 @@
             <div class="container-section">
                 <div class="titulo-container">
                     <h4 class="fw-bold">Formação academica</h4 class="fw-bold">
-                    <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
-                        data-bs-target="#academicModal">
-                        <img src="../images/icon-edit.svg" alt="">
-                    </a>
-                    @include('../components/modals/academic-modal')
+                    <div class="d-flex align-items-center gap-3">
+                        <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
+                            data-bs-target="#academicModal">
+                            <img src="../images/icon-create.svg" alt="" style="width: 24px; height: 24px;">
+                        </a>
+                        <a class="btn-atualizar-dados"
+                            href="{{ route('profissionalPerfil.showFormacoes', ['id_profissional' => $user->id]) }}">
+                            <img src="../images/icon-edit.svg" alt="">
+                        </a>
+                        @include('../components/modals/academic-modal')
+                    </div>
+
                 </div>
+            </div>
             </div>
 
         </section>
@@ -133,16 +141,29 @@
         });
     });
 
+    document.addEventListener("DOMContentLoaded", function() {
+
+        document.getElementById('verMaisBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+        });
+
+
+        document.getElementById('verMenosBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            verMenos();
+        });
+    });
+
     function verMais() {
         document.getElementById('resumoCurto').style.display = 'none';
         document.getElementById('resumoCompleto').style.display = 'block';
-        return false; // Evita que o link navegue para "#"
+
     }
 
     function verMenos() {
         document.getElementById('resumoCompleto').style.display = 'none';
         document.getElementById('resumoCurto').style.display = 'block';
-        return false; // Evita que o link navegue para "#"
+
     }
 </script>
 
