@@ -53,7 +53,9 @@ class ProfissionalController extends Controller
 
         $user->nameInitials = $this->getNameInitials($user->name);
 
-        return view('profissionais-views.meuPerfil', compact('user'));
+        $formacoes = FormacaoProfissional::where('profissional_id', $id_profissional)->get();
+
+        return view('profissionais-views.meuPerfil', compact('user', 'formacoes'));
     }
 
 
