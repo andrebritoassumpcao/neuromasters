@@ -123,11 +123,13 @@
 
                     </div>
                 </div>
-                @foreach ($formacoes as $formacao)
-                    <div>
-                        <x-profissionais-components.card-perfil-formacao :formacao="$formacao" :user="$user" />
-                    </div>
-                @endforeach
+                <div class="d-flex gap-4">
+                    @foreach ($formacoes as $formacao)
+                        <div class="">
+                            <x-profissionais-components.card-perfil-formacao :formacao="$formacao" :user="$user" />
+                        </div>
+                    @endforeach
+                </div>
             </div>
             </div>
 
@@ -137,10 +139,10 @@
                 <div class="titulo-container">
                     <h4 class="fw-bold">Competências </h4 class="fw-bold">
                     <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
-                        data-bs-target="#sobreModal">
+                        data-bs-target="#competenciasModal">
                         <img src="../images/icon-edit.svg" alt="">
                     </a>
-                    @include('../components/modals/sobre-modal')
+                    @include('../components/modals/update-competencias')
                 </div>
                 <div class="d-flex align-items-center gap-3">
 

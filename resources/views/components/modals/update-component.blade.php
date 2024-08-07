@@ -32,11 +32,11 @@
                         </x-slot>
                     </x-campo-component>
 
-                    @if (!is_null($user->atendimento) && ($user->atendimento == 'Presencial' || $user->atendimento == 'Online e Presencial'))
+                    {{-- @if ($user->atendimento == 'Presencial' || $user->atendimento == 'Online e Presencial')
                         <div id="enderecoSection">
                         @else
                             <div id="enderecoSection" style="display: none;">
-                    @endif
+                    @endif --}}
                     <div id="enderecoSection">
 
                         <div class="accordion accordion-flush" id="accordionFlushExample">

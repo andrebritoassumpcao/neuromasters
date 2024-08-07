@@ -1,27 +1,19 @@
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-    * {
-        font-family: 'Inter', sans-serif;
-        margin: 0%;
-        padding: 0%;
-    }
-
-    a {
-        text-decoration: none;
-        color: #393938;
-    }
-
     .navbar-cointainer {
         display: flex;
         flex-direction: row;
         list-style: none;
-        font-size: 18px;
+        font-size: 16px;
         justify-content: space-between;
         align-items: center;
         height: 80px;
         box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
-        font-weight: 600;
+        font-weight: 500;
+        line-height: 1.6;
+        letter-spacing: 0.006em;
+        color: #222222;
+        text-decoration: none;
+        transition: color 0.3s ease;
     }
 
     .navbar-cointainer div {
@@ -101,6 +93,12 @@
         list-style: none;
         padding: 10px;
         margin: 0;
+        height: 46px;
+
+    }
+
+    .notification {
+        padding: 10px;
     }
 
     .user-profile {
@@ -147,10 +145,12 @@
     }
 </style>
 <header>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css\global.css') }}">
+
     <nav>
         <ul class="navbar-cointainer">
-            <li class="logo">
-                <a href="/teaPro-app">Neuromasters</a>
+            <li>
+                <a class="logo" href="/teaPro-app">Neuromasters</a>
             </li>
             <div class="nav-items">
                 <li class="nav-item">

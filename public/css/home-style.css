@@ -1,4 +1,6 @@
 
+
+@import url('./global.css');
 body{
 background-color: #F2F6FF;
 }
@@ -27,11 +29,4 @@ background-color: #F2F6FF;
 
 
 }
-h2{
-    color: #000;
-    font-family: Inter;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 26.4px;
-}
+

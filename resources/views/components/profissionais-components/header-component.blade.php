@@ -1,8 +1,5 @@
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
         * {
-            font-family: 'Inter', sans-serif;
             margin: 0%;
             padding: 0%;
         }
@@ -10,17 +7,25 @@
         a {
             text-decoration: none;
             color: #393938;
+            white-space: nowrap;
+
         }
 
         .navbar-cointainer {
             display: flex;
             flex-direction: row;
             list-style: none;
-            font-size: 18px;
+            font-size: 16px;
             justify-content: space-between;
             align-items: center;
             height: 80px;
             box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.006em;
+            color: #222222;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
         .navbar-cointainer div {
@@ -34,6 +39,7 @@
 
         .nav-item {
             padding: 20px;
+
         }
 
         .nav-items {
@@ -96,10 +102,12 @@
         }
     </style>
     <header>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css\global.css') }}">
+
         <nav>
             <ul class="navbar-cointainer">
-                <li class="logo">
-                    <a href="/sou-profissional">Neuromasters</a>
+                <li>
+                    <a class="logo" href="/sou-profissional">Neuromasters</a>
                 </li>
                 <div class="nav-items">
                     <li class="nav-item">
