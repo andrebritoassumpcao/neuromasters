@@ -53,6 +53,8 @@ Route::controller(ProfissionalController::class)->group(function(){
     Route::put('/Editar-profissional/{formacao_id}/updateFormacao', 'updateFormacao')->name('profissionalPerfil.updateFormacao');
     Route::get('/Editar-profissional/{id_profissional}/deleteFormacao', 'deleteFormacao')->name('profissionalPerfil.deleteFormacao');
     Route::get('/Formacao-profissional/{id_profissional}', 'showFormacoes')->name('profissionalPerfil.showFormacoes');
+    Route::put('/Editar-profissional/{id_profissional}/competencias', 'updateCompetencias')->name('profissionalPerfil.updateCompetencias');
+    Route::delete('/Editar-profissional/{id_profissional}/deleteCompetencias', 'deleteCompetencias')->name('profissionalPerfil.deleteCompetencias');
 
 });
 

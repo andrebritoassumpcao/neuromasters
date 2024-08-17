@@ -92,8 +92,9 @@
         resize: none;
         margin-top: 8px;
         height: auto;
-        min-height: 400px;
+        min-height: 300px;
     }
+
 
     .txtarea textarea {
         height: 200px;

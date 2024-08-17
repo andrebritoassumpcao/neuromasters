@@ -171,6 +171,43 @@ class ProfissionalController extends Controller
         return redirect()->back()->with('success', 'Formação profissional removida com sucesso.');
     }
 
+    public function updateCompetencias(Request $request, $id_profissional)
+{
+    // Validar a entrada
+    $request->validate([
+        'competencias' => 'array|max:10',
+        'competencias.*' => 'string|max:255',
+    ]);
+
+    // Encontrar o profissional
+    $profissional = ProfissionalUser::findOrFail($id_profissional);
+
+    // Atualizar as competências
+    $profissional->competencias = $request->input('competencias', []);
+    // Salvar as competências
+    $profissional->save();
+
+    return redirect()->back()->with('success', 'Competências atualizadas com sucesso!');
+}
+
+    public function deleteCompetencias(Request $request, $id_profissional)
+    {
+        $request->validate([
+            'competencia' => 'string|max:255',
+        ]);
+
+        $profissional = ProfissionalUser::findOrFail($id_profissional);
+        $competencias = $profissional->competencias ?? [];
+
+        $competencias = array_filter($competencias, function ($competencia) use ($request) {
+            return $competencia !== $request->input('competencia');
+        });
+
+        $profissional->competencias = array_values($competencias);
+        $profissional->save();
+
+        return redirect()->back()->with('success', 'Competência removida com sucesso!');
+    }
     public function uploadFotoPerfil(Request $request, $id_profissional)
     {
         $request->validate([

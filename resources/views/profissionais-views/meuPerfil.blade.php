@@ -20,6 +20,12 @@
     #meu-painel svg path {
         stroke: #6D25B9;
     }
+
+    .badge {
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #fff;
+    }
 </style>
 
 <body>
@@ -137,21 +143,26 @@
         <section class="perfil-content" id="competencias">
             <div class="container-section">
                 <div class="titulo-container">
-                    <h4 class="fw-bold">Competências </h4 class="fw-bold">
+                    <h4 class="fw-bold">Competências</h4>
                     <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
                         data-bs-target="#competenciasModal">
                         <img src="../images/icon-edit.svg" alt="">
                     </a>
                     @include('../components/modals/update-competencias')
                 </div>
-                <div class="d-flex align-items-center gap-3">
-
-
-
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    @if (!empty($user->competencias))
+                        @foreach ($user->competencias as $competencia)
+                            <span class="badge bg-primary rounded-pill">{{ $competencia }}</span>
+                        @endforeach
+                    @else
+                        <p>Nenhuma competência cadastrada.</p>
+                    @endif
                 </div>
             </div>
-
         </section>
+
+
     </main>
     <x-footer-login>
     </x-footer-login>
