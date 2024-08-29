@@ -1,9 +1,11 @@
+@import url('./global.css');
 body{
     background: #AAA;
 }
 .left-container{
     background-color: #EBF1FF;
     border-radius: 14px 0 0 14px;
+
 
 }
 .registro-container{
@@ -14,5 +16,5 @@ body{
     border-radius: 14px;
     background: #FFF;
     width: 90vw;
-    height: 95vh;
+    height: auto;
 }

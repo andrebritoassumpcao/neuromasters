@@ -9,7 +9,7 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
-        margin: 40px auto;
+        margin: 40px 20px;
         min-width: 55vw;
     }
 

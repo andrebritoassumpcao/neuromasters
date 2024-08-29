@@ -32,8 +32,8 @@
     }
 
     .ver-email {
-        width: 45px;
-        height: 55px;
+        width: 35px;
+        height: 45px;
         flex-shrink: 0;
         border-radius: 8px;
         border: 1px solid #525456;

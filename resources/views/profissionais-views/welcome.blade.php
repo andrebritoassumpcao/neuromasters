@@ -15,16 +15,12 @@
         </x-profissionais-components.header-component>
 
         <div class="content">
-            <h3>Portal Terapiame - Profissionais</h3>
-            <h1>Profissionais dedicados como você estão transformando vidas.</h1>
-            <h2>Entre agora para fazer parte dessa comunidade e oferecer seu apoio especializado a quem mais precisa.
-            </h2>
+            <h4>Portal Terapiame - Profissionais</h4>
+            <h2>Profissionais dedicados como você estão transformando vidas.</h2>
+            <h3>Entre agora para fazer parte dessa comunidade e oferecer seu apoio especializado a quem mais precisa.
+            </h3>
             <div class="content-buttons">
-                @if ($tipoUsuario == 'profissional')
-                    <p>Você é um profissional</p>
-                @else
-                    <p>Você é um cliente</p>
-                @endif
+
                 <x-sign-button url="" style="">
                     Assine Já
                 </x-sign-button>

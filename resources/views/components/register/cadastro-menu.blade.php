@@ -13,6 +13,8 @@
         font-style: normal;
         font-weight: 600;
         line-height: 26.4px;
+        text-align: left;
+
         /* 120% */
     }
 
@@ -21,6 +23,8 @@
         font-style: normal;
         font-weight: 400;
         line-height: 26.4px;
+        text-align: left;
+
         /* 120% */
     }
 
@@ -54,12 +58,46 @@
         flex-direction: column;
         gap: 8px;
         align-items: flex-start;
+        text-align: left;
     }
 
     .container-text button {
         display: flex;
         flex-direction: column;
         cursor: pointer;
+    }
+
+    @media (max-width: 1200px) {
+        .container {
+            gap: 8px;
+            /* Reduzindo o gap para telas menores */
+            padding: 6px 20px;
+            /* Reduzindo o padding */
+            margin: 30px 0;
+            /* Reduzindo a margem */
+            min-width: 25vw;
+            /* Ajustando a largura mínima para ocupar mais espaço em telas menores */
+        }
+
+        .container h1 {
+            font-size: 18px;
+            /* Reduzindo o tamanho da fonte do h1 */
+            line-height: 21.6px;
+            /* Ajustando o line-height */
+        }
+
+        .container p {
+            font-size: 12px;
+            line-height: 21.6px;
+            text-align: left;
+        }
+
+        .container-text {
+            gap: 6px;
+            /* Reduzindo o gap entre os elementos de texto */
+            text-align: left;
+            /* Mantendo o texto alinhado à esquerda */
+        }
     }
 </style>
 <script>

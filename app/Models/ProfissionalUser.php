@@ -42,6 +42,7 @@ class ProfissionalUser extends Authenticatable
         'resumo_profissional',
         'atendimento',
         'foto',
+        'competencias',
     ];
 
     /**
@@ -60,7 +61,8 @@ class ProfissionalUser extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+        'competencias' => 'array',
 
+    ];
 
 }

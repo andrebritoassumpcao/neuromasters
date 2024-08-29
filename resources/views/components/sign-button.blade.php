@@ -9,9 +9,7 @@
         background: #1E67FF;
         box-shadow: 4px 2px 20px 0px rgba(0, 0, 0, 0.25);
         color: #FFF;
-        font-size: 18px;
         font-style: normal;
-        font-weight: 700;
         transition: all 450ms ease-in-out;
         cursor: pointer;
     }

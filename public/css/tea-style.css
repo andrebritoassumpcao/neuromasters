@@ -1,11 +1,7 @@
-body{
-    background-color: #F2F6FF;
-    color: #000;
-    font-family: Inter;
-}
+@import url('./global.css');
+
 main{
    width: 100%;
-
    margin: 0 auto;
 
 }

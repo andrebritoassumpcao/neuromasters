@@ -53,7 +53,9 @@ class ProfissionalController extends Controller
 
         $user->nameInitials = $this->getNameInitials($user->name);
 
-        return view('profissionais-views.meuPerfil', compact('user'));
+        $formacoes = FormacaoProfissional::where('profissional_id', $id_profissional)->get();
+
+        return view('profissionais-views.meuPerfil', compact('user', 'formacoes'));
     }
 
 
@@ -75,7 +77,6 @@ class ProfissionalController extends Controller
             'numero' => $request->input('numero', $user->numero),
             'complemento' => $request->input('complemento', $user->complemento),
             'atendimento' => $request->input('atendimento', $user->atendimento),
-            'resumo_profissional' => $request->input('resumo_profissional', $user->resumo_profissional),
 
 
         ]);
@@ -170,6 +171,66 @@ class ProfissionalController extends Controller
         return redirect()->back()->with('success', 'Formação profissional removida com sucesso.');
     }
 
+    public function updateCompetencias(Request $request, $id_profissional)
+{
+    // Validar a entrada
+    $request->validate([
+        'competencias' => 'array|max:10',
+        'competencias.*' => 'string|max:255',
+    ]);
+
+    $profissional = ProfissionalUser::findOrFail($id_profissional);
+
+   // Obter o array de competências do request
+    $competenciasInput = $request->input('competencias', []);
+
+    // Criar um array para armazenar todas as competências separadas
+    $competenciasArray = [];
+
+    // Iterar sobre cada item do array de competências
+    foreach ($competenciasInput as $competencia) {
+        // Se o item contém múltiplas competências separadas por vírgula, separar usando explode
+        $partes = explode(',', $competencia);
+
+        // Remover espaços extras ao redor de cada competência e adicionar ao array principal
+        foreach ($partes as $parte) {
+            $parte = trim($parte);
+            if (!empty($parte) && !in_array($parte, $competenciasArray)) {
+                $competenciasArray[] = $parte;
+            }
+        }
+    }
+
+    // Limitar a quantidade de competências ao máximo permitido (10)
+    $competenciasArray = array_slice($competenciasArray, 0, 10);
+
+    // Atualizar as competências no modelo
+    $profissional->competencias = $competenciasArray;
+
+    // Salvar as competências
+    $profissional->save();
+
+    return redirect()->back()->with('success', 'Competências atualizadas com sucesso!');
+}
+
+    public function deleteCompetencias(Request $request, $id_profissional)
+    {
+        $request->validate([
+            'competencia' => 'string|max:255',
+        ]);
+
+        $profissional = ProfissionalUser::findOrFail($id_profissional);
+        $competencias = $profissional->competencias ?? [];
+
+        $competencias = array_filter($competencias, function ($competencia) use ($request) {
+            return $competencia !== $request->input('competencia');
+        });
+
+        $profissional->competencias = array_values($competencias);
+        $profissional->save();
+
+        return redirect()->back()->with('success', 'Competência removida com sucesso!');
+    }
     public function uploadFotoPerfil(Request $request, $id_profissional)
     {
         $request->validate([

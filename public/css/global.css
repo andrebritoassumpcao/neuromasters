@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --font-size-base: 16px;
+  --scale-ratio: 1.125; /* Major second scale */
+  --min-width: 767px;
+  --font-family: 'Inter', sans-serif;
+  --font-weight: 500;
+  --line-height: 1.6;
+  --letter-spacing: 0.006em;
+  --color-primary: #222222;
+}
+
+
+  body {
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+    color: var(--color-primary);
+    background-color: #F2F6FF;
+
+  }
+
+  p, a {
+    font-size: 1rem; /* 16px */
+  }
+
+  small {
+    font-size: calc(1rem / var(--scale-ratio)); /* 0.889rem */
+  }
+
+  h1 {
+    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio)); /* 2.027rem */
+  }
+
+  h2 {
+    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio)); /* 1.802rem */
+  }
+
+  h3 {
+    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio)); /* 1.602rem */
+  }
+
+  h4 {
+    font-size: calc(1rem * var(--scale-ratio) / var(--scale-ratio)); /* 1.424rem */
+  }
+
+  h5 {
+    font-size: calc(1rem / var(--scale-ratio)); /* 1.266rem */
+  }
+
+  h6 {
+    font-size: 1.125rem; /* 1.125rem */
+  }
+
+
+   a {
+        text-decoration: none;
+        color: #393938;
+  }
