@@ -77,6 +77,7 @@
         line-height: normal;
         margin-bottom: 8px;
         white-space: nowrap;
+        width: auto;
 
     }
 
@@ -98,6 +99,81 @@
 
     .txtarea textarea {
         height: 200px;
+    }
+
+    @media (max-width: 1200px) {
+        .campo-container {
+            margin-top: 16px;
+            /* Reduz a margem superior para telas menores */
+        }
+
+        input,
+        select {
+            font-size: 14px;
+            /* Reduz o tamanho da fonte para campos de entrada */
+            padding: 6px;
+            /* Reduz o padding para manter proporção */
+        }
+
+        .input-s {
+            height: 25px;
+            /* Reduz altura para pequenas entradas */
+        }
+
+        .input-m {
+            height: 35px;
+            /* Ajusta altura para entradas médias */
+        }
+
+        .input-g {
+            height: 45px;
+            /* Ajusta altura para entradas grandes */
+        }
+
+        .quatro-col {
+            width: 100px;
+            /* Ajusta largura para 4 colunas */
+        }
+
+        .seis-col {
+            width: 150px;
+            /* Ajusta largura para 6 colunas */
+        }
+
+        .oito-col {
+            width: 200px;
+            /* Ajusta largura para 8 colunas */
+        }
+
+        .dez-col {
+            width: 250px;
+            /* Ajusta largura para 10 colunas */
+        }
+
+        .doze-col {
+            width: 300px;
+            /* Ajusta largura para 12 colunas */
+        }
+
+        label {
+            font-size: 16px;
+            /* Reduz o tamanho da fonte dos labels */
+            margin-bottom: 6px;
+            white-space: normal;
+            width: 200px;
+        }
+
+        textarea {
+            font-size: 16px;
+            padding: 6px;
+            min-height: 200px;
+
+        }
+
+        .txtarea textarea {
+            height: 150px;
+            /* Ajusta altura específica para textarea dentro de .txtarea */
+        }
     }
 </style>
 

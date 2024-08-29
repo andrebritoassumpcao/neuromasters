@@ -179,11 +179,34 @@ class ProfissionalController extends Controller
         'competencias.*' => 'string|max:255',
     ]);
 
-    // Encontrar o profissional
     $profissional = ProfissionalUser::findOrFail($id_profissional);
 
-    // Atualizar as competências
-    $profissional->competencias = $request->input('competencias', []);
+   // Obter o array de competências do request
+    $competenciasInput = $request->input('competencias', []);
+
+    // Criar um array para armazenar todas as competências separadas
+    $competenciasArray = [];
+
+    // Iterar sobre cada item do array de competências
+    foreach ($competenciasInput as $competencia) {
+        // Se o item contém múltiplas competências separadas por vírgula, separar usando explode
+        $partes = explode(',', $competencia);
+
+        // Remover espaços extras ao redor de cada competência e adicionar ao array principal
+        foreach ($partes as $parte) {
+            $parte = trim($parte);
+            if (!empty($parte) && !in_array($parte, $competenciasArray)) {
+                $competenciasArray[] = $parte;
+            }
+        }
+    }
+
+    // Limitar a quantidade de competências ao máximo permitido (10)
+    $competenciasArray = array_slice($competenciasArray, 0, 10);
+
+    // Atualizar as competências no modelo
+    $profissional->competencias = $competenciasArray;
+
     // Salvar as competências
     $profissional->save();
 

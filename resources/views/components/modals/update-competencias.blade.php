@@ -80,8 +80,8 @@
 
                         <textarea
                             placeholder="{{ !empty($competencias) ? implode(', ', $competencias) : 'Clique nos botões acima para adicionar as competências' }}"
-                            id="competencias-input" name="competencias[]" value="">
-        </textarea>
+                            id="competencias-input" name="competencias[]" value="" readonly>
+                        </textarea>
                     </div>
 
 

@@ -37,11 +37,6 @@
 
                 <x-register.confirma-component :tipoUsuario="$tipoUsuario" />
 
-                @if ($tipoUsuario == 'profissional')
-                    <p>Você é um profissional</p>
-                @else
-                    <p>Você é um cliente</p>
-                @endif
 
             </div>
         </form>

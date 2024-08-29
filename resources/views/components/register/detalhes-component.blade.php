@@ -4,8 +4,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        margin: 40px auto;
+        gap: 16px;
+        margin: 16px auto;
+        height: auto;
 
     }
 
@@ -32,6 +33,24 @@
     .detalhe-header h1 {
         margin: 8px auto;
         font-size: 34px;
+    }
+
+    @media (max-width: 1200px) {
+        .container-detalhes {
+            min-width: 55vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 12px auto;
+            height: auto;
+        }
+
+        .detalhe-header h1 {
+            margin: 8px auto;
+            font-size: 24px;
+        }
+
     }
 </style>
 <div class="container-detalhes">
