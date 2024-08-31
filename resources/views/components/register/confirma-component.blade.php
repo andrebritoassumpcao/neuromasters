@@ -141,7 +141,7 @@
                 Voltar
             </x-register.back-register-button>
         @endif
-        <x-submit-button nextStep="" style="width: 180px; height: 48px; margin: 20px 0;">
+        <x-submit-button nextStep="" style="width: 220px; height: 48px; margin: 20px 0;">
             Finalizar Cadastro
         </x-submit-button>
     </div>

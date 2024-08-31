@@ -14,6 +14,12 @@
         color: #393938;
     }
 
+    .logo {
+        font-weight: 700;
+        margin-left: 40px;
+        font-size: 26px;
+    }
+
     .navbar-cointainer {
         display: flex;
         flex-direction: row;
@@ -42,19 +48,12 @@
         justify-content: space-between;
         width: 40%;
     }
-
-
-    .logo {
-        font-weight: 700;
-        margin-left: 40px;
-        font-size: 26px;
-    }
 </style>
 <header>
     <nav>
         <ul class="navbar-cointainer">
             <li class="logo">
-                <a href="{{ $link }}">Neuromasters</a>
+                <a class="logo" href="{{ $link }}">Neuromasters</a>
             </li>
 
             </li>

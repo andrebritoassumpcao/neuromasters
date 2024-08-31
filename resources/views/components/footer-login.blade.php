@@ -3,7 +3,8 @@
         background: #8FB3FF;
         padding: 20px 80px;
         color: #FFFF;
-        margin-bottom: 0%;
+        margin-bottom: 0;
+
     }
 
     .main-container {

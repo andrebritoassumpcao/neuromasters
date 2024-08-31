@@ -18,7 +18,7 @@ body{
     border-radius: 14px;
     background: #FFF;
     width: 90vw;
-    height: 90vh;
+    height: 80vh;
 }
 
 .left-container{
@@ -67,20 +67,24 @@ margin-top: 8px;
     background: #EBF1FF;
 }
 .right-containerProf{
-    width: 55vw;
+    width: 60vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0;
     border-radius: 0 14px 14px 0 ;
-    background: #dcd6ff;
+    background: url(../images/Background-profissional-login.jpg) ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* .right-containerProf h3, p {
+.right-containerProf h3, p {
     text-align: left;
-    margin: 80px 20px;
+    margin: 20px;
 }
+/*
 .right-containerProf h3 {
     color: #000;
     font-family: Inter;

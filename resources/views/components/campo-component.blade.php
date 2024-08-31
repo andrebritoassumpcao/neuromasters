@@ -1,5 +1,7 @@
 @props([
     'inputType' => 'text',
+    'inputId' => '',
+    'inputOnBlur' => '',
     'inputName',
     'placeholder',
     'class' => '',
@@ -198,8 +200,9 @@
     @elseif ($inputType === 'textarea')
         <textarea name="{{ $inputName }}" placeholder="{{ $placeholder }}" {{ $attributes }}>{{ $value }}</textarea>
     @else
-        <input type="{{ $inputType }}" name="{{ $inputName }}" placeholder="{{ $placeholder }}"
-            value="{{ $value }}" {{ $attributes }}>
+        <input type="{{ $inputType }}" id="{{ $inputId }}" name="{{ $inputName }}"
+            placeholder="{{ $placeholder }}" value="{{ $value }}" {{ $attributes }}
+            onblur="{{ $inputOnBlur }}">
     @endif
 
 </div>

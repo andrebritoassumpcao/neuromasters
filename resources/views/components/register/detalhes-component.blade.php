@@ -69,18 +69,18 @@
     </div>
     <x-campo-component inputType="text" inputName="name" :placeholder="'Digite seu nome completo'" class="doze-col">
         <x-slot name="labelSlot">
-            Nome Completo*:
+            Nome Completo:
         </x-slot>
     </x-campo-component>
 
     <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
         <x-slot name="labelSlot">
-            Email*:
+            Email:
         </x-slot>
     </x-campo-component>
     <x-campo-component inputType="text" inputName="celular" :placeholder="'Digite seu número de celular'" class="doze-col">
         <x-slot name="labelSlot">
-            Celular*:
+            Celular:
         </x-slot>
     </x-campo-component>
 

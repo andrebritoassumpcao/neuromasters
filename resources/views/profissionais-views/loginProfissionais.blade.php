@@ -36,7 +36,7 @@
 
                 <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
                     <x-slot name="labelSlot">
-                        Email*:
+                        Email:
                     </x-slot>
                 </x-campo-component>
                 @error('email')
@@ -44,7 +44,7 @@
                 @enderror
                 <x-campo-component inputType="password" inputName="password" :placeholder="'Digite seu senha'" class="doze-col">
                     <x-slot name="labelSlot">
-                        Senha*:
+                        Senha:
                     </x-slot>
                 </x-campo-component>
                 @error('password')
@@ -57,13 +57,7 @@
                 <p href="">Ainda não tem uma conta? <a id="esqueceu" href="/cadastro">Cadastre-se</a></p>
             </div>
             <div class="right-containerProf">
-                <img src="" alt="">
-                <h3>
-                    Entre no Neuromasters e faça a diferença na vida dos seus pacientes:
-                    Seja um profissional de saúde mental e ajude pessoas a alcançarem o bem-estar.</h3>
 
-                <p>Tenha acesso a ferramentas completas: Avaliações, acompanhamento de pacientes, prontuários
-                    eletrônicos e muito mais.</p>
 
             </div>
 

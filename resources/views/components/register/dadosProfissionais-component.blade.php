@@ -74,13 +74,13 @@
     <div class="duas-colunas">
         <x-campo-component inputType="text" inputName="conselho_regional" :placeholder="'Ex: CRP'" class="quatro-col">
             <x-slot name="labelSlot">
-                Conselho Regional*:
+                Conselho Regional:
             </x-slot>
         </x-campo-component>
 
         <x-campo-component inputType="text" inputName="numero_conselho" :placeholder="'Número de Registro'" class="oito-col">
             <x-slot name="labelSlot">
-                Número de Registro Profissional*:
+                Número de Registro Profissional:
             </x-slot>
         </x-campo-component>
     </div>
@@ -95,13 +95,13 @@
             ['value' => 'Nutricionista / Nutrólogo', 'label' => 'Nutricionista / Nutrólogo'],
         ]">
             <x-slot name="labelSlot">
-                Especialidade*:
+                Especialidade:
             </x-slot>
         </x-campo-component>
 
         <x-campo-component inputType="textarea" inputName="resumo_profissional" :placeholder="'Digite um resumo profissional'">
             <x-slot name="labelSlot">
-                Resumo Profissional*:
+                Resumo Profissional:
             </x-slot>
         </x-campo-component>
 

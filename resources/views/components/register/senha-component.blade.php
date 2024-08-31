@@ -37,14 +37,16 @@
     <div class="uma-coluna">
 
     </div>
-    <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'" class="doze-col">
+    <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'" inputId="senha" class="doze-col"
+        inputOnBlur="validarSenha()">
         <x-slot name="labelSlot">
-            Senha*:
+            Senha:
         </x-slot>
     </x-campo-component>
-    <x-campo-component inputType="password" inputName="confirmaSenha" :placeholder="'Confirme sua senha'" class="doze-col">
+    <x-campo-component inputType="password" inputName="confirmaSenha" :placeholder="'Confirme sua senha'" inputId="confirmar-senha"
+        class="doze-col" inputOnBlur="validarConfirmacaoSenha()">
         <x-slot name="labelSlot">
-            Confirmar Senha*:
+            Confirmar Senha:
         </x-slot>
     </x-campo-component>
     <div class="container-buttons">
@@ -60,8 +62,7 @@
                 Voltar
             </x-register.back-register-button>
         @endif
-        <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            nextStep="validarSenha()">
+        <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;" nextStep="irProximo()">
             Continuar
         </x-register.continue-register-button>
     </div>
@@ -70,17 +71,49 @@
 
 <script>
     function validarSenha() {
+        var senha = document.getElementById('senha').value;
 
-        var senha = document.getElementsByName('password')[0].value;
-        var confirmaSenha = document.getElementsByName('confirmaSenha')[0].value;
-
-
-        if (senha !== confirmaSenha) {
-            alert('As senhas não coincidem. Por favor, digite novamente.');
-            return;
+        // Verificar se o campo de senha está vazio
+        if (senha === '') {
+            return true; // Não fazer a validação se o campo estiver vazio
         }
 
+        // Verificar o tamanho da senha
+        if (senha.length < 8) {
+            alert('A senha deve ter pelo menos 8 caracteres.');
+            return false;
+        }
 
+        // Verificar a presença de pelo menos um caractere especial
+        var caractereEspecial = /[@!#$%^&*()/\\]/;
+        if (!caractereEspecial.test(senha)) {
+            alert('A senha deve incluir pelo menos um caractere especial.');
+            return false;
+        }
+
+        return true;
+    }
+
+    function validarConfirmacaoSenha() {
+        var senha = document.getElementById('senha').value;
+        var confirmaSenha = document.getElementById('confirmar-senha').value;
+
+        // Verificar se ambos os campos de senha estão vazios
+        if (senha === '' && confirmaSenha === '') {
+            return true; // Não fazer a validação se ambos os campos estiverem vazios
+        }
+
+        // Verificar se as senhas coincidem
+        if (senha !== confirmaSenha) {
+            alert('As senhas não são iguais.');
+            document.getElementById('confirmar-senha').value = '';
+            return false;
+        }
+
+        return true;
+    }
+
+    function irProximo() {
         if (tipoUsuario === 'profissional') {
             setActive(3);
         } else {
