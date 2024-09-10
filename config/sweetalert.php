@@ -92,7 +92,7 @@ return [
     |
     */
 
-    'height_auto' => env('SWEET_ALERT_HEIGHT_AUTO', false),
+    'height_auto' => env('SWEET_ALERT_HEIGHT_AUTO', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -131,7 +131,7 @@ return [
     */
 
     'animation' => [
-        'enable' => env('SWEET_ALERT_ANIMATION_ENABLE', true),
+        'enable' => env('SWEET_ALERT_ANIMATION_ENABLE', false),
     ],
 
     'animatecss' => env('SWEET_ALERT_ANIMATECSS', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'),

@@ -68,10 +68,10 @@
                 </form>
                 <div class="perfil-info">
                     <div class="detalhes-user">
-                        <h4 class="text-dark fw-bold">{{ $user->name }}</h4>
-                        <h5>{{ $user->especialidade }}</h5>
+                        <h3 class="text-dark fw-bold">{{ $user->name }}</h3>
+                        <h4>{{ $user->especialidade }}</h4>
                         @if ($user->estado)
-                            <h5>{{ $user->cidade }} - {{ $user->estado }}</h5>
+                            <h4>{{ $user->cidade }} - {{ $user->estado }}</h5>
                         @endif
                     </div>
                     <div class="outros-user">
@@ -80,17 +80,38 @@
                             <img src="../images/icon-edit.svg" alt="">
                         </a>
 
-                        <h5>Atendimento: {{ $user->atendimento }}</h5>
+                        <h4>Atendimento: {{ $user->atendimento }}</h4>
                     </div>
                 </div>
 
             </section>
 
         </section>
+        <section class="perfil-content" id="competencias">
+            <div class="container-section">
+                <div class="titulo-container">
+                    <h3 class="fw-bold">Competências</h3>
+                    <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
+                        data-bs-target="#competenciasModal">
+                        <img src="../images/icon-edit.svg" alt="">
+                    </a>
+                    @include('../components/modals/update-competencias')
+                </div>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    @if (!empty($user->competencias))
+                        @foreach ($user->competencias as $competencia)
+                            <span class="badge bg-primary rounded-pill">{{ $competencia }}</span>
+                        @endforeach
+                    @else
+                        <p>Nenhuma competência cadastrada.</p>
+                    @endif
+                </div>
+            </div>
+        </section>
         <section class="perfil-content" id="sobre">
             <div class="container-section">
                 <div class="titulo-container">
-                    <h4 class="fw-bold">Sobre</h4 class="fw-bold">
+                    <h3 class="fw-bold">Sobre</h3 class="fw-bold">
                     <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal" data-bs-target="#sobreModal">
                         <img src="../images/icon-edit.svg" alt="">
                     </a>
@@ -114,7 +135,7 @@
         <section class="perfil-content" id="academico">
             <div class="container-section">
                 <div class="titulo-container">
-                    <h4 class="fw-bold">Formação academica</h4 class="fw-bold">
+                    <h3 class="fw-bold">Formação academica</h3 class="fw-bold">
                     <div class="d-flex align-items-center gap-3">
                         <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
                             data-bs-target="#academicModal">
@@ -140,27 +161,7 @@
             </div>
 
         </section>
-        <section class="perfil-content" id="competencias">
-            <div class="container-section">
-                <div class="titulo-container">
-                    <h4 class="fw-bold">Competências</h4>
-                    <a class="btn-atualizar-dados" href="#" data-bs-toggle="modal"
-                        data-bs-target="#competenciasModal">
-                        <img src="../images/icon-edit.svg" alt="">
-                    </a>
-                    @include('../components/modals/update-competencias')
-                </div>
-                <div class="d-flex align-items-center gap-3 flex-wrap">
-                    @if (!empty($user->competencias))
-                        @foreach ($user->competencias as $competencia)
-                            <span class="badge bg-primary rounded-pill">{{ $competencia }}</span>
-                        @endforeach
-                    @else
-                        <p>Nenhuma competência cadastrada.</p>
-                    @endif
-                </div>
-            </div>
-        </section>
+
 
 
     </main>

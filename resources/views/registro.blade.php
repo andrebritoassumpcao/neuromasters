@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/registro-style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Cadastro</title>
 </head>
 
@@ -16,6 +18,12 @@
         <x-header-login :link="'/'" />
     @endif
     <section class="registro-container">
+        @if (Session::has('alert.config'))
+            <script>
+                Swal.fire({!! Session::get('alert.config') !!});
+            </script>
+        @endif
+
         <div class="left-container">
             <x-register.cadastro-menu :tipoUsuario="$tipoUsuario">
             </x-register.cadastro-menu>

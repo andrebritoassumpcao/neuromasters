@@ -2,48 +2,56 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-
+use App\Services\LoginService;
+use RealRashid\SweetAlert\Facades\Alert;
+use Exception;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
+    protected $loginService;
+
+    public function __construct(LoginService $loginService)
+    {
+        $this->loginService = $loginService;
+    }
+
     public function index()
     {
         return view('login');
     }
+
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ], [
-            'email.required' => 'O campo de email é obrigatório!',
-            'email.email' => 'O email digitado é inválido!',
-            'password.required' => 'O campo de senha é obrigatório',
-        ]);
+        try {
+            // Chamar o serviço para validar os dados
+            $this->loginService->validateLoginData($request->all());
 
-        $user = User::where('email', $request->input('email'))->first();
+            // Autenticar o usuário
+            $this->loginService->authenticate($request->input('email'), $request->input('password'));
 
-    if (!$user) {
-        return redirect()->route('login.index')->withErrors(['error' => 'Email ou senha inválida']);
-      }
+            // Redirecionar para a home se bem-sucedido
+            return redirect()->intended('home');
+        } catch (ValidationException $e) {
+            // Exibir os erros de validação no alert
+            $errors = $e->validator->errors()->all();
+            Alert::error('Erro de Validação', implode('<br>', $errors));
 
-      if (!password_verify($request->input('password'), $user->password)) {
-        return redirect()->route('login.index')->withErrors(['error' => ' Senha inválida']);
-      }
-      Auth::loginUsingId($user->id);
+            return redirect()->route('login.index')->withInput();
+        } catch (Exception $e) {
+            // Exibir o erro de autenticação no alert
+            Alert::error('Erro', $e->getMessage());
 
-      return redirect()->intended('home');
-
+            return redirect()->route('login.index')->withInput();
+        }
     }
+
     public function destroy()
-  {
-    Auth::logout();
+    {
+        // Chamar o serviço para deslogar o usuário
+        $this->loginService->logout();
 
-    return redirect()->route('login.index');
-  }
-
+        return redirect()->route('login.index');
+    }
 }

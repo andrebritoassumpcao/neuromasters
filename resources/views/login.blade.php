@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/login-style.css') }}">
-    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
     <title>Login</title>
@@ -16,15 +17,15 @@
 
     <x-header-login :link="'/'" />
 
-    @include('sweetalert::alert')
-
-    @if (session()->has('success'))
-        {{ session()->get('success') }}
+    @if (Session::has('alert.config'))
+        <script>
+            Swal.fire({!! Session::get('alert.config') !!});
+        </script>
     @endif
 
-    @error('error')
-        <span>{{ $message }}</span>
-    @enderror
+
+
+
 
 
     <form method="POST" action="{{ route('login.store') }}">
@@ -32,7 +33,7 @@
 
         <section class="login-container">
             <div class="left-container">
-                <span>Fazer Login</span>
+                <span class="labels">Fazer Login</span>
 
                 <x-google-button url="">
                     Entrar com Google
@@ -49,7 +50,7 @@
                     </x-slot>
                 </x-campo-component>
                 @error('email')
-                    <span>${{ $message }}</span>
+                    <span class="labels">${{ $message }}</span>
                 @enderror
                 <x-campo-component inputType="password" inputName="password" :placeholder="'Digite seu senha'" class="doze-col">
                     <x-slot name="labelSlot">
@@ -57,7 +58,7 @@
                     </x-slot>
                 </x-campo-component>
                 @error('password')
-                    <span>${{ $message }}</span>
+                    <span class="labels">${{ $message }}</span>
                 @enderror
                 <a id="esqueceu" href="">Esqueceu a senha?</a>
                 <x-submit-button url="" style="width: 323px; height: 48px; margin: 20px 0;">
