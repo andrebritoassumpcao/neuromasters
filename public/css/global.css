@@ -4,7 +4,6 @@
   --scale-ratio: 1.125; /* Major second scale */
   --min-width: 767px;
   --font-family: 'Inter', sans-serif;
-  --font-weight: 500;
   --line-height: 1.6;
   --letter-spacing: 0.006em;
   --color-primary: #222222;
@@ -14,7 +13,6 @@
   body {
     font-size: var(--font-size-base);
     font-family: var(--font-family);
-    font-weight: var(--font-weight);
     line-height: var(--line-height);
     letter-spacing: var(--letter-spacing);
     color: var(--color-primary);
@@ -32,15 +30,20 @@
 
   h1 {
     font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio)); /* 2.027rem */
+    font-weight: 700;
   }
 
   h2 {
     font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio)); /* 1.802rem */
-  }
+    font-weight: 700;
+
+}
 
   h3 {
     font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio)); /* 1.602rem */
-  }
+    font-weight: 700;
+
+}
 
   h4 {
     font-size: calc(1rem * var(--scale-ratio) / var(--scale-ratio)); /* 1.424rem */

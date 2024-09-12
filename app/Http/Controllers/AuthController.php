@@ -18,24 +18,25 @@ class AuthController extends Controller
 
     public function showWelcomeForProfessionals()
     {
-    // Defina o tipo de usuário como profissional
-    $tipoUsuario = 'profissional';
+        // Defina o tipo de usuário como profissional
+        $tipoUsuario = 'profissional';
 
-    session(['tipoUsuario' => $tipoUsuario]);
+        session(['tipoUsuario' => $tipoUsuario]);
 
-    return view('profissionais-views.welcome', compact('tipoUsuario'));
+        return view('profissional.welcome', compact('tipoUsuario'));
     }
 
-    public function showRegisterForm($tipoUsuario = 'cliente'){
-   // Obtém o tipo de usuário da sessão, ou define um valor padrão (por exemplo, 'cliente').
-   $tipoUsuario = session('tipoUsuario', 'cliente');
+    public function showRegisterForm($tipoUsuario = 'cliente')
+    {
+        // Obtém o tipo de usuário da sessão, ou define um valor padrão (por exemplo, 'cliente').
+        $tipoUsuario = session('tipoUsuario', 'cliente');
 
-   // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
-   $activeMenu = session('active_menu', 0);
+        // Obtém a opção do menu ativa da sessão, ou define um valor padrão (por exemplo, 0).
+        $activeMenu = session('active_menu', 0);
 
-   // Passa as variáveis para a view
-   return view('registro', compact('activeMenu', 'tipoUsuario'));
-}
+        // Passa as variáveis para a view
+        return view('registro', compact('activeMenu', 'tipoUsuario'));
+    }
 
 
     public function setMenuOption($option)
@@ -65,7 +66,4 @@ class AuthController extends Controller
         Alert::alert('Parabéns!', 'Seu registro foi concluído com sucesso. Faça o login para começar', 'Type');
         return redirect()->intended('login');
     }
-
-
-
 }

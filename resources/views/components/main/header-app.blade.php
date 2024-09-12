@@ -154,7 +154,7 @@
             </li>
             <div class="nav-items">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profissionais</a>
+                    <a class="nav-link" href="/profisisonais">Profissionais</a>
                 </li>
 
                 <li class="nav-item">

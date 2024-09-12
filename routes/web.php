@@ -41,9 +41,13 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/profisisonais', function () {
+    return view('profissionais.index');
+});
+
 Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
 
-Route::controller(ProfissionalController::class)->group(function(){
+Route::controller(ProfissionalController::class)->group(function () {
     Route::post('/Registro-profissional', 'registerProfissional')->name('registerProfissional');
     Route::get('/Perfil-profissional/{id_profissional}', 'mostrarPerfil')->name('profissionalPerfil.index');
     Route::post('/Perfil-profissional/{id_profissional}', 'uploadFotoPerfil')->name('profissionalPerfil.upload');
@@ -55,15 +59,14 @@ Route::controller(ProfissionalController::class)->group(function(){
     Route::get('/Formacao-profissional/{id_profissional}', 'showFormacoes')->name('profissionalPerfil.showFormacoes');
     Route::put('/Editar-profissional/{id_profissional}/competencias', 'updateCompetencias')->name('profissionalPerfil.updateCompetencias');
     Route::delete('/Editar-profissional/{id_profissional}/deleteCompetencias', 'deleteCompetencias')->name('profissionalPerfil.deleteCompetencias');
-
 });
 
 
 Route::prefix('/tea-app')->group(function () {
-    Route::controller(CadastrarBenefController::class)->group(function(){
-        Route::get('/meus-meneficiarios','index')->name('beneficiarios.index');
-        Route::post('/cadastrar-beneficiario','registerBeneficiario')->name('beneficiarios.register');
-        Route::get('/meu-beneficiario/{id_beneficiario}','mostrarBeneficiario')->name('beneficiarios.mostrar');
+    Route::controller(CadastrarBenefController::class)->group(function () {
+        Route::get('/meus-meneficiarios', 'index')->name('beneficiarios.index');
+        Route::post('/cadastrar-beneficiario', 'registerBeneficiario')->name('beneficiarios.register');
+        Route::get('/meu-beneficiario/{id_beneficiario}', 'mostrarBeneficiario')->name('beneficiarios.mostrar');
         Route::post('/meu-beneficiario/{id_beneficiario}', 'uploadFoto')->name('beneficiarios.upload');
     });
     Route::get('/cadastrar-beneficiario', function () {
@@ -97,18 +100,13 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/set-menu-option/{option}', [AuthController::class, 'setMenuOption'])->name('set_menu_option');
 
 
-Route::controller(LoginController::class)->group(function(){
-    Route::get('/login','index')->name('login.index');
-    Route::post('/login','store')->name('login.store');
-    Route::get('/logout','destroy')->name('login.destroy');
+Route::controller(LoginController::class)->group(function () {
+    Route::get('/login', 'index')->name('login.index');
+    Route::post('/login', 'store')->name('login.store');
+    Route::get('/logout', 'destroy')->name('login.destroy');
 });
 
 
-Route::get('/profissionais-views/loginProfissionais', [LoginProfController::class, 'index'])->name('loginProfissionais.index');
-Route::post('/profissionais-views/loginProfissionais', [LoginProfController::class, 'store'])->name('loginProfissionais.store');
-Route::get('/profissionais-views/logoutProfissionais', [LoginProfController::class, 'destroy'])->name('loginProfissionais.destroy');
-?>
-
-
-
-
+Route::get('/profissional/loginProfissionais', [LoginProfController::class, 'index'])->name('loginProfissionais.index');
+Route::post('/profissional/loginProfissionais', [LoginProfController::class, 'store'])->name('loginProfissionais.store');
+Route::get('/profissional/logoutProfissionais', [LoginProfController::class, 'destroy'])->name('loginProfissionais.destroy');
