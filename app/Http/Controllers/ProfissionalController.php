@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfissionalController extends Controller
 {
+
     public function registerProfissional(Request $request)
     {
         // Obter o número total de usuários profissionais já registrados

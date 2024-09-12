@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginProfController;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\BuscarCepController;
 use App\Http\Controllers\CadastrarBenefController;
+use App\Http\Controllers\ProfissionaisController;
 use App\Http\Controllers\ProfissionalController;
 
 
@@ -41,9 +42,8 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/profisisonais', function () {
-    return view('profissionais.index');
-});
+Route::get('/profisisonais', [ProfissionaisController::class, 'index'])->name('profissionais');
+
 
 Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessionals']);
 
