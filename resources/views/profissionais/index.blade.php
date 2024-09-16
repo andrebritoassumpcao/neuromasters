@@ -31,6 +31,11 @@
         <section class="profissionais d-flex flex-column align-items-center">
             <h1>Encontre o Profissional ideal para você</h1>
             <div class="filtros d-flex flex-row justify-content-evenly align-items-end gap-4">
+                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
+                    <x-slot name="labelSlot">
+                        Procure pelo nome
+                    </x-slot>
+                </x-campo-component>
                 <x-campo-component inputType="select" inputName="profissao" id="profissao" required :options="[['value' => 'Selecione', 'label' => 'Selecione']]"
                     class="max-col">
                     <x-slot name="labelSlot">

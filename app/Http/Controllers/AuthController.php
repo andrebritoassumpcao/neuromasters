@@ -41,7 +41,6 @@ class AuthController extends Controller
 
     public function setMenuOption($option)
     {
-        \Log::info('Menu Option: ' . $option);
         // Define a opção do menu na sessão.
         session(['active_menu' => (int) $option]);
 
