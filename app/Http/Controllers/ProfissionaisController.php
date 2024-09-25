@@ -8,12 +8,28 @@ use App\Models\ProfissionalUser;
 
 class ProfissionaisController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Busca todos os profissionais
-        $profissionais = ProfissionalUser::all();
+        $nome = $request->input('name');
+        $profissao = $request->input('profissao');
+        $assunto = $request->input('assunto');
 
-        // Retorna a view com os dados dos profissionais
+        $query = ProfissionalUser::query();
+
+        if (!empty($nome)) {
+            $query->where('name', 'like', '%' . $nome . '%');
+        }
+
+        if (!empty($profissao) && $profissao !== 'Selecione') {
+            $query->where('especialidade', $profissao);
+        }
+
+        if (!empty($assunto) && $assunto !== 'Selecione') {
+            $query->where('especialidade', 'like', '%' . $assunto . '%');
+        }
+
+        $profissionais = $query->get();
+
         return view('profissionais.index', compact('profissionais'));
     }
 }

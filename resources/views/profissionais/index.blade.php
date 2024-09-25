@@ -30,28 +30,41 @@
         </section>
         <section class="profissionais d-flex flex-column align-items-center">
             <h1>Encontre o Profissional ideal para você</h1>
-            <div class="filtros d-flex flex-row justify-content-evenly align-items-end gap-4">
-                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
-                    <x-slot name="labelSlot">
-                        Procure pelo nome
-                    </x-slot>
+            <form action="{{ route('profissionais') }}#filtros" method="GET" id="filtros"
+                class="profissionais filtros d-flex flex-row justify-content-evenly align-items-end gap-4">
+
+                <x-campo-component inputType="text" inputName="name" :placeholder="'Digite o nome'" class="doze-col"
+                    :value="request('name')">
+                    <x-slot name="labelSlot">Procure pelo nome</x-slot>
                 </x-campo-component>
-                <x-campo-component inputType="select" inputName="profissao" id="profissao" required :options="[['value' => 'Selecione', 'label' => 'Selecione']]"
-                    class="max-col">
-                    <x-slot name="labelSlot">
-                        Procure por Profissão
-                    </x-slot>
+
+                <x-campo-component inputType="select" inputName="profissao" id="profissao" required required
+                    :options="[
+                        ['value' => '', 'label' => 'Selecione'],
+                        ['value' => 'Médico Pediatra', 'label' => 'Médico Pediatra'],
+                        ['value' => 'Psicólogo', 'label' => 'Psicólogo'],
+                        ['value' => 'Psiquiatra', 'label' => 'Psiquiatra'],
+                        ['value' => 'Terapeuta Ocupacional', 'label' => 'Terapeuta Ocupacional'],
+                        ['value' => 'Terapeuta Sensorial', 'label' => 'Terapeuta Sensorial'],
+                        ['value' => 'Nutricionista / Nutrólogo', 'label' => 'Nutricionista / Nutrólogo'],
+                    ]" class="seis-col" :value="request('profissao')">
+                    <x-slot name="labelSlot">Procure por Profissão</x-slot>
                 </x-campo-component>
-                <x-campo-component inputType="select" inputName="assunto" id="assunto" required :options="[['value' => 'Selecione', 'label' => 'Selecione']]"
-                    class="max-col">
-                    <x-slot name="labelSlot">
-                        Procure por Assunto
-                    </x-slot>
+
+                <x-campo-component inputType="select" inputName="competencia" id="competencia" required
+                    :options="[
+                        ['value' => 'Selecione', 'label' => 'Selecione'],
+                        ['value' => 'Casais', 'label' => 'Casais'],
+                        ['value' => 'Autoestima', 'label' => 'Autoestima'],
+                        ['value' => 'Adolescência', 'label' => 'Adolescência'],
+                        ['value' => 'Ansiedade', 'label' => 'Ansiedade'],
+                    ]" class="seis-col" :value="request('competencia')">
+                    <x-slot name="labelSlot">Procure por Competência</x-slot>
                 </x-campo-component>
-                <x-submit-button url="" class="" style="height:40px">
-                    Pesquisar
-                </x-submit-button>
-            </div>
+
+                <x-submit-button url="" class="" style="height:40px">Pesquisar</x-submit-button>
+            </form>
+
             <div class="cards-profissionais col mt-4">
                 @foreach ($profissionais as $profissional)
                     <div class="row-md-6">
@@ -110,3 +123,19 @@
     </x-footer-login>
 
 </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('filtros');
+        form.addEventListener('submit', function() {
+            // Armazenar a posição do scroll antes de enviar o formulário
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        });
+
+        // Após o carregamento da página, recuperar a posição do scroll
+        var scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, scrollPosition);
+            sessionStorage.removeItem('scrollPosition'); // Remover após a recuperação
+        }
+    });
+</script>

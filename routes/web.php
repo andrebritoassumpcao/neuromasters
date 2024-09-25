@@ -79,7 +79,7 @@ Route::prefix('/tea-app')->group(function () {
 
     Route::get('/meus-profissionais', function () {
         return view('tea.meus-profissionais');
-    })->name('profissionais');
+    })->name('profissional');
 
     Route::get('/minhas-avaliacoes', function () {
         return view('tea.minhas-avaliacoes');
