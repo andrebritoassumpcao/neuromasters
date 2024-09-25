@@ -1,0 +1,35 @@
+@import url('../global.css');
+
+.intro{
+    background-color: #111010;
+}
+.texto{
+    max-width: 600px;
+}
+.palavra-destaque{
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #0C8BFD;
+}
+.texto h1{
+    font-weight: 600;
+    color: #FFFFFF;
+}
+.texto h5{
+    font-weight: 600;
+    color: #818180;
+}
+.profissionais{
+    max-width: 900px;
+    margin: 16px auto;
+}
+.profissionais h1{
+    font-weight: 600;
+    color: #111010;
+
+}
+ .competencia {
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #fff;
+    }
