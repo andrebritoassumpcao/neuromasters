@@ -56,7 +56,7 @@ class ProfissionalController extends Controller
 
         $formacoes = FormacaoProfissional::where('profissional_id', $id_profissional)->get();
 
-        return view('profissional.meuPerfil', compact('user', 'formacoes'));
+        return view('profissional.perfil.index', compact('user', 'formacoes'));
     }
 
 
@@ -159,7 +159,7 @@ class ProfissionalController extends Controller
         $formacoes = FormacaoProfissional::where('profissional_id', $id_profissional)->get();
 
         // Envia os dados das formações para a view 'formacao-profissional'
-        return view('profissional.formacao-profissional', ['formacoes' => $formacoes, 'user' => $user]);
+        return view('profissional.formacao.index', ['formacoes' => $formacoes, 'user' => $user]);
     }
 
     // Função para deletar uma formação profissional

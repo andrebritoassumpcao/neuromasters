@@ -19,7 +19,7 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('login');
+        return view('responsavel.login.index');
     }
 
     public function store(Request $request)

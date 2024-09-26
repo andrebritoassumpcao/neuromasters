@@ -25,14 +25,14 @@ class AuthController extends Controller
     {
         $tipoUsuario = 'profissional';
         session(['tipoUsuario' => $tipoUsuario]);
-        return view('profissional.welcome', compact('tipoUsuario'));
+        return view('profissional.welcome.index', compact('tipoUsuario'));
     }
 
     public function showRegisterForm($tipoUsuario = 'cliente')
     {
         $tipoUsuario = session('tipoUsuario', 'cliente');
         $activeMenu = session('active_menu', 0);
-        return view('registro', compact('activeMenu', 'tipoUsuario'));
+        return view('responsavel.register.index', compact('activeMenu', 'tipoUsuario'));
     }
 
     public function setMenuOption($option)

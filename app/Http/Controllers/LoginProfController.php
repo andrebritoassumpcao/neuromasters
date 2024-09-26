@@ -12,7 +12,7 @@ class LoginProfController extends Controller
 {
     public function index()
     {
-        return view('profissional.loginProfissionais');
+        return view('profissional.login.index');
     }
     public function store(Request $request)
     {

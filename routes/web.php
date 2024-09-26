@@ -27,19 +27,20 @@ use App\Http\Controllers\ProfissionalController;
 Route::get('/', function () {
     $tipoUsuario = 'cliente';
     session(['tipoUsuario' => $tipoUsuario]);
-    return view('welcome', compact('tipoUsuario'));
+    return view('responsavel.welcome.index', compact('tipoUsuario'));
 });
+
 Route::get('/servicos', function () {
-    return view('servicos');
+    return view('responsavel.servicos.index');
 });
 Route::get('/tea-app', function () {
-    return view('tea.tea-app');
+    return view('tea.home.index');
 });
 Route::get('/teaPro-app', function () {
-    return view('tea.teaPro-app');
+    return view('profissional.tea.home.index');
 });
 Route::get('/home', function () {
-    return view('home');
+    return view('responsavel.home.index');
 });
 
 Route::get('/profisisonais', [ProfissionaisController::class, 'index'])->name('profissionais');
@@ -70,25 +71,25 @@ Route::prefix('/tea-app')->group(function () {
         Route::post('/meu-beneficiario/{id_beneficiario}', 'uploadFoto')->name('beneficiarios.upload');
     });
     Route::get('/cadastrar-beneficiario', function () {
-        return view('tea.cadastrar-beneficiario');
+        return view('tea.register.index');
     })->name('cadastrar-beneficiario');
 
     Route::get('/meus-atendimentos', function () {
-        return view('tea.meus-atendimentos');
+        return view('tea.atendimentos.index');
     })->name('atendimentos');
 
     Route::get('/meus-profissionais', function () {
-        return view('tea.meus-profissionais');
+        return view('tea.profissionais.index');
     })->name('profissional');
 
     Route::get('/minhas-avaliacoes', function () {
-        return view('tea.minhas-avaliacoes');
+        return view('tea.avaliacoes.index');
     })->name('avaliacoes');
     Route::get('/minhas-indicacoes', function () {
-        return view('tea.minhas-indicacoes');
+        return view('tea.indicacoes.index');
     })->name('indicacoes');
     Route::get('/estrategias-de-intervencao', function () {
-        return view('tea.estrategias-intervencao');
+        return view('tea.estrategias-intervencao.index');
     })->name('intervencao');
 });
 
