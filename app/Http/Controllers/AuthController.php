@@ -25,7 +25,7 @@ class AuthController extends Controller
     {
         $tipoUsuario = 'profissional';
         session(['tipoUsuario' => $tipoUsuario]);
-        return view('profissionais-views.welcome', compact('tipoUsuario'));
+        return view('profissional.welcome', compact('tipoUsuario'));
     }
 
     public function showRegisterForm($tipoUsuario = 'cliente')
