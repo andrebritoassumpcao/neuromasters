@@ -11,13 +11,14 @@
 
     a {
         text-decoration: none;
-        color: #393938;
     }
 
     .logo {
         font-weight: 700;
         margin-left: 40px;
         font-size: 26px;
+        color: #393938;
+
     }
 
     .navbar-cointainer {

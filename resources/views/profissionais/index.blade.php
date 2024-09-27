@@ -11,8 +11,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Profissionais</title>
 </head>
+<style>
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
 
-<body>
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .competencia {
+        padding: 5px 10px;
+        color: #fff;
+    }
+
+    .competencia.bg-primary {
+        background-color: #007bff;
+
+    }
+</style>
+
+<body class="bg-body-tertiary">
     <header>
         <x-main.header-app></x-main.header-app>
     </header>
@@ -29,90 +49,96 @@
             </div>
         </section>
         <section class="profissionais d-flex flex-column align-items-center">
-            <h1>Encontre o Profissional ideal para você</h1>
+            <h1>Encontre o profissional ideal para você</h1>
             <form action="{{ route('profissionais') }}#filtros" method="GET" id="filtros"
                 class="profissionais filtros d-flex flex-row justify-content-evenly align-items-end gap-4">
 
-                <x-campo-component inputType="text" inputName="name" :placeholder="'Digite o nome'" class="doze-col"
-                    :value="request('name')">
-                    <x-slot name="labelSlot">Procure pelo nome</x-slot>
-                </x-campo-component>
 
-                <x-campo-component inputType="select" inputName="profissao" id="profissao" required required
-                    :options="[
-                        ['value' => '', 'label' => 'Selecione'],
-                        ['value' => 'Médico Pediatra', 'label' => 'Médico Pediatra'],
-                        ['value' => 'Psicólogo', 'label' => 'Psicólogo'],
-                        ['value' => 'Psiquiatra', 'label' => 'Psiquiatra'],
-                        ['value' => 'Terapeuta Ocupacional', 'label' => 'Terapeuta Ocupacional'],
-                        ['value' => 'Terapeuta Sensorial', 'label' => 'Terapeuta Sensorial'],
-                        ['value' => 'Nutricionista / Nutrólogo', 'label' => 'Nutricionista / Nutrólogo'],
-                    ]" class="seis-col" :value="request('profissao')">
-                    <x-slot name="labelSlot">Procure por Profissão</x-slot>
-                </x-campo-component>
+                <div class="col-md-3 ">
+                    <label for="name" class="form-label">Procure pelo nome</label>
+                    <input type="text" class="form-control">
 
-                <x-campo-component inputType="select" inputName="competencia" id="competencia" required
-                    :options="[
-                        ['value' => 'Selecione', 'label' => 'Selecione'],
-                        ['value' => 'Casais', 'label' => 'Casais'],
-                        ['value' => 'Autoestima', 'label' => 'Autoestima'],
-                        ['value' => 'Adolescência', 'label' => 'Adolescência'],
-                        ['value' => 'Ansiedade', 'label' => 'Ansiedade'],
-                    ]" class="seis-col" :value="request('competencia')">
-                    <x-slot name="labelSlot">Procure por Competência</x-slot>
-                </x-campo-component>
+                </div>
 
-                <x-submit-button url="" class="" style="height:40px">Pesquisar</x-submit-button>
+                <div class="d-grid col-3 mx-auto">
+                    <label for="profissao" class="form-label">Procure pela profissão</label>
+
+                    <select class=" form-select  " aria-label="Default select example" name="profissao">
+                        <option selected>Selecione</option>
+                        <option value="Psicólogo">Psicólogo</option>
+                        <option value="Psiquiatra">Psiquiatra</option>
+                        <option value="erapeuta Ocupacional">Terapeuta Ocupacional</option>
+                    </select>
+                </div>
+                <div class="d-grid col-3 mx-auto">
+                    <label for="profissao" class="form-label">Procure pela competência</label>
+
+                    <select class=" form-select  " aria-label="Default select example" name="competencia">
+                        <option selected>Selecione</option>
+                        <option value="Casais">Casais</option>
+                        <option value="Autoestima">Autoestima</option>
+                        <option value="Adolescência">Adolescência</option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
             </form>
+
+
 
             <div class="cards-profissionais col mt-4">
                 @foreach ($profissionais as $profissional)
                     <div class="row-md-6">
-                        <div class="card shadow-sm p-3 mb-4 bg-white rounded">
-                            <div class="card-body d-flex align-items-start">
-                                <!-- Imagem do profissional -->
-                                @if ($profissional->foto && Storage::exists('public/' . $profissional->foto))
-                                    <img src="{{ asset('storage/' . $profissional->foto) }}" alt="Foto do Profissional"
-                                        class="rounded-circle" style="width: 80px; height: 80px;">
-                                @else
-                                    <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
-                                        style="width: 80px; height: 80px; font-size: 24px;">
-                                        {{ substr($profissional->name, 0, 1) }}{{ substr(explode(' ', $profissional->name)[1] ?? '', 0, 1) }}
-                                    </div>
-                                @endif
-                                <!-- Detalhes do profissional -->
-                                <div class="ms-3">
-                                    <h5 class="card-title">{{ $profissional->name }}</h5>
+                        <div class="card shadow-sm p-3 mb-4 bg-white rounded-4">
+                            <a href="">
+                                <div class="card-body d-flex align-items-start">
 
-                                    @if ($profissional->especialidade)
-                                        <p class="card-text">{{ $profissional->especialidade }}</p>
-                                    @endif
-
-                                    @if ($profissional->cidade && $profissional->estado)
-                                        <p class="card-text">{{ $profissional->cidade }} - {{ $profissional->estado }}
-                                        </p>
-                                    @endif
-
-                                    @if ($profissional->atendimento)
-                                        <p class="card-text"><strong>Atendimento:</strong>
-                                            {{ $profissional->atendimento }}</p>
-                                    @endif
-
-                                    <!-- Competências -->
-                                    @if ($profissional->competencias)
-                                        <div class="competencia d-flex flex-wrap gap-2 mt-2">
-                                            @foreach ($profissional->competencias as $competencia)
-                                                <span
-                                                    class="competencia bg-primary rounded-pill">{{ $competencia }}</span>
-                                            @endforeach
+                                    @if ($profissional->foto && Storage::exists('public/' . $profissional->foto))
+                                        <img src="{{ asset('storage/' . $profissional->foto) }}"
+                                            alt="Foto do Profissional" class="rounded-circle"
+                                            style="width: 80px; height: 80px;">
+                                    @else
+                                        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
+                                            style="width: 80px; height: 80px; font-size: 24px;">
+                                            {{ substr($profissional->name, 0, 1) }}{{ substr(explode(' ', $profissional->name)[1] ?? '', 0, 1) }}
                                         </div>
                                     @endif
+
+                                    <div class="ms-3">
+                                        <h5 class="card-title">{{ $profissional->name }}</h5>
+
+                                        @if ($profissional->especialidade)
+                                            <p class="card-text">{{ $profissional->especialidade }}</p>
+                                        @endif
+
+                                        @if ($profissional->cidade && $profissional->estado)
+                                            <p class="card-text">{{ $profissional->cidade }} -
+                                                {{ $profissional->estado }}</p>
+                                        @endif
+
+                                        @if ($profissional->atendimento)
+                                            <p class="card-text"><strong>Atendimento:</strong>
+                                                {{ $profissional->atendimento }}</p>
+                                        @endif
+
+                                        <!-- Competências -->
+                                        @if ($profissional->competencias)
+                                            <div class="competencia d-flex flex-wrap gap-2 mt-2">
+                                                @foreach ($profissional->competencias as $competencia)
+                                                    <span
+                                                        class="competencia bg-primary rounded-pill">{{ $competencia }}</span>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             </div>
+
 
 
         </section>
@@ -127,15 +153,13 @@
     document.addEventListener('DOMContentLoaded', function() {
         var form = document.getElementById('filtros');
         form.addEventListener('submit', function() {
-            // Armazenar a posição do scroll antes de enviar o formulário
             sessionStorage.setItem('scrollPosition', window.scrollY);
         });
 
-        // Após o carregamento da página, recuperar a posição do scroll
         var scrollPosition = sessionStorage.getItem('scrollPosition');
         if (scrollPosition) {
             window.scrollTo(0, scrollPosition);
-            sessionStorage.removeItem('scrollPosition'); // Remover após a recuperação
+            sessionStorage.removeItem('scrollPosition');
         }
     });
 </script>

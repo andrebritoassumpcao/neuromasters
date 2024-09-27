@@ -36,7 +36,7 @@ class LoginController extends Controller
         } catch (ValidationException $e) {
             // Exibir os erros de validação no alert
             $errors = $e->validator->errors()->all();
-            Alert::error('Erro de Validação', implode('<br>', $errors));
+            Alert::error('Erro de Validação', implode($errors));
 
             return redirect()->route('login.index')->withInput();
         } catch (Exception $e) {
