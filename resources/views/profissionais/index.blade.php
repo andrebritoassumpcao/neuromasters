@@ -91,13 +91,13 @@
                 @foreach ($profissionais as $profissional)
                     <div class="row-md-6">
                         <div class="card shadow-sm p-3 mb-4 bg-white rounded-4">
-                            <a href="">
+                            <a href="{{ route('profissionalVerPerfil.index', $profissional->id) }}">
                                 <div class="card-body d-flex align-items-start">
 
                                     @if ($profissional->foto && Storage::exists('public/' . $profissional->foto))
                                         <img src="{{ asset('storage/' . $profissional->foto) }}"
                                             alt="Foto do Profissional" class="rounded-circle"
-                                            style="width: 80px; height: 80px;">
+                                            style="width: 80px; height: 80px; object-fit: cover;">
                                     @else
                                         <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
                                             style="width: 80px; height: 80px; font-size: 24px;">

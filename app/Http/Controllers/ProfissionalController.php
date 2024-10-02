@@ -59,6 +59,20 @@ class ProfissionalController extends Controller
         return view('profissional.perfil.index', compact('user', 'formacoes'));
     }
 
+    public function verPerfil($id_profissional)
+    {
+        // Buscar o profissional pelo ID
+        $profissional = ProfissionalUser::findOrFail($id_profissional);
+
+        $formacoes = FormacaoProfissional::where('profissional_id', $id_profissional)->get();
+
+
+        // Buscar outras informações como formacoes, competencias, etc
+
+        return view('profissional.verPerfil.index', compact('profissional', 'formacoes'));
+    }
+
+
 
     public function updateProfissional(Request $request, $id)
     {
