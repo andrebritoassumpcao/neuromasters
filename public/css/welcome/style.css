@@ -21,21 +21,7 @@ body {
     height: 35vh;
     margin: 160px auto 160px 35px;
 }
-.content h1{
-    font-size: 34px;
-    font-style: normal;
-    font-weight: 700;
-}
-.content h2{
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-}
-.content h3{
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-}
+
 .content-buttons{
     display: flex;
     flex-direction:row;

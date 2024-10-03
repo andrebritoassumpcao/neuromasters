@@ -1,3 +1,4 @@
+@import url('../global.css');
 
 body {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%), url(../../images/profissionais-banner.jpg), lightgray 0px -0.073px / 100% 100.023% no-repeat;

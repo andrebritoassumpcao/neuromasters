@@ -20,42 +20,6 @@
 
   }
 
-  p, a {
-    font-size: 1.2rem; /* 16px */
-  }
-
-  small {
-    font-size: calc(1rem / var(--scale-ratio)); /* 0.889rem */
-  }
-
-  h1 {
-    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio)); /* 2.027rem */
-    font-weight: 700;
-  }
-
-  h2 {
-    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio)); /* 1.802rem */
-    font-weight: 700;
-
-}
-
-  h3 {
-    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio)); /* 1.602rem */
-    font-weight: 700;
-
-}
-
-  h4 {
-    font-size: calc(1rem * var(--scale-ratio) / var(--scale-ratio)); /* 1.424rem */
-  }
-
-  h5 {
-    font-size: calc(1rem / var(--scale-ratio)); /* 1.266rem */
-  }
-
-  h6 {
-    font-size: 1.125rem; /* 1.125rem */
-  }
 
 
    a {

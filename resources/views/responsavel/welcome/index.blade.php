@@ -15,9 +15,9 @@
             <h1>Header</h1>
         </x-header-component>
         <div class="content">
-            <h3>Portal Terapiame</h3>
-            <h1>Uma Revolução no tratamento de transtorno de espectro autista</h1>
-            <h2>Um método inovador e eficiente para o tratamento do autismo</h2>
+            <h4>Portal Terapiame</h4>
+            <h2>Uma Revolução no tratamento de transtorno de espectro autista</h2>
+            <h3>Um método inovador e eficiente para o tratamento do autismo</h3>
             <div class="content-buttons">
                 <x-sign-button url="" style="">
                     Assine Já

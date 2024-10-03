@@ -23,11 +23,11 @@ class ProfissionalService
         $validator = Validator::make($data, [
             'name' => 'nullable|string',
             'profissao' => 'nullable|string',
-            'assunto' => 'nullable|string',
+            'competencia' => 'nullable|string',
         ], [
             'name.string' => 'O campo de nome deve ser um texto válido.',
             'profissao.string' => 'O campo de profissão deve ser um texto válido.',
-            'assunto.string' => 'O campo de competência deve ser um texto válido.',
+            'competencia.string' => 'O campo de competência deve ser um texto válido.',
         ]);
 
         // Se a validação falhar, lançar uma exceção

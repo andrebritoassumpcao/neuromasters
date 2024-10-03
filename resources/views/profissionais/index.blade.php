@@ -56,7 +56,7 @@
 
                 <div class="col-md-3 ">
                     <label for="name" class="form-label">Procure pelo nome</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="name">
 
                 </div>
 

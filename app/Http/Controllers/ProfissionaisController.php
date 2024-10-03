@@ -20,6 +20,7 @@ class ProfissionaisController extends Controller
 
     public function index(Request $request)
     {
+
         try {
             $this->profissionalService->validateSearchData($request->all());
 
@@ -27,7 +28,7 @@ class ProfissionaisController extends Controller
             $searchDTO = new ProfissionalDTO(
                 $request->input('name'),
                 $request->input('profissao'),
-                $request->input('assunto')
+                $request->input('competencia')
             );
 
             $profissionais = $this->profissionalService->search($searchDTO);
