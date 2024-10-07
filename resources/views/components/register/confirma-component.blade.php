@@ -110,7 +110,7 @@
 <div class="container-confirma">
     <img src="{{ asset('images/confirmacao.svg') }}" alt="detalhes-icone" style="width: 46px;">
     <div class="confirma-header">
-        <h1>Confirmar Cadastro</h1>
+        <h3>Confirmar Cadastro</h3>
         <p>Por favor, verifique sua caixa de entrada e insira o código no espaço abaixo para completar o processo de
             verificação</p>
     </div>

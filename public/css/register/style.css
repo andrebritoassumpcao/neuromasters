@@ -1,4 +1,4 @@
-@import url('./global.css');
+@import url('../global.css');
 body{
     background: #AAA;
 }
@@ -15,7 +15,8 @@ body{
     justify-content:space-between;
     border-radius: 14px;
     background: #FFF;
-    width: 90vw;
+    width: 75vw;
     height: auto;
-    min-height: 765.047px;
+
 }
+

@@ -31,93 +31,94 @@
 <div class="container-senha">
     <img src="{{ asset('images/senha.svg') }}" alt="detalhes-icone" style="width: 46px;">
     <div class="senha-header">
-        <h1>Definir Senha</h1>
+        <h3>Definir Senha</h3>
         <p>A senha deve ter no mnínimo 8 caracteres</p>
     </div>
     <div class="uma-coluna">
 
     </div>
-    <x-campo-component inputType="password" inputName="password" :placeholder="'Digite sua senha'" inputId="senha" class="doze-col"
-        inputOnBlur="validarSenha()">
-        <x-slot name="labelSlot">
-            Senha:
-        </x-slot>
-    </x-campo-component>
-    <x-campo-component inputType="password" inputName="confirmaSenha" :placeholder="'Confirme sua senha'" inputId="confirmar-senha"
-        class="doze-col" inputOnBlur="validarConfirmacaoSenha()">
-        <x-slot name="labelSlot">
-            Confirmar Senha:
-        </x-slot>
-    </x-campo-component>
+
+
+    <div class="col-md-6 mb-3">
+        <label for="validationSenha" class="form-label">Senha</label>
+        <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"
+            id="validationSenha" value="{{ old('password') }}" required>
+        <div class="invalid-feedback">
+            @error('senha')
+                {{ $message }}
+            @else
+                O campo é obrigatório.
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="validationConfirmarSenha" class="form-label">Senha</label>
+        <input type="password" class="form-control {{ $errors->has('confirmaSenha') ? 'is-invalid' : '' }}"
+            name="confirmaSenha" id="validationConfirmarSenha" value="{{ old('confirmaSenha') }}" required>
+        <div class="invalid-feedback">
+            @error('senha')
+                {{ $message }}
+            @else
+                O campo é obrigatório.
+            @enderror
+        </div>
+    </div>
+
+
     <div class="container-buttons">
 
         @if ($tipoUsuario == 'profissional')
-            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-                previousStep="setActive(1)">
-                Voltar
-            </x-register.back-register-button>
+            <button id="backButton" type="button" class="btn btn-primary" onclick="setActive(2)">
+                voltar
+            </button>
         @else
-            <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-                previousStep="setActive(0)">
-                Voltar
-            </x-register.back-register-button>
+            <button id="backButton" type="button" class="btn btn-primary" onclick="setActive(1)">
+                voltar
+            </button>
         @endif
-        <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;" nextStep="irProximo()">
+        <button id="continueButtonSenha" type="button" class="btn btn-primary" onclick="irProximo()">
             Continuar
-        </x-register.continue-register-button>
+        </button>
     </div>
 </div>
 </div>
 
 <script>
-    function validarSenha() {
-        var senha = document.getElementById('senha').value;
+    document.addEventListener('DOMContentLoaded', function() {
+        const senhaInput = document.getElementById('validationSenha');
+        const confirmarSenhaInput = document.getElementById('validationConfirmarSenha');
+        const continueButtonSenha = document.getElementById('continueButtonSenha');
+        continueButtonSenha.disabled = true;
 
-        // Verificar se o campo de senha está vazio
-        if (senha === '') {
-            return true; // Não fazer a validação se o campo estiver vazio
+        // Verifica a validade dos campos e habilita o botão
+        function checkSenhaValidity() {
+            const senhaValida = senhaInput.value;
+            const confirmacaoValida = confirmarSenhaInput.value;
+
+
+            console.log("entrou");
+
         }
 
-        // Verificar o tamanho da senha
-        if (senha.length < 8) {
-            alert('A senha deve ter pelo menos 8 caracteres.');
-            return false;
-        }
 
-        // Verificar a presença de pelo menos um caractere especial
-        var caractereEspecial = /[@!#$%^&*()/\\]/;
-        if (!caractereEspecial.test(senha)) {
-            alert('A senha deve incluir pelo menos um caractere especial.');
-            return false;
-        }
 
-        return true;
-    }
 
-    function validarConfirmacaoSenha() {
-        var senha = document.getElementById('senha').value;
-        var confirmaSenha = document.getElementById('confirmar-senha').value;
+        senhaInput.addEventListener('blur', function() {
+            checkSenhaValidity(value => value.trim() !== '',
+                'O campo Nome é obrigatório.');
+        });
+        confirmarSenhaInput.addEventListener('blur', function() {
+            checkSenhaValidity(value => value.trim() !== '',
+                'O campo Nome é obrigatório.');
+        });
+    });
 
-        // Verificar se ambos os campos de senha estão vazios
-        if (senha === '' && confirmaSenha === '') {
-            return true; // Não fazer a validação se ambos os campos estiverem vazios
-        }
-
-        // Verificar se as senhas coincidem
-        if (senha !== confirmaSenha) {
-            alert('As senhas não são iguais.');
-            document.getElementById('confirmar-senha').value = '';
-            return false;
-        }
-
-        return true;
-    }
 
     function irProximo() {
         if (tipoUsuario === 'profissional') {
-            setActive(3);
+            setActive(4);
         } else {
-            setActive(2);
+            setActive(3);
         }
     }
 </script>

@@ -67,7 +67,7 @@
 <div class="container-profissionais">
     <img src="{{ asset('images/detalhes.svg') }}" alt="detalhes-icone" style="width: 46px;">
     <div class="profissional-header">
-        <h1>Dados Profissionais</h1>
+        <h3>Dados Profissionais</h3>
         <p>Por favor, seus dados profissionais</p>
     </div>
 

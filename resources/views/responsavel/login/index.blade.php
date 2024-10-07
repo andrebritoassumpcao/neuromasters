@@ -33,7 +33,6 @@
             <div class="left-container">
                 <h2>Fazer Login</h2>
 
-                <x-google-button url="">Entrar com Google</x-google-button>
 
                 <div class="ou d-flex align-items-center my-3">
                     <div class="linha flex-grow-1"></div>
