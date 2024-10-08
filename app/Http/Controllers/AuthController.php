@@ -44,31 +44,22 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            // Criar o DTO com os dados do request
             $userDTO = new UserDTO(
                 $request->input('name'),
                 $request->input('email'),
                 $request->input('password'),
-                $request->input('celular')
+                $request->input('celular'),
+                $request->input('password_confirmation')
+
             );
 
-            // Chamar o serviço para registrar o usuário
             $this->authService->register($userDTO);
 
-            // Exibir mensagem de sucesso usando SweetAlert2
             Alert::success('Parabéns!', 'Seu registro foi concluído com sucesso. Faça o login para começar.');
             return redirect()->intended('home');
         } catch (ValidationException $e) {
-            // Exibir erros de validação no SweetAlert2
             $errors = $e->validator->errors()->all();
             Alert::error('Erro de Validação', implode('<br>', $errors));
-            return redirect()->back()->withInput();
-        } catch (UserAlreadyExistsException $e) {
-            Alert::error('Erro', $e->getMessage());
-            return redirect()->back()->withInput();
-        } catch (Exception $e) {
-            // Exibir outros erros no SweetAlert2
-            Alert::error('Erro', $e->getMessage());
             return redirect()->back()->withInput();
         }
     }

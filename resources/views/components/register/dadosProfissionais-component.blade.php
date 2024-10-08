@@ -110,13 +110,12 @@
     </div>
     <div class="container-buttons">
 
-        <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            previousStep="setActive(0)">
-            Voltar
-        </x-register.back-register-button>
-        <x-register.continue-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-            nextStep="setActive(2)">
+        <button id="" type="button" class="btn btn-primary backButton">
+            voltar
+        </button>
+        <button id="continueButtonDados" type="button" class="btn btn-primary">
             Continuar
-        </x-register.continue-register-button>
+        </button>
     </div>
+</div>
 </div>

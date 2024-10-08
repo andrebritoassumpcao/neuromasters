@@ -87,7 +87,7 @@
     </button>
 
 
-    <button class="entrar-button" type="button" onclick="setActive(1)">
+    <button class="entrar-button" type="button" id="entrarButton">
         <img src="{{ asset('images/img email.png') }}" alt="">
         Entrar com Email
     </button>

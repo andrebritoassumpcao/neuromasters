@@ -11,11 +11,15 @@
     .confirma-header {
         margin: 0 auto;
         max-width: 480px;
+        text-align: center;
+
     }
 
     .container-confirma p {
         max-width: 480px;
         line-height: normal;
+        text-align: left;
+
 
 
     }
@@ -23,7 +27,6 @@
     .confirma-header h1 {
         margin: 8px auto;
         font-size: 34px;
-        text-align: center;
     }
 
     .verifica-container {
@@ -132,12 +135,12 @@
     <div class="container-buttons">
         @if ($tipoUsuario == 'profissional')
             <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-                previousStep="setActive(2)">
+                previousStep="setActive(3)">
                 Voltar
             </x-register.back-register-button>
         @else
             <x-register.back-register-button style="width: 180px; height: 48px; margin: 20px 0;"
-                previousStep="setActive(1)">
+                previousStep="setActive(2)">
                 Voltar
             </x-register.back-register-button>
         @endif

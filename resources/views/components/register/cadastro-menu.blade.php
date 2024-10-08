@@ -9,20 +9,20 @@
     }
 
     .container h1 {
-        font-size: 22px;
+        font-size: 19px;
         font-style: normal;
         font-weight: 600;
-        line-height: 26.4px;
+        line-height: 20.4px;
         text-align: left;
 
         /* 120% */
     }
 
     .container p {
-        font-size: 14px;
+        font-size: 13px;
         font-style: normal;
         font-weight: 400;
-        line-height: 26.4px;
+        line-height: 16.4px;
         text-align: left;
 
         /* 120% */
@@ -56,7 +56,7 @@
     .container-text {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 4px;
         align-items: flex-start;
         text-align: left;
     }
@@ -69,7 +69,7 @@
 
     @media (max-width: 1200px) {
         .container {
-            gap: 8px;
+            gap: 4px;
             /* Reduzindo o gap para telas menores */
             padding: 6px 20px;
             /* Reduzindo o padding */
@@ -80,7 +80,7 @@
         }
 
         .container h1 {
-            font-size: 18px;
+            font-size: 2px;
             /* Reduzindo o tamanho da fonte do h1 */
             line-height: 21.6px;
             /* Ajustando o line-height */
@@ -88,12 +88,12 @@
 
         .container p {
             font-size: 12px;
-            line-height: 21.6px;
+            line-height: 16.6px;
             text-align: left;
         }
 
         .container-text {
-            gap: 6px;
+            gap: 3px;
             /* Reduzindo o gap entre os elementos de texto */
             text-align: left;
             /* Mantendo o texto alinhado à esquerda */
@@ -105,77 +105,118 @@
         // Obtém a opção ativa da sessão e converte para número
         var activeMenuOption = parseInt("{{ session('active_menu', 0) }}");
 
+        // Mantém um registro do último índice ativo
+        var completedSteps = 0;
 
-
+        // Define o estado inicial com o índice ativo
         setActive(activeMenuOption);
-    });
 
-    function setActive(index) {
-        var containers = document.querySelectorAll('.container');
+        // Função para definir o step ativo
+        function setActive(index) {
+            var containers = document.querySelectorAll('.container');
 
-        containers.forEach(function(container, i) {
-            if (i === index) {
-                container.classList.add('active');
-                container.classList.remove('inactive');
-            } else {
-                container.classList.remove('active');
-                container.classList.add('inactive');
+            containers.forEach(function(container, i) {
+                const button = container.querySelector('button');
+
+                if (i === index) {
+                    container.classList.add('active');
+                    container.classList.remove('inactive');
+                    button.disabled = false; // Habilita o botão do step atual
+                } else {
+                    container.classList.remove('active');
+                    container.classList.add('inactive');
+                    button.disabled = (i > completedSteps); // Desativa steps futuros
+                }
+            });
+
+            // Lógica de exibição dos containers com base no índice e tipo de usuário
+            if (index === 0) {
+                if (tipoUsuario === 'profissional') {
+                    showStep(['.container-forma'], ['.container-detalhes', '.container-profissionais',
+                        '.container-senha', '.container-confirma'
+                    ]);
+                } else {
+                    showStep(['.container-forma'], ['.container-detalhes', '.container-senha',
+                        '.container-confirma'
+                    ]);
+                }
+            } else if (index === 1) {
+                if (tipoUsuario === 'profissional') {
+                    showStep(['.container-detalhes'], ['.container-forma', '.container-profissionais',
+                        '.container-senha', '.container-confirma'
+                    ]);
+                } else {
+                    showStep(['.container-detalhes'], ['.container-forma', '.container-senha',
+                        '.container-confirma'
+                    ]);
+                }
+            } else if (index === 2) {
+                if (tipoUsuario === 'profissional') {
+                    showStep(['.container-profissionais'], ['.container-forma', '.container-detalhes',
+                        '.container-senha', '.container-confirma'
+                    ]);
+                } else {
+                    showStep(['.container-senha'], ['.container-forma', '.container-detalhes',
+                        '.container-confirma'
+                    ]);
+                }
+            } else if (index === 3) {
+                showStep(['.container-confirma'], ['.container-forma', '.container-detalhes',
+                    '.container-senha'
+                ]);
+            } else if (index === 4 && tipoUsuario === 'profissional') {
+                showStep(['.container-confirma'], ['.container-forma', '.container-detalhes',
+                    '.container-profissionais', '.container-senha'
+                ]);
             }
+        }
+
+        // Função para mostrar e ocultar os containers
+        function showStep(showSelectors, hideSelectors) {
+            showSelectors.forEach(selector => document.querySelector(selector).style.display = 'flex');
+            hideSelectors.forEach(selector => document.querySelector(selector).style.display = 'none');
+        }
+
+        // Função para avançar para o próximo step e atualizar o progresso
+        function goToNextStep(nextStepIndex) {
+            if (nextStepIndex > completedSteps) {
+                completedSteps = nextStepIndex; // Atualiza o step completado
+            }
+            setActive(nextStepIndex);
+        }
+        console.log("Voltando para o step: ", activeMenuOption);
+
+        function goToPreviousStep(currentStep) {
+            console.log("Voltando para o step: ", currentStep);
+            if (currentStep >= 0) {
+                currentStep -= 1; // Diminui o índice do step atual
+                setActive(currentStep);
+            }
+        }
+
+        // Lógica para os botões que controlam os steps
+        document.querySelectorAll('.container button').forEach((button, index) => {
+            button.addEventListener('click', function() {
+                if (index <= completedSteps || index === completedSteps + 1) {
+                    goToNextStep(index);
+                }
+            });
         });
 
-
-        if (index === 0) {
-            if (tipoUsuario === 'profissional') {
-                document.querySelector('.container-forma').style.display = 'flex';
-                document.querySelector('.container-detalhes').style.display = 'none';
-                document.querySelector('.container-profissionais').style.display = 'none';
-                document.querySelector('.container-senha').style.display = 'none';
-                document.querySelector('.container-confirma').style.display = 'none';
-            } else {
-                document.querySelector('.container-forma').style.display = 'flex';
-                document.querySelector('.container-detalhes').style.display = 'none';
-                document.querySelector('.container-senha').style.display = 'none';
-                document.querySelector('.container-confirma').style.display = 'none';
-            }
-        } else if (index === 1) {
-            if (tipoUsuario === 'profissional') {
-                document.querySelector('.container-forma').style.display = 'none';
-                document.querySelector('.container-detalhes').style.display = 'flex';
-                document.querySelector('.container-profissionais').style.display = 'none';
-                document.querySelector('.container-senha').style.display = 'none';
-                document.querySelector('.container-confirma').style.display = 'none';
-            } else {
-                document.querySelector('.container-forma').style.display = 'none';
-                document.querySelector('.container-detalhes').style.display = 'flex';
-                document.querySelector('.container-senha').style.display = 'none';
-                document.querySelector('.container-confirma').style.display = 'none';
-            }
-        } else if (index === 2) {
-            if (tipoUsuario === 'profissional') {
-                document.querySelector('.container-forma').style.display = 'none';
-                document.querySelector('.container-detalhes').style.display = 'none';
-                document.querySelector('.container-profissionais').style.display = 'flex';
-                document.querySelector('.container-senha').style.display = 'none';
-                document.querySelector('.container-confirma').style.display = 'none';
-            } else {
-                document.querySelector('.container-forma').style.display = 'none';
-                document.querySelector('.container-detalhes').style.display = 'none';
-                document.querySelector('.container-senha').style.display = 'flex';
-                document.querySelector('.container-confirma').style.display = 'none';
-            }
-        } else if (index === 3) {
-            document.querySelector('.container-forma').style.display = 'none';
-            document.querySelector('.container-detalhes').style.display = 'none';
-            document.querySelector('.container-senha').style.display = 'none';
-            document.querySelector('.container-confirma').style.display = 'flex';
-        } else if (index === 4 && tipoUsuario === 'profissional') {
-            document.querySelector('.container-forma').style.display = 'none';
-            document.querySelector('.container-detalhes').style.display = 'none';
-            document.querySelector('.container-profissionais').style.display = 'none';
-            document.querySelector('.container-senha').style.display = 'none';
-            document.querySelector('.container-confirma').style.display = 'flex';
-        }
-    }
+        // Adicionando evento de clique no botão "Entrar com Email"
+        document.getElementById('entrarButton').addEventListener('click', function() {
+            goToNextStep(1);
+        });
+        document.getElementById('continueButtonDetalhes').addEventListener('click', function() {
+            goToNextStep(2);
+        });
+        document.getElementById('continueButtonSenha').addEventListener('click', function() {
+            goToNextStep(3);
+        });
+        document.querySelector('.backButton').addEventListener('click', function() {
+            goToPreviousStep(activeMenuOption + 1);
+        });
+    });
 </script>
 
 <div class="container active" onclick="setActive(0)">

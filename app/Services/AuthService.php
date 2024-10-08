@@ -73,9 +73,9 @@ class AuthService
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
             'celular' => 'nullable|string|min:10|max:15',
         ], $messages);
-
         if ($validator->fails()) {
             throw new ValidationException($validator);
         }
@@ -87,16 +87,6 @@ class AuthService
         // Verificar se o nome contém apenas letras e espaços
         if (!preg_match("/^[a-zA-Z ]+$/", $userDTO->name)) {
             throw new Exception('O nome deve conter apenas letras e espaços.');
-        }
-
-        // Verificar se o email pertence ao domínio específico
-        if (!str_ends_with($userDTO->email, '@exemplo.com')) {
-            throw new Exception('O email deve pertencer ao domínio @exemplo.com.');
-        }
-
-        // Verificar se o celular começa com +55
-        if ($userDTO->celular && !str_starts_with($userDTO->celular, '+55')) {
-            throw new Exception('O número de celular deve começar com +55 (código do Brasil).');
         }
     }
 }

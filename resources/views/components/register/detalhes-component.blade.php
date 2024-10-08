@@ -106,10 +106,10 @@
 
 
     <div class="container-buttons">
-        <button id="backButton" type="button" class="btn btn-primary" onclick="setActive(0)">
+        <button id="" type="button" class="btn btn-primary backButton">
             voltar
         </button>
-        <button id="continueButtonDetalhes" type="button" class="btn btn-primary" onclick="setActive(2)">
+        <button id="continueButtonDetalhes" type="button" class="btn btn-primary">
             Continuar
         </button>
     </div>
@@ -123,58 +123,104 @@
         const inputCelular = document.getElementById('validationCelular');
         continueButton.disabled = true;
 
-        function checkFormCompletion() {
-            const notEmpty = inputName.checkValidity() && inputEmail.checkValidity() && inputCelular
-                .checkValidity();
+        // Valida o campo de nome para aceitar apenas letras, acentos e aspas simples
+        function validateName() {
+            const namePattern = /^[A-Za-zÀ-ÖØ-öø-ÿ' ]+$/;
+            const nameValue = inputName.value.trim();
+            const errorMsg = inputName.nextElementSibling;
 
-            const validations = !inputName.classList.contains('is-invalid') &&
-                !inputEmail.classList.contains('is-invalid') &&
-                !inputCelular.classList.contains('is-invalid');
-
-            const allValid = notEmpty && validations;
-
-            continueButton.disabled = !allValid;
-        }
-
-        function validateInput(input, validationFn, errorMessage) {
-            const errorMsg = input.nextElementSibling;
-
-            if (!validationFn(input.value)) {
-                input.classList.add('is-invalid');
-                errorMsg.textContent = errorMessage;
+            if (nameValue === '') {
+                inputName.classList.add('is-invalid');
+                errorMsg.textContent = 'O campo Nome é obrigatório.';
                 errorMsg.style.display = 'block';
-            } else {
-                input.classList.remove('is-invalid');
-                errorMsg.textContent = '';
-                errorMsg.style.display = 'none';
+                return false;
             }
 
-            checkFormCompletion();
+            if (!namePattern.test(nameValue)) {
+                inputName.classList.add('is-invalid');
+                errorMsg.textContent = 'O nome deve conter apenas letras e acentos.';
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            inputName.classList.remove('is-invalid');
+            errorMsg.textContent = '';
+            errorMsg.style.display = 'none';
+            return true;
         }
+
+        // Valida o campo de e-mail
+        function validateEmail() {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailValue = inputEmail.value.trim();
+            const errorMsg = inputEmail.nextElementSibling;
+
+            if (emailValue === '') {
+                inputEmail.classList.add('is-invalid');
+                errorMsg.textContent = 'O campo E-mail é obrigatório.';
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            if (!emailPattern.test(emailValue)) {
+                inputEmail.classList.add('is-invalid');
+                errorMsg.textContent = 'Por favor, insira um e-mail válido.';
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            inputEmail.classList.remove('is-invalid');
+            errorMsg.textContent = '';
+            errorMsg.style.display = 'none';
+            return true;
+        }
+
+        function validateCelular() {
+            const celularValue = inputCelular.value.trim();
+            const errorMsg = inputCelular.nextElementSibling;
+
+            if (celularValue === '') {
+                inputCelular.classList.add('is-invalid');
+                errorMsg.textContent = 'O campo Celular é obrigatório.';
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            if (celularValue.length < 14) {
+                inputCelular.classList.add('is-invalid');
+                errorMsg.textContent = 'O número de celular está incorreto.';
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            inputCelular.classList.remove('is-invalid');
+            errorMsg.textContent = '';
+            errorMsg.style.display = 'none';
+            return true;
+        }
+
+
+        function checkFormCompletion() {
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isCelularValid = validateCelular();
+            console.log((isNameValid && isEmailValid && isCelularValid));
+            continueButton.disabled = !(isNameValid && isEmailValid && isCelularValid);
+        }
+
 
         inputName.addEventListener('blur', function() {
-            validateInput(inputName, value => value.trim() !== '', 'O campo Nome é obrigatório.');
-        });
+            validateName();
 
+        });
         inputEmail.addEventListener('blur', function() {
-            validateInput(inputEmail, validateEmail, 'Por favor, insira um e-mail válido.');
+            validateEmail();
         });
-
         inputCelular.addEventListener('blur', function() {
-            validateInput(inputCelular, validateCelular,
-                'O número de celular está incorreto.');
+            validateCelular();
+            checkFormCompletion();
         });
 
 
-        function validateEmail(email) {
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailPattern.test(email);
-        }
-
-
-        function validateCelular(celular) {
-
-            return celular.length >= 14;
-        }
     });
 </script>
