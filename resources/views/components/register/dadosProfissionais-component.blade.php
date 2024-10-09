@@ -71,51 +71,163 @@
         <p>Por favor, seus dados profissionais</p>
     </div>
 
-    <div class="duas-colunas">
-        <x-campo-component inputType="text" inputName="conselho_regional" :placeholder="'Ex: CRP'" class="quatro-col">
-            <x-slot name="labelSlot">
-                Conselho Regional:
-            </x-slot>
-        </x-campo-component>
+    <div class="row col-md-8">
+        <!-- Campo Conselho Regional -->
+        <div class="col-md-4 mb-3">
+            <label for="conselhoRegional" class="form-label">Conselho Regional</label>
+            <input type="text" class="form-control {{ $errors->has('conselho_regional') ? 'is-invalid' : '' }}"
+                name="conselho_regional" id="conselhoRegional" placeholder="Ex: CRP"
+                value="{{ old('conselho_regional') }}" required>
+            <div class="invalid-feedback">
+                @error('conselho_regional')
+                    {{ $message }}
+                @else
+                    O campo Conselho Regional é obrigatório.
+                @enderror
+            </div>
+        </div>
 
-        <x-campo-component inputType="text" inputName="numero_conselho" :placeholder="'Número de Registro'" class="oito-col">
-            <x-slot name="labelSlot">
-                Número de Registro Profissional:
-            </x-slot>
-        </x-campo-component>
+        <!-- Campo Número de Registro -->
+        <div class="col-md-8 mb-3">
+            <label for="numeroConselho" class="form-label">Número de Registro Profissional</label>
+            <input type="text" class="form-control {{ $errors->has('numero_conselho') ? 'is-invalid' : '' }}"
+                name="numero_conselho" id="numeroConselho" placeholder="Número de Registro"
+                value="{{ old('numero_conselho') }}" required>
+            <div class="invalid-feedback">
+                @error('numero_conselho')
+                    {{ $message }}
+                @else
+                    O campo Número de Registro é obrigatório.
+                @enderror
+            </div>
+        </div>
     </div>
-    <div class="uma-coluna">
-        <x-campo-component inputType="select" inputName="especialidade" required :options="[
-            ['value' => '', 'label' => 'Selecione'],
-            ['value' => 'Médico Pediatra', 'label' => 'Médico Pediatra'],
-            ['value' => 'Psicólogo', 'label' => 'Psicólogo'],
-            ['value' => 'Psiquiatra', 'label' => 'Psiquiatra'],
-            ['value' => 'Terapeuta Ocupacional', 'label' => 'Terapeuta Ocupacional'],
-            ['value' => 'Terapeuta Sensorial', 'label' => 'Terapeuta Sensorial'],
-            ['value' => 'Nutricionista / Nutrólogo', 'label' => 'Nutricionista / Nutrólogo'],
-        ]">
-            <x-slot name="labelSlot">
-                Especialidade:
-            </x-slot>
-        </x-campo-component>
 
-        <x-campo-component inputType="textarea" inputName="resumo_profissional" :placeholder="'Digite um resumo profissional'">
-            <x-slot name="labelSlot">
-                Resumo Profissional:
-            </x-slot>
-        </x-campo-component>
-
-
-
+    <!-- Campo Especialidade -->
+    <div class="row col-md-8">
+        <div class="col-md-12 mb-3">
+            <label for="especialidade" class="form-label">Especialidade</label>
+            <select class="form-select {{ $errors->has('especialidade') ? 'is-invalid' : '' }}" name="especialidade"
+                id="especialidade" required>
+                <option value="">Selecione</option>
+                <option value="Médico Pediatra" {{ old('especialidade') == 'Médico Pediatra' ? 'selected' : '' }}>Médico
+                    Pediatra</option>
+                <option value="Psicólogo" {{ old('especialidade') == 'Psicólogo' ? 'selected' : '' }}>Psicólogo</option>
+                <option value="Psiquiatra" {{ old('especialidade') == 'Psiquiatra' ? 'selected' : '' }}>Psiquiatra
+                </option>
+                <option value="Terapeuta Ocupacional"
+                    {{ old('especialidade') == 'Terapeuta Ocupacional' ? 'selected' : '' }}>Terapeuta Ocupacional
+                </option>
+                <option value="Terapeuta Sensorial"
+                    {{ old('especialidade') == 'Terapeuta Sensorial' ? 'selected' : '' }}>
+                    Terapeuta Sensorial</option>
+                <option value="Nutricionista / Nutrólogo"
+                    {{ old('especialidade') == 'Nutricionista / Nutrólogo' ? 'selected' : '' }}>Nutricionista /
+                    Nutrólogo
+                </option>
+            </select>
+            <div class="invalid-feedback">
+                @error('especialidade')
+                    {{ $message }}
+                @else
+                    O campo Especialidade é obrigatório.
+                @enderror
+            </div>
+        </div>
     </div>
+
+    <!-- Campo Resumo Profissional -->
+    <div class="row col-md-8">
+        <div class="col-md-12 mb-3">
+            <label for="resumoProfissional" class="form-label">Resumo Profissional</label>
+            <textarea class="form-control {{ $errors->has('resumo_profissional') ? 'is-invalid' : '' }}" name="resumo_profissional"
+                id="resumoProfissional" rows="4" placeholder="Digite um resumo profissional" required>{{ old('resumo_profissional') }}</textarea>
+            <div class="invalid-feedback">
+                @error('resumo_profissional')
+                    {{ $message }}
+                @else
+                    O campo Resumo Profissional é obrigatório.
+                @enderror
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div class="container-buttons">
 
         <button id="" type="button" class="btn btn-primary backButton">
             voltar
         </button>
-        <button id="continueButtonDados" type="button" class="btn btn-primary">
+        <button id="continueButtonDadosProfissionais" type="button" class="btn btn-primary">
             Continuar
         </button>
     </div>
 </div>
-</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const conselhoRegionalInput = document.getElementById('conselhoRegional');
+        const numeroConselhoInput = document.getElementById('numeroConselho');
+        const especialidadeSelect = document.getElementById('especialidade');
+        const resumoProfissionalTextarea = document.getElementById('resumoProfissional');
+        const continueButton = document.getElementById('continueButtonDadosProfissionais');
+
+        continueButton.disabled = true;
+
+        function checkFormCompletion() {
+            const notEmpty = conselhoRegionalInput.value.trim() !== '' &&
+                numeroConselhoInput.value.trim() !== '' &&
+                especialidadeSelect.value.trim() !== '' &&
+                resumoProfissionalTextarea.value.trim() !== '';
+
+            const noInvalidClass = !conselhoRegionalInput.classList.contains('is-invalid') &&
+                !numeroConselhoInput.classList.contains('is-invalid') &&
+                !especialidadeSelect.classList.contains('is-invalid') &&
+                !resumoProfissionalTextarea.classList.contains('is-invalid');
+
+            continueButton.disabled = !(notEmpty && noInvalidClass);
+        }
+
+        function validateInput(input, validationFn, errorMessage) {
+            const errorMsg = input.nextElementSibling;
+
+            if (!validationFn(input.value)) {
+                input.classList.add('is-invalid');
+                errorMsg.textContent = errorMessage;
+                errorMsg.style.display = 'block';
+            } else {
+                input.classList.remove('is-invalid');
+                errorMsg.textContent = '';
+                errorMsg.style.display = 'none';
+            }
+
+            checkFormCompletion();
+        }
+
+        // Funções de validação
+        function validateText(text) {
+            return text.trim() !== '';
+        }
+
+        // Validações para cada campo
+        conselhoRegionalInput.addEventListener('blur', function() {
+            validateInput(conselhoRegionalInput, validateText,
+                'O campo Conselho Regional é obrigatório.');
+        });
+
+        numeroConselhoInput.addEventListener('blur', function() {
+            validateInput(numeroConselhoInput, validateText,
+                'O campo Número de Registro é obrigatório.');
+        });
+
+        especialidadeSelect.addEventListener('blur', function() {
+            validateInput(especialidadeSelect, validateText, 'O campo Especialidade é obrigatório.');
+        });
+
+        resumoProfissionalTextarea.addEventListener('blur', function() {
+            validateInput(resumoProfissionalTextarea, validateText,
+                'O campo Resumo Profissional é obrigatório.');
+        });
+    });
+</script>

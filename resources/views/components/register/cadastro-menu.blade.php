@@ -4,7 +4,7 @@
         gap: 12px;
         padding: 8px 40px;
         cursor: pointer;
-        margin: 45px 0;
+        margin: 25px 0;
         min-width: 25vw;
     }
 
@@ -102,18 +102,18 @@
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Obtém a opção ativa da sessão e converte para número
-        var activeMenuOption = parseInt("{{ session('active_menu', 0) }}");
 
-        // Mantém um registro do último índice ativo
-        var completedSteps = 0;
+        let currentStep = parseInt("{{ session('active_menu', 0) }}");
+        let completedSteps = 0;
+        let valorSenha = (tipoUsuario === 'profissional') ? 4 : 3;
 
-        // Define o estado inicial com o índice ativo
-        setActive(activeMenuOption);
+        setActive(currentStep);
 
-        // Função para definir o step ativo
         function setActive(index) {
-            var containers = document.querySelectorAll('.container');
+            currentStep = index;
+
+            let containers = document.querySelectorAll('.container');
+            console.log("Step atual: ", currentStep);
 
             containers.forEach(function(container, i) {
                 const button = container.querySelector('button');
@@ -121,15 +121,14 @@
                 if (i === index) {
                     container.classList.add('active');
                     container.classList.remove('inactive');
-                    button.disabled = false; // Habilita o botão do step atual
+                    button.disabled = false;
                 } else {
                     container.classList.remove('active');
                     container.classList.add('inactive');
-                    button.disabled = (i > completedSteps); // Desativa steps futuros
+                    button.disabled = (i > completedSteps);
                 }
             });
 
-            // Lógica de exibição dos containers com base no índice e tipo de usuário
             if (index === 0) {
                 if (tipoUsuario === 'profissional') {
                     showStep(['.container-forma'], ['.container-detalhes', '.container-profissionais',
@@ -161,9 +160,15 @@
                     ]);
                 }
             } else if (index === 3) {
-                showStep(['.container-confirma'], ['.container-forma', '.container-detalhes',
-                    '.container-senha'
-                ]);
+                if (tipoUsuario === 'profissional') {
+                    showStep(['.container-senha'], ['.container-forma', '.container-detalhes',
+                        '.container-profissionais', '.container-confirma'
+                    ]);
+                } else {
+                    showStep(['.container-confirma'], ['.container-forma', '.container-detalhes',
+                        '.container-senha'
+                    ]);
+                }
             } else if (index === 4 && tipoUsuario === 'profissional') {
                 showStep(['.container-confirma'], ['.container-forma', '.container-detalhes',
                     '.container-profissionais', '.container-senha'
@@ -171,30 +176,28 @@
             }
         }
 
-        // Função para mostrar e ocultar os containers
         function showStep(showSelectors, hideSelectors) {
             showSelectors.forEach(selector => document.querySelector(selector).style.display = 'flex');
             hideSelectors.forEach(selector => document.querySelector(selector).style.display = 'none');
         }
 
-        // Função para avançar para o próximo step e atualizar o progresso
         function goToNextStep(nextStepIndex) {
             if (nextStepIndex > completedSteps) {
                 completedSteps = nextStepIndex; // Atualiza o step completado
             }
             setActive(nextStepIndex);
         }
-        console.log("Voltando para o step: ", activeMenuOption);
 
         function goToPreviousStep(currentStep) {
-            console.log("Voltando para o step: ", currentStep);
-            if (currentStep >= 0) {
-                currentStep -= 1; // Diminui o índice do step atual
-                setActive(currentStep);
+            console.log("funcinou: ");
+
+            if (currentStep > 0) {
+                goToNextStep(currentStep - 1);
+                console.log("valor: ", currentStep);
+
             }
         }
 
-        // Lógica para os botões que controlam os steps
         document.querySelectorAll('.container button').forEach((button, index) => {
             button.addEventListener('click', function() {
                 if (index <= completedSteps || index === completedSteps + 1) {
@@ -203,7 +206,6 @@
             });
         });
 
-        // Adicionando evento de clique no botão "Entrar com Email"
         document.getElementById('entrarButton').addEventListener('click', function() {
             goToNextStep(1);
         });
@@ -211,15 +213,26 @@
             goToNextStep(2);
         });
         document.getElementById('continueButtonSenha').addEventListener('click', function() {
-            goToNextStep(3);
+            goToNextStep(valorSenha);
         });
-        document.querySelector('.backButton').addEventListener('click', function() {
-            goToPreviousStep(activeMenuOption + 1);
+        const continueButtonDadosProfissionais = document.getElementById('continueButtonDadosProfissionais');
+
+        if (continueButtonDadosProfissionais) {
+            continueButtonDadosProfissionais.addEventListener('click', function() {
+                goToNextStep(3);
+            });
+        }
+
+        document.querySelectorAll('.backButton').forEach((button) => {
+            button.addEventListener('click', function() {
+                goToPreviousStep(currentStep);
+            });
         });
+
     });
 </script>
 
-<div class="container active" onclick="setActive(0)">
+<div class="container active">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
         class="svg-inactive">
         <path
@@ -229,13 +242,13 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <button onclick="setActive(0)">
+        <button>
             <h1>Cadastrar</h1>
             <p>Por favor, selecione como quer entrar</p>
         </button>
     </div>
 </div>
-<div class="container active" onclick="setActive(1)">
+<div class="container active">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
         class="svg-inactive">
         <path
@@ -245,7 +258,7 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <button onclick="setActive(1)">
+        <button>
             <h1>Seus Detalhes</h1>
             <p>Por favor, insira aqui seu nome e email</p>
         </button>
@@ -253,17 +266,16 @@
 </div>
 
 @if ($tipoUsuario == 'profissional')
-    <div class="container inactive" onclick="setActive(2)">
+    <div class="container inactive">
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
             class="svg-inactive">
-            <path
-                d="M13 25.5C19.6274 25.5 25 20.1274 25 13.5C25 6.87258 19.6274 1.5 13 1.5C6.37258 1.5 1 6.87258 1 13.5C1 20.1274 6.37258 25.5 13 25.5Z"
-                stroke="#194AF1" stroke-width="1.5" />
+            <path d=" M13 25.5C19.6274 25.5 25 20.1274 25 13.5C25 6.87258 19.6274 1.5 13 1.5C6.37258 1.5 1 6.87258 1
+        13.5C1 20.1274 6.37258 25.5 13 25.5Z" stroke="#194AF1" stroke-width="1.5" />
             <path d="M8.80005 14.1L11.2 16.5L17.2 10.5" stroke="#194AF1" stroke-width="1.5" stroke-linecap="round"
                 stroke-linejoin="round" />
         </svg>
         <div class="container-text">
-            <button onclick="setActive(2)">
+            <button>
                 <h1>Dados Profissionais</h1>
                 <p>Insira aqui seus dados profissionais</p>
             </button>
@@ -271,7 +283,7 @@
     </div>
 @endif
 
-<div class="container inactive" onclick="setActive({{ $tipoUsuario == 'profissional' ? 3 : 2 }})">
+<div class="container inactive">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
         class="svg-inactive">
         <path
@@ -281,14 +293,14 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <button onclick="setActive({{ $tipoUsuario == 'profissional' ? 3 : 2 }})">
+        <button>
             <h1>Definir Senha</h1>
             <p>A senha deve ter no mínimo 8 caracteres.</p>
         </button>
     </div>
 </div>
 
-<div class="container inactive" onclick="setActive({{ $tipoUsuario == 'profissional' ? 4 : 3 }})">
+<div class="container inactive">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 27" fill="none"
         class="svg-inactive">
         <path
@@ -298,7 +310,7 @@
             stroke-linejoin="round" />
     </svg>
     <div class="container-text">
-        <button onclick="setActive({{ $tipoUsuario == 'profissional' ? 4 : 3 }})">
+        <button>
             <h1>Confirmar Cadastro</h1>
             <p>Insira o código que enviamos por email.</p>
         </button>
