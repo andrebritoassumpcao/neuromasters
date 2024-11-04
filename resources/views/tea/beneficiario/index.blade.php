@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/beneficiario/style.css') }}">
+<title>Meu Beneficiario</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/beneficiario/style.css') }}">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Meu Beneficiario</title>
-</head>
-
-<body>
+<x-layouts.app>
     <x-main.header-app></x-main.header-app>
 
     <main>
@@ -86,9 +78,7 @@
 
     </main>
 
-</body>
-
-</html>
+</x-layouts.app>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const inputFoto = document.getElementById("input-foto");

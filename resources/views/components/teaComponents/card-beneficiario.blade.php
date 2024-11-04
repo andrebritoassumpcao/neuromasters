@@ -6,7 +6,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        height: 240px;
+        height: 210px;
         width: 190px;
         border: 0ch;
 
@@ -16,16 +16,13 @@
         transition: transform 0.3s ease-in-out;
         cursor: pointer;
         overflow: hidden;
-        /* Adicionado para garantir que as iniciais não ultrapassem a borda do card */
     }
 
     .card-beneficiario img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* Garante que a imagem de perfil seja coberta e ajustada dentro do contêiner */
         border-radius: 20px 20px 0 0;
-        /* Ajusta a borda apenas no topo */
     }
 
     .card-beneficiario .profile-initials {
@@ -79,10 +76,8 @@
 
 <a class="card-beneficiario" href="{{ route('beneficiarios.mostrar', ['id_beneficiario' => $beneficiario->id]) }}">
     @if ($beneficiario->foto)
-        <!-- Se houver uma foto, exibir a foto -->
         <img src="{{ asset('storage/' . $beneficiario->foto) }}" alt="{{ $beneficiario->nome_beneficiario }}">
     @else
-        <!-- Se não houver foto, exibir as iniciais do nome -->
         <div class="profile-initials">
             {{ $beneficiario->nameInitials }}
         </div>

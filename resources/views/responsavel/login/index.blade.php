@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login/style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<title>Login</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/login/style.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-    <title>Login</title>
-</head>
-
-<body class="bg-body-tertiary">
-
+<x-layouts.app>
     <x-header-login :link="'/'" />
 
     @if (Session::has('alert.config'))
@@ -32,7 +17,6 @@
         <section class="login-container">
             <div class="left-container">
                 <h2>Fazer Login</h2>
-
 
                 <div class="ou d-flex align-items-center my-3">
                     <div class="linha flex-grow-1"></div>
@@ -86,14 +70,13 @@
         </section>
     </form>
 
-</body>
-<footer>
-    <x-footer-login>
-    </x-footer-login>
+    <footer>
+        <x-footer-login>
+        </x-footer-login>
 
-</footer>
+    </footer>
 
-</html>
+</x-layouts.app>
 <script>
     (() => {
         'use strict'

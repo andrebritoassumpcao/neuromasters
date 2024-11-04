@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login/style.css') }}">
+<title>Login</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/login/style.css') }}">
-    <link rel="stylesheet" href="path/to/sweetalert2.min.css">
-
-
-    <title>Login</title>
-</head>
-
-<body>
+<x-layouts.app>
     <x-header-login :link="'/sou-profissional'" />
 
     @include('sweetalert::alert')
@@ -31,30 +20,46 @@
 
         <section class="login-container">
             <div class="left-container">
-                <span>Fazer Login</span>
+                <h4 class="mb-3">Fazer Login</h4>
 
 
-                <x-campo-component inputType="text" inputName="email" :placeholder="'Digite seu email'" class="doze-col">
-                    <x-slot name="labelSlot">
-                        Email:
-                    </x-slot>
-                </x-campo-component>
-                @error('email')
-                    <span>${{ $message }}</span>
-                @enderror
-                <x-campo-component inputType="password" inputName="password" :placeholder="'Digite seu senha'" class="doze-col">
-                    <x-slot name="labelSlot">
-                        Senha:
-                    </x-slot>
-                </x-campo-component>
-                @error('password')
-                    <span>${{ $message }}</span>
-                @enderror
-                <a id="esqueceu" href="">Esqueceu a senha?</a>
-                <x-submit-button url="" style="width: 323px; height: 48px; margin: 20px 0;">
-                    Login
-                </x-submit-button>
-                <p href="">Ainda não tem uma conta? <a id="esqueceu" href="/cadastro">Cadastre-se</a></p>
+                <div class="col-md-12 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                        name="email" id="email" placeholder="Digite seu email" value="{{ old('email') }}"
+                        required>
+                    <div class="invalid-feedback">
+                        @error('email')
+                            {{ $message }}
+                        @else
+                            O campo de email é obrigatório.
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                        name="password" id="password" placeholder="Digite sua senha" required>
+                    <div class="invalid-feedback">
+                        @error('password')
+                            {{ $message }}
+                        @else
+                            O campo de senha é obrigatório.
+                        @enderror
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <a href="#" id="esqueceu">Esqueceu a senha?</a>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; height: 48px; margin: 20px 0;">
+                        Login
+                    </button>
+                </div>
+
+                <!-- Link para Cadastro -->
+                <p class="mt-3">Ainda não tem uma conta? <a href="/cadastro">Cadastre-se</a></p>
+            </div>
             </div>
             <div class="right-containerProf">
 
@@ -64,11 +69,10 @@
 
         </section>
     </form>
-</body>
-<footer>
-    <x-footer-login>
-    </x-footer-login>
+    <footer>
+        <x-footer-login>
+        </x-footer-login>
 
-</footer>
+    </footer>
 
-</html>
+</x-layouts.app>
