@@ -51,7 +51,7 @@ Route::get('/sou-profissional', [AuthController::class, 'showWelcomeForProfessio
 Route::controller(ProfissionalController::class)->group(function () {
     Route::post('/Registro-profissional', 'registerProfissional')->name('registerProfissional');
     Route::get('/Perfil-profissional/{id_profissional}', 'mostrarPerfil')->name('profissionalPerfil.index');
-    Route::get('/visualizar-perfil/{id_profissional}', 'verPerfil')->name('profissionalVerPerfil.index');
+    Route::get('/visualizar-perfil/{id_profissional}', 'mostrarPerfil')->name('profissionalVerPerfil.index');
     Route::post('/Perfil-profissional/{id_profissional}', 'uploadFotoPerfil')->name('profissionalPerfil.upload');
     Route::put('/Editar-profissional/{id_profissional}', 'updateProfissional')->name('profissionalPerfil.update');
     Route::put('/Editar-profissional/{id_profissional}/updateSobre', 'updateSobreProfissional')->name('profissionalPerfil.updateSobre');
@@ -72,7 +72,7 @@ Route::prefix('/tea-app')->group(function () {
         Route::post('/meu-beneficiario/{id_beneficiario}', 'uploadFoto')->name('beneficiarios.upload');
     });
     Route::get('/cadastrar-beneficiario', function () {
-        return view('tea.register.index');
+        return view('tea.cadastro-beneficiario.index');
     })->name('cadastrar-beneficiario');
 
     Route::get('/meus-atendimentos', function () {

@@ -1,85 +1,42 @@
 <style>
-    .item1 {}
-
-    .item2 {
-        width: 200px;
-    }
-
-    .item3 {
-        width: 260px;
-    }
-
-    .item4 {
-        width: 200px;
-    }
-
-    .item5 {
-        width: 200px;
-    }
-
-    .item6 {
-        width: 100%;
-        height: 140px;
-    }
-
     .container-detalhes {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        margin: 40px 40px;
-        width: 600px;
-    }
-
-    .duas-col {
-        display: flex;
-        gap: 20px;
-        width: 500px;
-        justify-content: space-between;
-    }
-
-    .uma-col {
-        width: 500px;
-    }
-
-    textarea {
-        border-radius: 8px;
-        border: 1px solid #DBDCD6;
-        color: #1b1b1b;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        padding: 8px;
-        resize: none;
-        margin-top: 8px;
+        width: 50vw;
     }
 </style>
 <div class="container-detalhes">
+    <section class=" container d-flex flex-column  m-5">
+        <div class="col-md-12 mb-3">
+            <label for="diagnostico" class="form-label">Diagnóstico Principal</label>
+            <input type="text" class="form-control" name="diagnostico" id="diagnostico" placeholder="Ex: Espectro Autista"
+                value="{{ old('diagnostico') }}" required>
+            <div class="invalid-feedback">
+                @error('diagnostico')
+                    {{ $message }}
+                @else
+                    O campo de diagnóstico é obrigatório.
+                @enderror
+            </div>
+        </div>
 
+        <!-- Detalhes do Diagnóstico -->
+        <div class="col-md-12 mb-3">
+            <label for="diagnostico_detalhes" class="form-label">Detalhes do Diagnóstico</label>
+            <textarea class="form-control" name="diagnostico_detalhes" id="diagnostico_detalhes" rows="4"
+                placeholder="Digite os detalhes do diagnóstico..." required>{{ old('diagnostico_detalhes') }}</textarea>
+            <div class="invalid-feedback">
+                @error('diagnostico_detalhes')
+                    {{ $message }}
+                @else
+                    O campo de detalhes do diagnóstico é obrigatório.
+                @enderror
+            </div>
+        </div>
 
-
-    <div class="uma-col">
-        <x-teaComponents.campo-formulario inputClass="item3" inputType="text" inputName="diagnostico" :placeholder="'Ex: Espectro Autista'"
-            inputId="">
-            <x-slot name="labelSlot">
-                Diagnóstico Principal
-            </x-slot>
-
-        </x-teaComponents.campo-formulario>
-
-    </div>
-    <div class="uma-col">
-        <label for="detalhes">Detalhes do Diagnóstico</label>
-        <textarea class="item6" name="diagnostico_detalhes" placeholder="Digite os detalhes do diagnóstico..."></textarea>
-
-    </div>
-
-
-    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(2)">
-        Continuar
-    </x-register.continue-register-button>
-
+        <!-- Botão Continuar -->
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary" style="width: 100%; height: 48px;">
+                Continuar
+            </button>
+        </div>
+    </section>
 </div>
