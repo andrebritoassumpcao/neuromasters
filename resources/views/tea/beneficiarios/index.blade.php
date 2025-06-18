@@ -14,18 +14,20 @@
     </style>
     <x-main.header-app></x-main.header-app>
     <main>
-        <x-menu-lateral>
-        </x-menu-lateral>
-        <section class="tea-container">
-            <h2>Meus Beneficiários</h2>
-            <div class="beneficiarios-content">
-                <x-teaComponents.card-create-beneficiario />
-                @foreach ($beneficiarios as $beneficiario)
-                    <x-teaComponents.card-beneficiario :beneficiario="$beneficiario" />
-                @endforeach
-            </div>
+        <div class="container-pai">
+            <x-menu-lateral>
+            </x-menu-lateral>
+            <section class="tea-container">
+                <h2>Meus Beneficiários</h2>
+                <div class="beneficiarios-content">
+                    <x-teaComponents.card-create-beneficiario />
+                    @foreach ($beneficiarios as $beneficiario)
+                        <x-teaComponents.card-beneficiario :beneficiario="$beneficiario" />
+                    @endforeach
+                </div>
 
-        </section>
+            </section>
+        </div>
     </main>
 
 </x-layouts.app>

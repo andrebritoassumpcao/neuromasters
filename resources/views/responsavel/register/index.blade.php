@@ -82,3 +82,4 @@
                 })
             })()
         </script>
+    </x-layouts.app>

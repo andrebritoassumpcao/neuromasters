@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/login/style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title>Login</title>
 
@@ -10,86 +11,115 @@
             Swal.fire({!! Session::get('alert.config') !!});
         </script>
     @endif
+    <div class="main-content">
+        <form method="POST" class="needs-validation" action="{{ route('login.store') }}" novalidate autocomplete="off">
+            @csrf
+            <section class="login-container">
+                <div class="left-container">
+                    <h2>Bem-vindo de volta!</h2>
+                    <p>Entre na sua conta para continuar</p>
 
-    <form method="POST" class="needs-validation" action="{{ route('login.store') }}" novalidate>
-        @csrf
+                    <div class="form-group">
+                        <label for="validationEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                            name="email" id="validationEmail" value="{{ old('email') }}" required
+                            autocomplete="username">
+                        <div class="invalid-feedback">
+                            @error('email')
+                                {{ $message }}
+                            @else
+                                O campo de email é obrigatório.
+                            @enderror
+                        </div>
+                    </div>
 
-        <section class="login-container">
-            <div class="left-container">
-                <h2>Fazer Login</h2>
+                    <div class="form-group">
+                        <label for="validationPassword" class="form-label">Senha</label>
+                        <div class="input-group">
+                            <input type="password"
+                                class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"
+                                id="validationPassword" required autocomplete="current-password">
+                            <i class="fas fa-eye" id="eyeIcon" style="display:none;" tabindex="0"
+                                aria-label="Mostrar senha"></i>
+                        </div>
+                        <div class="invalid-feedback">
+                            @error('password')
+                                {{ $message }}
+                            @else
+                                O campo de senha é obrigatório.
+                            @enderror
+                        </div>
+                    </div>
 
-                <div class="ou d-flex align-items-center my-3">
-                    <div class="linha flex-grow-1"></div>
-                    <h4 class="mx-3">OU</h4>
-                    <div class="linha flex-grow-1"></div>
-                </div>
+                    <a href="#" class="forgot-link">Esqueceu a senha?</a>
 
-                <div class="col-md-10 mb-3">
-                    <label for="validationEmail" class="form-label">Email</label>
-                    <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                        name="email" id="validationEmail" value="{{ old('email') }}" required>
-                    <div class="invalid-feedback">
-                        @error('email')
-                            {{ $message }}
-                        @else
-                            O campo de email é obrigatório.
-                        @enderror
+                    <button type="submit" class="btn-primary">Login</button>
+
+                    <div class="signup-link">
+                        Ainda não tem uma conta? <a href="/cadastro">Cadastre-se</a>
                     </div>
                 </div>
 
-                <div class="col-md-10 mb-3">
-                    <label for="validationPassword" class="form-label">Senha</label>
-                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                        name="password" id="validationPassword" value="{{ old('password') }}" required>
-                    <div class="invalid-feedback">
-                        @error('password')
-                            {{ $message }}
-                        @else
-                            O campo de senha é obrigatório.
-                        @enderror
-                    </div>
+                <div class="right-container">
+                    <img src="{{ asset('images/login-img.svg') }}" alt="Imagem de apoio à saúde mental">
+                    <h4>Junte-se a nós para promover a saúde mental. Acesse nossa plataforma hoje e embarque em uma
+                        jornada
+                        de apoio e transformação.</h4>
                 </div>
-
-                <a id="" href="#" class="link-opacity-25-hover d-block mb-3">Esqueceu a senha?</a>
-
-                <div class="d-grid gap-2 col-10 mx-auto">
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
-                </div>
-
-                <p class="text-center mt-3">Ainda não tem uma conta? <a href="/cadastro"
-                        class="link-opacity-25-hover">Cadastre-se</a></p>
-            </div>
-
-            <div class="right-container">
-                <img src="{{ asset('images/login-img.svg') }}" alt="Imagem de Login" class="img-fluid mb-4">
-                <h4 class="text-center m-2">Junte-se a nós para promover a saúde mental, acesse nossa plataforma hoje e
-                    embarque em uma
-                    jornada
-                    de apoio e transformação.</h4>
-            </div>
-        </section>
-    </form>
+            </section>
+        </form>
+    </div>
 
     <footer>
-        <x-footer-login>
-        </x-footer-login>
-
+        <x-footer-login />
     </footer>
-
 </x-layouts.app>
+
 <script>
+    const passwordField = document.getElementById('validationPassword');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    function toggleEyeVisibility() {
+        if (passwordField.value.length > 0) {
+            eyeIcon.style.display = 'block';
+        } else {
+            eyeIcon.style.display = 'none';
+            passwordField.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+    passwordField.addEventListener('input', toggleEyeVisibility);
+
+    eyeIcon.addEventListener('click', function() {
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    });
+
+    eyeIcon.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            eyeIcon.click();
+        }
+    });
+
+    toggleEyeVisibility();
+
     (() => {
         'use strict'
-
         const forms = document.querySelectorAll('.needs-validation')
-
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
                 }
-
                 form.classList.add('was-validated')
             }, false)
         })

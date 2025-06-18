@@ -1,15 +1,14 @@
 <style>
     .sidebar-container {
-        position: absolute;
-        top: 80px;
+        position: relative;
+        top: 0;
         left: 0;
-        min-width: 312.375px;
-
+        width: 312.375px;
+        height: 100vh;
         background-color: #ffffff;
-        transition: width 600ms ease;
         background: #FFF;
         box-shadow: 4px 0px 20px 0px rgba(0, 0, 0, 0.05);
-
+        overflow-y: auto;
     }
 
     .sidebar {
@@ -19,15 +18,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100svh;
+        height: 100%;
     }
 
     .sidebar-item {
         width: 100%;
-
     }
-
-
 
     .sidebar-link {
         display: flex;
@@ -37,14 +33,12 @@
         text-decoration: none;
         filter: grayscale(0%) opacity(0.7);
         padding-right: 25px;
-
     }
 
     .sidebar-link:hover {
         filter: grayscale(0%) opacity(1);
         background: #ececec;
         color: #0D0E01;
-
     }
 
     .link-text {
