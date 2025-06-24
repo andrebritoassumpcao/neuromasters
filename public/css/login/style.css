@@ -82,7 +82,7 @@ body {
 .form-control:focus {
     border-color: #667eea;
     background: #fff;
-    outline: none;
+    z-index: 1 !important;
 }
 .input-group .fa-eye,
 .input-group .fa-eye-slash {
@@ -96,6 +96,7 @@ body {
     background: none;
     border: none;
     padding: 0;
+    z-index: 5;
 }
 .invalid-feedback {
     color: #e74c3c;
