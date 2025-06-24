@@ -107,7 +107,7 @@
 
     <div class="container-buttons">
         <button id="" type="button" class="btn btn-primary backButton">
-            voltar
+            Voltar
         </button>
         <button id="continueButtonDetalhes" type="button" class="btn btn-primary">
             Continuar

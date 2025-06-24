@@ -39,8 +39,7 @@
                             <input type="password"
                                 class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password"
                                 id="validationPassword" required autocomplete="current-password">
-                            <i class="fas fa-eye" id="eyeIcon" style="display:none;" tabindex="0"
-                                aria-label="Mostrar senha"></i>
+                            <i class="fas fa-eye" id="eyeIcon" tabindex="0" aria-label="Mostrar senha"></i>
                         </div>
                         <div class="invalid-feedback">
                             @error('password')
@@ -79,18 +78,6 @@
     const passwordField = document.getElementById('validationPassword');
     const eyeIcon = document.getElementById('eyeIcon');
 
-    function toggleEyeVisibility() {
-        if (passwordField.value.length > 0) {
-            eyeIcon.style.display = 'block';
-        } else {
-            eyeIcon.style.display = 'none';
-            passwordField.type = 'password';
-            eyeIcon.classList.remove('fa-eye-slash');
-            eyeIcon.classList.add('fa-eye');
-        }
-    }
-    passwordField.addEventListener('input', toggleEyeVisibility);
-
     eyeIcon.addEventListener('click', function() {
         if (passwordField.type === 'password') {
             passwordField.type = 'text';
@@ -105,12 +92,12 @@
 
     eyeIcon.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
             eyeIcon.click();
         }
     });
 
-    toggleEyeVisibility();
-
+    // Validação do formulário
     (() => {
         'use strict'
         const forms = document.querySelectorAll('.needs-validation')

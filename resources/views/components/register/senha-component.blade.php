@@ -70,11 +70,11 @@
 
         @if ($tipoUsuario == 'profissional')
             <button id="backButton" type="button" class="btn btn-primary">
-                voltar
+                Voltar
             </button>
         @else
             <button id="" type="button" class="btn btn-primary backButton">
-                voltar
+                Voltar
             </button>
         @endif
         <button id="continueButtonSenha" type="button" class="btn btn-primary">
