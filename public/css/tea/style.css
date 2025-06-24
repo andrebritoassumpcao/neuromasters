@@ -1,16 +1,14 @@
-@import url('../global.css');
+@import url("../global.css");
 
-main{
-   width: 100%;
-   margin: 0 auto;
-
+main {
+    width: 100%;
+    margin: 0 auto;
 }
-
 
 .beneficiarios-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);  /* Cria 4 colunas iguais */
-    gap: 20px;  /* Espaço entre as colunas */
+    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas iguais */
+    gap: 20px; /* Espaço entre as colunas */
     padding-bottom: 40px;
 }
 @media screen and (max-width: 1450px) {
@@ -32,28 +30,27 @@ main{
         grid-template-columns: 1fr;
     }
 }
-.tea-container{
-position: relative;
- max-width: 60vw;
- height: auto;
- margin-top: 40px;
- margin-left: 40px;
- padding: 0;
- background-color: #fff;
- left: 25%;
- filter: drop-shadow(0px 4px 20px rgba(91, 71, 188, 0.30));
- border-radius: 8px;
-
+.tea-container {
+    max-width: 80vw;
+    height: auto;
+    margin: 20 auto;
+    padding: 0;
+    background-color: #fff;
+    filter: drop-shadow(0px 4px 20px rgba(91, 71, 188, 0.3));
+    border-radius: 8px;
+}
+.container-pai {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
 }
 
-.tea-container h2{
- padding: 20px 0 0 20px;
+.tea-container h2 {
+    padding: 20px 0 0 20px;
 }
 
-@media screen and (min-width: 1450px) {
+@media (min-width: 1950px) {
     .tea-container {
-        left: 20%;
-        max-width: 70vw;
-
+        min-width: 1600px;
     }
 }

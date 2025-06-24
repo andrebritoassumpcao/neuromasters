@@ -74,10 +74,7 @@
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Obtém a opção ativa da sessão e converte para número
         var activeMenuOption = parseInt("{{ session('active_menu', 0) }}");
-
-        // Define a classe 'active' no item correspondente ao menu ativo
         setActive(activeMenuOption);
     });
 

@@ -25,22 +25,17 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         try {
-            // Chamar o serviço para validar os dados
             $this->loginService->validateLoginData($request->all());
 
-            // Autenticar o usuário
             $this->loginService->authenticate($request->input('email'), $request->input('password'));
 
-            // Redirecionar para a home se bem-sucedido
             return redirect()->intended('home');
         } catch (ValidationException $e) {
-            // Exibir os erros de validação no alert
             $errors = $e->validator->errors()->all();
             Alert::error('Erro de Validação', implode($errors));
 
             return redirect()->route('login.index')->withInput();
         } catch (Exception $e) {
-            // Exibir o erro de autenticação no alert
             Alert::error('Erro', $e->getMessage());
 
             return redirect()->route('login.index')->withInput();
@@ -49,7 +44,6 @@ class LoginController extends Controller
 
     public function destroy()
     {
-        // Chamar o serviço para deslogar o usuário
         $this->loginService->logout();
 
         return redirect()->route('login.index');

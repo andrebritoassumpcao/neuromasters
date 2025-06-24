@@ -1,136 +1,97 @@
 <style>
-    .item1 {}
-
-    .item2 {
-        width: 200px;
-    }
-
-    .item3 {
-        width: 200px;
-    }
-
-    .item4 {
-        width: 200px;
-    }
-
-    .item5 {
-        width: 200px;
-    }
-
-    .container-dadospessoais {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        margin: 40px 40px;
-        width: 600px;
-    }
-
-    .duas-col {
-        display: flex;
-        gap: 20px;
-        width: 500px;
-        justify-content: space-between;
-    }
-
-    .uma-col {
-        width: 500px;
-    }
+    .container-dadospessoais {}
 </style>
-@php
-    $optionsSexo = [
-        ['value' => '', 'text' => 'Selecione'],
-        ['value' => 'masculino', 'text' => 'Masculino'],
-        ['value' => 'feminino', 'text' => 'Feminino'],
-        ['value' => 'outros', 'text' => 'Outros'],
-    ];
-@endphp
 <div class="container-dadospessoais">
-    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
+    <section class="container d-flex flex-column m-5">
+
+        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
+        <div class="col-md-12 mb-3">
+            <label for="name" class="form-label">Nome Completo</label>
+            <input type="text" class="form-control" name="name" id="name"
+                placeholder="Digite seu nome completo" value="{{ old('name') }}" required>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="nascimento" class="form-label">Data de Nascimento</label>
+                <input type="date" class="form-control" name="nascimento" id="nascimento"
+                    value="{{ old('nascimento') }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="sexo" class="form-label">Sexo</label>
+                <select class="form-select" name="sexo" id="sexo" required>
+                    <option value="">Selecione</option>
+                    <option value="masculino" {{ old('sexo') == 'masculino' ? 'selected' : '' }}>Masculino</option>
+                    <option value="feminino" {{ old('sexo') == 'feminino' ? 'selected' : '' }}>Feminino</option>
+                    <option value="outros" {{ old('sexo') == 'outros' ? 'selected' : '' }}>Outros</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="peso" class="form-label">Peso</label>
+                <input type="text" class="form-control " name="peso" id="peso" placeholder="Digite seu peso"
+                    value="{{ old('peso') }}">
+
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="altura" class="form-label">Altura</label>
+                <input type="text" class="form-control" name="altura" id="altura" placeholder="Digite sua altura"
+                    value="{{ old('altura') }}">
+
+            </div>
+        </div>
 
 
 
-    <div class="uma-col">
-        <x-teaComponents.campo-formulario inputClass="item1" inputType="text" inputName="name" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Nome Completo*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-    </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" class="form-control" name="cpf" id="cpf" placeholder="Digite seu CPF"
+                    value="{{ old('cpf') }}" required>
 
-    <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="date" inputName="nascimento" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Data de nascimento*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-        <x-teaComponents.select-component inputClass="item2" inputName="sexo" :placeholder="'Selecione'" inputId="sexo"
-            :options="$optionsSexo">
-            <x-slot name="labelSlot">
-                Sexo*:
-            </x-slot>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="celular" class="form-label">Celular</label>
+                <input type="text" class="form-control" name="celular" id="celular"
+                    placeholder="Digite seu celular" value="{{ old('celular') }}" required>
 
-        </x-teaComponents.select-component>
-    </div>
+            </div>
+        </div>
 
 
-    <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="peso" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Peso
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="altura" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Altura
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-    </div>
-    <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="cpf" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                CPF*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="celular" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Celular*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-    </div>
-    <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="identidade" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Identidade*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="date" inputName="emissao" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Data de emissão*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
-    </div>
-    <div class="duas-col">
-        <x-teaComponents.campo-formulario inputClass="item2" inputType="text" inputName="orgao" :placeholder="''"
-            inputId="">
-            <x-slot name="labelSlot">
-                Orgão emissor*:
-            </x-slot>
-        </x-teaComponents.campo-formulario>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="identidade" class="form-label">Identidade</label>
+                <input type="text" class="form-control " name="identidade" id="identidade"
+                    placeholder="Digite sua identidade" value="{{ old('identidade') }}" required>
 
-    </div>
-    <x-register.continue-register-button style="width: 323px; height: 48px; margin: 20px 0;" nextStep="setActive(1)">
-        Continuar
-    </x-register.continue-register-button>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="emissao" class="form-label">Data de Emissão</label>
+                <input type="date" class="form-control " name="emissao" id="emissao" value="{{ old('emissao') }}"
+                    required>
+
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <label for="orgao" class="form-label">Órgão Emissor</label>
+            <input type="text" class="form-control" name="orgao" id="orgao"
+                placeholder="Digite o órgão emissor" value="{{ old('orgao') }}" required>
+
+        </div>
+
+        <!-- Botão Continuar -->
+        <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary" style="width: 100%; height: 48px;">
+                Continuar
+            </button>
+        </div>
+    </section>
 
 </div>

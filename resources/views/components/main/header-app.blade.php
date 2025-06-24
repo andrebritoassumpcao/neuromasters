@@ -7,6 +7,10 @@
         padding: 0%;
     }
 
+    ul {
+        margin: 0%;
+    }
+
     a {
         text-decoration: none;
         color: #393938;

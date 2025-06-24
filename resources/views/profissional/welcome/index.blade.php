@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/welcome-profissional/style.css') }}">
+<title>Welcome</title>
 
-<head>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/welcome-profissional/style.css') }}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-
-<body>
+<x-layouts.app>
     <main class="profissional-main">
 
         <x-profissionais-components.header-component :tipoUsuario="$tipoUsuario">
@@ -30,12 +24,11 @@
             </div>
         </div>
     </main>
-</body>
-<footer>
+    <footer>
 
-    <x-footer-component>
-        <h1>footer</h1>
-    </x-footer-component>
-</footer>
+        <x-footer-component>
+            <h1>footer</h1>
+        </x-footer-component>
+    </footer>
 
-</html>
+</x-layouts.app>

@@ -26,7 +26,6 @@ class LoginProfController extends Controller
         ]);
 
         $user = ProfissionalUser::where('email', $request->input('email'))->first();
-        // dd($user);
         if (!$user) {
             return redirect()->route('loginProfissionais.index')->withErrors(['error' => 'Email ou senha inválida']);
         }

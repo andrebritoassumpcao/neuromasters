@@ -2,81 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\BeneficiarioDTO;
+use App\Services\BeneficiarioService;
 use Illuminate\Http\Request;
-use App\Models\Beneficiarios;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Storage;
 
 
 class CadastrarBenefController extends Controller
 {
+    protected $beneficiarioService;
+
+    public function __construct(BeneficiarioService $beneficiarioService)
+    {
+        $this->beneficiarioService = $beneficiarioService;
+    }
+
     public function index()
     {
         $user = auth()->user();
         $beneficiarios = $user->beneficiarios;
 
         foreach ($beneficiarios as $beneficiario) {
-            $beneficiario->nameInitials = $this->getNameInitials($beneficiario->nome_beneficiario);
+            $beneficiario->nameInitials = $this->beneficiarioService->getNameInitials($beneficiario->nome_beneficiario);
         }
 
         return view('tea.beneficiarios.index', compact('beneficiarios'));
     }
+
     public function registerBeneficiario(Request $request)
     {
-        $user = auth()->user();
-
-        $beneficiarios = Beneficiarios::create([
-            'nome_beneficiario' => $request->input('name'),
-            'cpf_beneficiario' => $request->input('cpf'),
-            'celular' => $request->input('celular'),
-            'data_nascimento' => $request->input('nascimento'),
-            'sexo' => $request->input('sexo'),
-            'peso' => str_replace(',', '.', $request->input('peso')),
-            'altura' => str_replace(',', '.', $request->input('altura')),
-            'identidade' => $request->input('identidade'),
-            'data_emissao_identidade' => $request->input('emissao'),
-            'orgao_emissor_identidade' => $request->input('orgao'),
-            'diagnostico_principal' => $request->input('diagnostico'),
-            'detalhes_diagnostico' => $request->input('diagnostico_detalhes'),
-            'nome_mae' => $request->input('nome_mae'),
-            'cpf_mae' => $request->input('cpf_mae'),
-            'profissao_mae' => $request->input('profissao_mae'),
-            'nome_pai' => $request->input('nome_pai'),
-            'cpf_pai' => $request->input('cpf_pai'),
-            'profissao_pai' => $request->input('profissao_pai'),
-            'estado_civil_pais' => $request->input('estado_civil_pais'),
-            'cep' => $request->input('cep'),
-            'rua' => $request->input('logradouro'),
-            'bairro' => $request->input('bairro'),
-            'estado' => $request->input('uf'),
-            'cidade' => $request->input('localidade'),
-            'numero' => $request->input('numero'),
-            'complemento' => $request->input('complemento'),
-            'user_id' => $request->user_id ?: auth()->id(),
-
+        $data = $request->only([
+            'name',
+            'cpf',
+            'celular',
+            'nascimento',
+            'sexo',
+            'peso',
+            'altura',
+            'identidade',
+            'emissao',
+            'orgao',
+            'diagnostico',
+            'diagnostico_detalhes',
+            'nome_mae',
+            'cpf_mae',
+            'profissao_mae',
+            'nome_pai',
+            'cpf_pai',
+            'profissao_pai',
+            'estado_civil_pais',
+            'cep',
+            'logradouro',
+            'bairro',
+            'uf',
+            'localidade',
+            'numero',
+            'complemento'
         ]);
 
+        $data['user_id'] = $request->user_id ?: auth()->id();
+
+        $beneficiarioDTO = new BeneficiarioDTO($data);
+        $this->beneficiarioService->createBeneficiario($beneficiarioDTO);
 
         return redirect()->route('beneficiarios.index');
     }
 
-    public function calcularIdade($dataNascimento)
-    {
-        $dataNascimento = Carbon::parse($dataNascimento);
-        $idade = $dataNascimento->age;
-
-        return $idade;
-    }
-
     public function mostrarBeneficiario($id_beneficiario)
     {
-        // Buscar o Beneficiário pelo ID
-        $beneficiario = Beneficiarios::findorFail($id_beneficiario);
-        $beneficiario->nameInitials = $this->getNameInitials($beneficiario->nome_beneficiario);
-        $idade = $this->calcularIdade($beneficiario->data_nascimento);
-
-
+        $beneficiario = $this->beneficiarioService->findBeneficiario($id_beneficiario);
+        $beneficiario->nameInitials = $this->beneficiarioService->getNameInitials($beneficiario->nome_beneficiario);
+        $idade = $this->beneficiarioService->calcularIdade($beneficiario->data_nascimento);
 
         return view('tea.beneficiario.index', compact('beneficiario', 'idade'));
     }
@@ -87,39 +82,13 @@ class CadastrarBenefController extends Controller
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $beneficiario = Beneficiarios::find($id_beneficiario);
+        $beneficiario = $this->beneficiarioService->findBeneficiario($id_beneficiario);
 
         if ($request->hasFile('foto')) {
-            // Remova a imagem antiga se ela existir
-            if ($beneficiario->foto) {
-                Storage::delete($beneficiario->foto);
-            }
-
-            // Armazene a nova imagem
             $path = $request->file('foto')->storeAs('images/fotos', $beneficiario->id . '.png', 'public');
-
-            // Atualize o caminho da imagem no banco de dados
-            $beneficiario->update(['foto' => $path]);
+            $this->beneficiarioService->updateFoto($beneficiario, $path);
         }
 
         return redirect()->back()->with('success', 'Foto enviada!');
-    }
-
-    public function getNameInitials($name)
-    {
-        $initials = '';
-        $words = explode(' ', $name);
-
-        // Pegar as duas primeiras letras do primeiro nome
-        if (isset($words[0])) {
-            $initials .= strtoupper(substr($words[0], 0, 1));
-        }
-
-        // Pegar as duas primeiras letras do último nome
-        if (count($words) > 1 && isset($words[count($words) - 1])) {
-            $initials .= strtoupper(substr($words[count($words) - 1], 0, 1));
-        }
-
-        return $initials;
     }
 }
