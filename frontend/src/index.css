@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-size-base: 16px;
+    --scale-ratio: 1.125;
+    --min-width: 767px;
+    --font-family: 'Inter', sans-serif;
+    --line-height: 1.6;
+    --letter-spacing: 0.006em;
+    --color-primary: #222222;
+  }
+
+  body {
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
+    color: var(--color-primary);
+    background-color: #F2F6FF;
+  }
+
+  h1 {
+    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio));
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio));
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: calc(1rem * var(--scale-ratio) * var(--scale-ratio) / var(--scale-ratio));
+    font-weight: 700;
+  }
+
+  h4 {
+    font-size: calc(1rem * var(--scale-ratio) / var(--scale-ratio));
+  }
+
+  h5 {
+    font-size: calc(1rem / var(--scale-ratio));
+  }
+
+  h6 {
+    font-size: 1.125rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #393938;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+}
